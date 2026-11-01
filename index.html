@@ -222,7 +222,7 @@
 <div class="font-sans text-[15px] leading-relaxed">
 
   <!-- ===================== HEADER ===================== -->
-  <header class="sticky sticky-top z-50 border-b border-white/[0.06] bg-eggplant-900/80 backdrop-blur-md">
+  <header class="sticky sticky-top z-50 border-b border-white/[0.06] bg-ink/80 backdrop-blur-md">
     <nav class="mx-auto flex h-16 max-w-site items-center justify-between px-4 sm:px-6 lg:h-24" aria-label="Principal">
       <a href="#" class="flex items-center gap-2.5" aria-label="Neoda Solutions, inicio">
         <svg width="30" height="30" class="lg:h-9 lg:w-9" viewBox="0 0 26 26" aria-hidden="true">
@@ -264,11 +264,11 @@
          V2 opcional: añadir detrás un vídeo en bucle del render del Prompt Base:
          <video class="media-layer object-cover opacity-40" autoplay muted loop playsinline poster="hero.jpg">
            <source src="hero-loop.webm" type="video/webm"><source src="hero-loop.mp4" type="video/mp4"></video> -->
-    <section id="hero" class="relative overflow-hidden bg-eggplant-900">
+    <section id="hero" class="relative overflow-hidden bg-ink">
       <div class="bg-grid pointer-events-none absolute inset-0 opacity-70 [mask-image:radial-gradient(ellipse_70%_70%_at_70%_45%,#000_20%,transparent_75%)]" aria-hidden="true"></div>
-      <div class="pointer-events-none absolute -right-32 top-0 h-[560px] w-[560px] rounded-full bg-lavender/25 blur-[150px]" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute -right-32 top-0 h-[560px] w-[560px] rounded-full bg-white/[0.05] blur-[150px]" aria-hidden="true"></div>
       <canvas id="heroScene" class="media-layer opacity-50 lg:opacity-100" aria-hidden="true"></canvas>
-      <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-eggplant-900 via-eggplant-900/60 to-transparent lg:via-eggplant-900/30" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink via-ink/60 to-transparent lg:via-ink/30" aria-hidden="true"></div>
       <div class="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-ink" aria-hidden="true"></div>
 
       <div class="relative mx-auto max-w-site px-4 pb-24 pt-16 sm:px-6 md:pt-24 lg:min-h-[980px] lg:pb-44">
@@ -292,11 +292,6 @@
           <p class="mt-5 font-mono text-[11px] text-silver/75">Sesión de 45 min con un arquitecto senior / sin coste / sin compromiso</p>
         </div>
 
-        <div class="pointer-events-none absolute bottom-8 right-6 hidden items-center gap-4 font-mono text-[10px] text-silver/60 lg:flex" aria-hidden="true">
-          <span id="hud">x 0.00 · y 0.00</span>
-          <span class="relative h-10 w-px overflow-hidden bg-white/15 scroll-line"></span>
-          <span>scroll</span>
-        </div>
       </div>
     </section>
 
@@ -766,7 +761,7 @@
       const uniforms = {
         uTime: { value: 0 }, uMorph: { value: 0 }, uPixel: { value: renderer.getPixelRatio() },
         uMouse: { value: new THREE.Vector3(99, 99, 99) },
-        uColA: { value: new THREE.Color(0x9a8fc0) }, uColB: { value: new THREE.Color(0xffffff) },
+        uColA: { value: new THREE.Color(0xb9bac3) }, uColB: { value: new THREE.Color(0xffffff) },
       };
       const pts = new THREE.Points(g, new THREE.ShaderMaterial({ uniforms, vertexShader: VERT, fragmentShader: FRAG, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
       const group = new THREE.Group(); group.add(pts); scene.add(group);
@@ -933,7 +928,7 @@
       });
     }
 
-    particleScene(document.getElementById('heroScene'), { shape: 'poly', count: 14000, x: 3.0, yMobile: 1.2, scale: 1, scrollMorph: true, hud: true });
+    particleScene(document.getElementById('heroScene'), { shape: 'poly', count: 14000, x: 3.0, yMobile: 1.2, scale: 1, scrollMorph: true, hud: false });
     particleScene(document.getElementById('closeScene'), { shape: 'torus', count: 9000, x: 0, scale: 1.25 });
     document.querySelectorAll('canvas.iso').forEach(c => isoScene(c, c.dataset.kind));
     document.querySelectorAll('canvas.net').forEach(nodeField);
