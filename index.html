@@ -188,6 +188,22 @@
   @keyframes mt-blink { to { visibility:hidden; } }
   @media (max-width: 900px) { .mt-sec { padding:80px 0; } .mt-grid { grid-template-columns:1fr; gap:44px; margin-top:48px; } }
   @media (prefers-reduced-motion: reduce) { .mt-track { height:auto; overflow:visible; -webkit-mask-image:none; mask-image:none; } .mt-list { transform:none !important; } .mt-dash, .mt-rot, .mt-seg, .mt-item { animation:none !important; transition:none !important; } .mt-item.typing .mt-h::after, .mt-item.typing .mt-p::after { display:none; } }
+
+  /* ===== Fases en tarjetas conectadas (icono · línea · tarjeta) ===== */
+  .mt-list { gap:22px !important; }
+  .mt-item { display:grid !important; grid-template-columns:64px 44px minmax(0,1fr); align-items:center; border:0 !important; background:none !important; padding:0 !important; opacity:.28 !important; transition:opacity .6s; }
+  .mt-item.on { opacity:1 !important; }
+  .mt-item::before { display:none !important; }
+  .mt-ibox { width:64px; height:64px; display:grid; place-items:center; border:1px solid rgba(255,255,255,.22); border-radius:12px; background:#0E0C13; transition:border-color .6s, box-shadow .6s; }
+  .mt-ibox svg { width:30px; height:30px; fill:none; stroke:var(--c); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+  .mt-item.on .mt-ibox { border-color:var(--c); box-shadow:0 0 28px -8px var(--c); }
+  .mt-conn { display:block; height:0; border-top:1px dashed rgba(255,255,255,.35); }
+  .mt-card { border:1px solid rgba(255,255,255,.22); border-radius:12px; background:#0E0C13; padding:14px 20px; min-height:88px; transition:border-color .6s; }
+  .mt-item.on .mt-card { border-color:rgba(255,255,255,.6); }
+  .mt-tag { margin:0 !important; min-height:1.3em !important; font-family:Inter,system-ui,sans-serif !important; font-size:12.5px !important; letter-spacing:0 !important; text-transform:none !important; color:#7A7585 !important; }
+  .mt-p { margin:6px 0 0 !important; min-height:2.7em !important; font-family:"Inter Tight",system-ui,sans-serif !important; font-size:17px !important; font-weight:500 !important; line-height:1.35 !important; color:#FFFFFF !important; }
+  .mt-item.typing .mt-tag::after { content:none !important; }
+  @media (max-width:600px) { .mt-item { grid-template-columns:52px 22px minmax(0,1fr); } .mt-ibox { width:52px; height:52px; } .mt-ibox svg { width:24px; height:24px; } .mt-card { padding:12px 14px; } }
 </style>
 </head>
 <body class="bg-ink">
@@ -449,12 +465,7 @@
       </div>
       <div class="mt-grid" data-reveal>
         <div class="mt-ring-wrap"><svg class="mt-ring" viewBox="-300 -300 600 600" role="img" aria-label="Ciclo de cuatro fases: auditoría, estrategia, implementación y monitorización"><circle class="mt-dash" r="208"/><path class="mt-seg" data-i="0" d="M13.1,-249.7 A250,250 0 0 1 249.7,-13.1 L167.8,-8.8 A168,168 0 0 0 8.8,-167.8 Z"/><path class="mt-seg" data-i="1" d="M249.7,13.1 A250,250 0 0 1 13.1,249.7 L8.8,167.8 A168,168 0 0 0 167.8,8.8 Z"/><path class="mt-seg" data-i="2" d="M-13.1,249.7 A250,250 0 0 1 -249.7,13.1 L-167.8,8.8 A168,168 0 0 0 -8.8,167.8 Z"/><path class="mt-seg" data-i="3" d="M-249.7,-13.1 A250,250 0 0 1 -13.1,-249.7 L-8.8,-167.8 A168,168 0 0 0 -167.8,-8.8 Z"/><g class="mt-ico" style="stroke:#7CC4FF" transform="translate(147.1,-147.1)"><circle cx="-3" cy="-3" r="8"/><path d="M3 3 L11 11"/></g><g class="mt-ico" style="stroke:#B9AFD3" transform="translate(147.1,147.1)"><circle r="10"/><circle r="4"/><path d="M0 -15 V-7 M0 7 V15 M-15 0 H-7 M7 0 H15"/></g><g class="mt-ico" style="stroke:#F2B66D" transform="translate(-147.1,147.1)"><path d="M0 -11 L12 -4 L0 3 L-12 -4 Z"/><path d="M-12 2 L0 9 L12 2"/><path d="M-12 8 L0 15 L12 8"/></g><g class="mt-ico" style="stroke:#6FD6B0" transform="translate(-147.1,-147.1)"><path d="M-15 0 H-8 L-4 -9 L3 9 L7 0 H15"/></g><text class="mt-num" x="168.3" y="-164.3">01</text><text class="mt-num" x="168.3" y="172.3">02</text><text class="mt-num" x="-168.3" y="172.3">03</text><text class="mt-num" x="-168.3" y="-164.3">04</text><circle class="mt-node" cx="0.0" cy="-208.0" r="6"/><circle class="mt-node" cx="208.0" cy="0.0" r="6"/><circle class="mt-node" cx="0.0" cy="208.0" r="6"/><circle class="mt-node" cx="-208.0" cy="0.0" r="6"/><circle r="118" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1"/><g class="mt-rot"><path d="M119.5,18.9 L110.7,-7.7 L110.7,7.7 Z"/><path d="M-18.9,119.5 L7.7,110.7 L-7.7,110.7 Z"/><path d="M-119.5,-18.9 L-110.7,7.7 L-110.7,-7.7 Z"/><path d="M18.9,-119.5 L-7.7,-110.7 L7.7,-110.7 Z"/></g><text class="mt-center" x="0" y="5">CICLO</text><text class="mt-center-sub" x="0" y="24">continuo</text></svg></div>
-        <div class="mt-track"><ol class="mt-list">
-          <li class="mt-item on" data-i="0"><p class="mt-tag">01 · 2–3 semanas</p><h3 class="mt-h" data-orig="Auditoría">Auditoría</h3><p class="mt-p" data-orig="Inventario de activos, datos y riesgos, con hallazgos priorizados.">Inventario de activos, datos y riesgos, con hallazgos priorizados.</p></li>
-          <li class="mt-item" data-i="1"><p class="mt-tag">02 · 2 semanas</p><h3 class="mt-h" data-orig="Estrategia">Estrategia</h3><p class="mt-p" data-orig="Hoja de ruta con coste, plazo y retorno por iniciativa.">Hoja de ruta con coste, plazo y retorno por iniciativa.</p></li>
-          <li class="mt-item" data-i="2"><p class="mt-tag">03 · por entregas</p><h3 class="mt-h" data-orig="Implementación">Implementación</h3><p class="mt-p" data-orig="Entregas por fases con equipos senior, sin depender de un proveedor.">Entregas por fases con equipos senior, sin depender de un proveedor.</p></li>
-          <li class="mt-item" data-i="3"><p class="mt-tag">04 · continua</p><h3 class="mt-h" data-orig="Monitorización">Monitorización</h3><p class="mt-p" data-orig="SLA medibles y revisión trimestral con la dirección.">SLA medibles y revisión trimestral con la dirección.</p></li>
-        </ol></div>
+        <div class="mt-track"><ol class="mt-list"><li class="mt-item on" data-i="0" style="--c:#7CC4FF"><div class="mt-ibox"><svg viewBox="-17 -17 34 34" aria-hidden="true"><circle cx="-3" cy="-3" r="8"/><path d="M3 3 L11 11"/></svg></div><span class="mt-conn" aria-hidden="true"></span><div class="mt-card"><p class="mt-tag" data-orig="Auditoría · 2–3 semanas">Auditoría · 2–3 semanas</p><p class="mt-p" data-orig="Inventario de activos, datos y riesgos, con hallazgos priorizados.">Inventario de activos, datos y riesgos, con hallazgos priorizados.</p></div></li><li class="mt-item" data-i="1" style="--c:#B9AFD3"><div class="mt-ibox"><svg viewBox="-17 -17 34 34" aria-hidden="true"><circle r="10"/><circle r="4"/><path d="M0 -15 V-7 M0 7 V15 M-15 0 H-7 M7 0 H15"/></svg></div><span class="mt-conn" aria-hidden="true"></span><div class="mt-card"><p class="mt-tag" data-orig="Estrategia · 2 semanas">Estrategia · 2 semanas</p><p class="mt-p" data-orig="Hoja de ruta con coste, plazo y retorno por iniciativa.">Hoja de ruta con coste, plazo y retorno por iniciativa.</p></div></li><li class="mt-item" data-i="2" style="--c:#F2B66D"><div class="mt-ibox"><svg viewBox="-17 -17 34 34" aria-hidden="true"><path d="M0 -11 L12 -4 L0 3 L-12 -4 Z"/><path d="M-12 2 L0 9 L12 2"/><path d="M-12 8 L0 15 L12 8"/></svg></div><span class="mt-conn" aria-hidden="true"></span><div class="mt-card"><p class="mt-tag" data-orig="Implementación · por entregas">Implementación · por entregas</p><p class="mt-p" data-orig="Entregas por fases con equipos senior, sin depender de un proveedor.">Entregas por fases con equipos senior, sin depender de un proveedor.</p></div></li><li class="mt-item" data-i="3" style="--c:#6FD6B0"><div class="mt-ibox"><svg viewBox="-17 -17 34 34" aria-hidden="true"><path d="M-15 0 H-8 L-4 -9 L3 9 L7 0 H15"/></svg></div><span class="mt-conn" aria-hidden="true"></span><div class="mt-card"><p class="mt-tag" data-orig="Monitorización · continua">Monitorización · continua</p><p class="mt-p" data-orig="SLA medibles y revisión trimestral con la dirección.">SLA medibles y revisión trimestral con la dirección.</p></div></li></ol></div>
       </div>
     </div>
   </section>
@@ -597,8 +608,8 @@
       const track = sec.querySelector('.mt-track'), list = sec.querySelector('.mt-list');
       const items = [...sec.querySelectorAll('.mt-item')], segs = [...sec.querySelectorAll('.mt-seg')], rot = sec.querySelector('.mt-rot');
       let cur = -1, timer = null, counter = 0;
-      items.forEach(it => it.querySelectorAll('.mt-h,.mt-p').forEach(el => el.dataset.orig = el.textContent));
-      const showFull = () => items.forEach(it => it.querySelectorAll('.mt-h,.mt-p').forEach(el => el.textContent = el.dataset.orig));
+      items.forEach(it => it.querySelectorAll('.mt-tag,.mt-p').forEach(el => el.dataset.orig = el.textContent));
+      const showFull = () => items.forEach(it => it.querySelectorAll('.mt-tag,.mt-p').forEach(el => el.textContent = el.dataset.orig));
       function type(el, cb) {
         const id = (el._id = (el._id || 0) + 1), text = el.dataset.orig; let n = 0; el.textContent = '';
         (function step() {
@@ -617,7 +628,7 @@
         segs.forEach((sg, k) => sg.classList.toggle('on', k === i));
         rot.style.transform = `rotate(${i * 90}deg)`;
         center(i);
-        const it = items[i], h = it.querySelector('.mt-h'), p = it.querySelector('.mt-p');
+        const it = items[i], h = it.querySelector('.mt-tag'), p = it.querySelector('.mt-p');
         h.textContent = ''; p.textContent = ''; it.classList.add('typing');
         type(h, () => { if (token !== counter) return; type(p, () => { if (token === counter) it.classList.remove('typing'); }); });
       }
