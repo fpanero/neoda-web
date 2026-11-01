@@ -807,17 +807,18 @@
     /* ---------- Escenas isométricas de los pilares ---------- */
     function isoScene(canvas, kind) {
       const renderer = makeRenderer(canvas); if (!renderer) return;
+      const ACC = { data: 0x7CC4FF, ai: 0xF2B66D, sec: 0x6FD6B0 }[kind] || 0x9a8fc0;
       const scene = new THREE.Scene(), s = 3.7;
       const cam = new THREE.OrthographicCamera(-s, s, s, -s, 0.1, 100);
       cam.position.set(8, 7.2, 8); cam.lookAt(0, 0.85, 0);
       scene.add(new THREE.AmbientLight(0x4a4358, 1.0));
       const key = new THREE.DirectionalLight(0xffffff, 1.05); key.position.set(5, 9, 3); scene.add(key);
-      const fillL = new THREE.PointLight(0x9a8fc0, 2.4, 14); fillL.position.set(-3, 1.2, 3); scene.add(fillL);
+      const fillL = new THREE.PointLight(ACC, 2.4, 14); fillL.position.set(-3, 1.2, 3); scene.add(fillL);
       const steel = new THREE.MeshStandardMaterial({ color: 0x4d4856, metalness: 0.8, roughness: 0.36 });
       const dark = new THREE.MeshStandardMaterial({ color: 0x15121a, metalness: 0.55, roughness: 0.55 });
-      const glow = new THREE.MeshBasicMaterial({ color: 0x9a8fc0 });
+      const glow = new THREE.MeshBasicMaterial({ color: ACC });
       const white = new THREE.MeshBasicMaterial({ color: 0xffffff });
-      const hi = new THREE.MeshStandardMaterial({ color: 0x8a80a3, metalness: 0.4, roughness: 0.3, emissive: 0x6e6487, emissiveIntensity: 0.9 });
+      const hi = new THREE.MeshStandardMaterial({ color: ACC, metalness: 0.4, roughness: 0.3, emissive: ACC, emissiveIntensity: 0.5 });
 
       const root = new THREE.Group(); scene.add(root);
       // Pedestal
@@ -833,7 +834,7 @@
         const boxes = [], geo = new THREE.BoxGeometry(0.5, 1, 0.5);
         for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) {
           const m = new THREE.Mesh(geo, steel); m.position.set((i - 1.5) * 0.66, 0, (j - 1.5) * 0.66); root.add(m); boxes.push({ m, i, j });
-          const cap = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.02, 0.5), new THREE.MeshBasicMaterial({ color: 0xb9afd3, transparent: true, opacity: 0.35 })); m.add(cap); cap.position.y = 0.5;
+          const cap = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.02, 0.5), new THREE.MeshBasicMaterial({ color: ACC, transparent: true, opacity: 0.35 })); m.add(cap); cap.position.y = 0.5;
         }
         let lit = 0, last = 0;
         update = t => {
@@ -844,13 +845,13 @@
 
       if (kind === 'ai') {
         const col = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.24, 1.2, 6), steel); col.position.y = Y0 + 0.6; root.add(col);
-        const core = new THREE.Mesh(new THREE.OctahedronGeometry(0.62, 0), new THREE.MeshStandardMaterial({ color: 0x5c5666, metalness: 0.85, roughness: 0.28, emissive: 0x3a3150, flatShading: true }));
+        const core = new THREE.Mesh(new THREE.OctahedronGeometry(0.62, 0), new THREE.MeshStandardMaterial({ color: 0x5c5666, metalness: 0.85, roughness: 0.28, emissive: 0x2e2c36, flatShading: true }));
         core.position.y = 2.1; root.add(core);
         const coreEdges = new THREE.LineSegments(new THREE.EdgesGeometry(core.geometry), new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.7 })); core.add(coreEdges);
         const rings = [1.15, 1.55].map((r, k) => { const m = new THREE.Mesh(new THREE.TorusGeometry(r, 0.012, 6, 120), k ? glow : white); m.position.y = 2.1; m.rotation.x = Math.PI / 2 + (k ? 0.5 : -0.35); root.add(m); return m; });
         const nodes = [], lineGeo = new THREE.BufferGeometry(), linePos = new Float32Array(8 * 6);
         lineGeo.setAttribute('position', new THREE.BufferAttribute(linePos, 3));
-        root.add(new THREE.LineSegments(lineGeo, new THREE.LineBasicMaterial({ color: 0xb9afd3, transparent: true, opacity: 0.55 })));
+        root.add(new THREE.LineSegments(lineGeo, new THREE.LineBasicMaterial({ color: ACC, transparent: true, opacity: 0.55 })));
         for (let k = 0; k < 8; k++) { const n = new THREE.Mesh(new THREE.SphereGeometry(k % 3 ? 0.07 : 0.1, 12, 12), k % 3 ? glow : white); root.add(n); nodes.push(n); }
         update = t => {
           core.rotation.y = t * 0.8; core.position.y = 2.1 + Math.sin(t * 1.5) * 0.06;
@@ -873,7 +874,7 @@
           m.position.set(R * 1.5 * q, 0, R * Math.sqrt(3) * (r + q / 2)); m.scale.y = h; m.position.y = Y0 + h / 2; m.userData = { d, h };
           root.add(m); hexes.push(m);
         }
-        const dome = new THREE.Mesh(new THREE.SphereGeometry(2.2, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshBasicMaterial({ color: 0x8a80a3, wireframe: true, transparent: true, opacity: 0.16 }));
+        const dome = new THREE.Mesh(new THREE.SphereGeometry(2.2, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshBasicMaterial({ color: ACC, wireframe: true, transparent: true, opacity: 0.16 }));
         dome.position.y = Y0; root.add(dome);
         const scan = new THREE.Mesh(new THREE.TorusGeometry(1, 0.008, 6, 128), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.85 }));
         scan.rotation.x = Math.PI / 2; root.add(scan);
