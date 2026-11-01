@@ -155,6 +155,38 @@
   .nf-bottom a:hover { color:#fff; }
   @media (max-width: 860px) { .nf-top { grid-template-columns:1fr 1fr; } .nf-brand { grid-column:1 / -1; } }
   @media (max-width: 480px) { .nf-top { grid-template-columns:1fr; } }
+
+  /* ===== Metodología: ciclo con texto que se escribe ===== */
+  .mt-sec { position:relative; overflow:hidden; background:#0C0B10; color:#AFAAB5; padding:112px 0; border-top:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06); }
+  .mt-sec::before { content:""; position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(rgba(175,170,181,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(175,170,181,.04) 1px,transparent 1px); background-size:64px 64px; }
+  .mt-wrap { position:relative; max-width:1200px; margin:0 auto; padding:0 max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px)); }
+  .mt-eyebrow { margin:0; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#B9AFD3; }
+  .mt-head h2 { margin:14px 0 0; font-family:"Inter Tight",system-ui,sans-serif; font-weight:600; font-size:clamp(30px,4vw,44px); line-height:1.1; letter-spacing:-.02em; color:#fff; text-wrap:balance; max-width:24ch; }
+  .mt-lead { margin:18px 0 0; max-width:60ch; line-height:1.65; }
+  .mt-grid { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:64px; align-items:center; margin-top:72px; }
+  .mt-ring { display:block; width:100%; max-width:540px; height:auto; margin:0 auto; }
+  .mt-seg { fill:#15111D; stroke:rgba(255,255,255,.2); stroke-width:1; transition:fill .7s, stroke .7s; }
+  .mt-seg.on { fill:rgba(95,86,117,.42); stroke:#B9AFD3; }
+  .mt-ico { fill:none; stroke:#E4DEF2; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+  .mt-num { font-family:"JetBrains Mono",monospace; font-size:12px; fill:#7A7585; text-anchor:middle; letter-spacing:.08em; }
+  .mt-node { fill:#0C0B10; stroke:rgba(185,175,211,.6); stroke-width:1.2; }
+  .mt-dash { fill:none; stroke:rgba(255,255,255,.16); stroke-width:1; stroke-dasharray:2 7; transform-box:view-box; transform-origin:0 0; animation:mt-spin 120s linear infinite; }
+  .mt-rot { fill:#B9AFD3; transition:transform 1.2s cubic-bezier(.2,.7,.2,1); transform-box:view-box; transform-origin:0 0; }
+  .mt-center { font-family:"JetBrains Mono",monospace; font-size:13px; letter-spacing:.2em; fill:#FFFFFF; text-anchor:middle; }
+  .mt-center-sub { font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.12em; fill:#7A7585; text-anchor:middle; }
+  @keyframes mt-spin { to { transform:rotate(360deg); } }
+  .mt-list { list-style:none; margin:0; padding:0; display:grid; gap:14px; }
+  .mt-item { position:relative; border:1px solid rgba(255,255,255,.08); background:rgba(19,17,24,.6); padding:20px 24px 22px 26px; opacity:.5; transition:opacity .6s, border-color .6s, background-color .6s; }
+  .mt-item.on { opacity:1; border-color:rgba(185,175,211,.45); background:rgba(34,28,46,.72); }
+  .mt-item::before { content:""; position:absolute; left:-1px; top:-1px; bottom:-1px; width:2px; background:#B9AFD3; transform:scaleY(0); transform-origin:top; transition:transform .7s; }
+  .mt-item.on::before { transform:scaleY(1); }
+  .mt-tag { margin:0; font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#B9AFD3; }
+  .mt-h { margin:8px 0 0; min-height:1.3em; font-family:"Inter Tight",system-ui,sans-serif; font-size:20px; font-weight:600; color:#FFFFFF; }
+  .mt-p { margin:8px 0 0; min-height:3.2em; font-size:14.5px; line-height:1.6; color:#AFAAB5; }
+  .mt-item.typing .mt-h::after, .mt-item.typing .mt-p::after { content:"▍"; color:#B9AFD3; animation:mt-blink 1s steps(2,start) infinite; }
+  @keyframes mt-blink { to { visibility:hidden; } }
+  @media (max-width: 900px) { .mt-sec { padding:80px 0; } .mt-grid { grid-template-columns:1fr; gap:44px; margin-top:48px; } }
+  @media (prefers-reduced-motion: reduce) { .mt-dash, .mt-rot, .mt-seg, .mt-item { animation:none !important; transition:none !important; } .mt-item.typing .mt-h::after, .mt-item.typing .mt-p::after { display:none; } }
 </style>
 </head>
 <body class="bg-ink">
@@ -407,47 +439,24 @@
     </section>
 
     <!-- ===================== METODOLOGÍA · línea que avanza con el scroll ===================== -->
-    <section id="nosotros" class="relative overflow-hidden border-y border-white/[0.06] bg-eggplant-800 py-24 lg:py-32" aria-labelledby="metodo-title">
-      <div class="bg-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden="true"></div>
-      <canvas class="net media-layer fade-x opacity-40" data-density="32000" aria-hidden="true"></canvas>
-      <div class="relative mx-auto max-w-site px-4 sm:px-6">
-        <div class="max-w-2xl" data-reveal>
-          <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-lavender-glow">Metodología</p>
-          <h2 id="metodo-title" class="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-white sm:text-[44px] sm:leading-[1.08]">Un proceso diseñado para no sorprender a nadie.</h2>
-          <p class="mt-5 text-silver">Cada fase termina con un entregable concreto y un punto de decisión para la dirección. Usted mantiene el control del alcance en todo momento.</p>
-        </div>
-
-        <ol id="steps" class="relative mt-16 grid gap-10 md:grid-cols-4 md:gap-6">
-          <span class="absolute left-[7px] top-2 h-[calc(100%-1rem)] w-px bg-white/10 md:left-0 md:top-[7px] md:h-px md:w-full" aria-hidden="true"></span>
-          <span id="stepsFill" class="absolute left-[7px] top-2 w-px bg-gradient-to-b from-white to-lavender-line md:left-0 md:top-[7px] md:h-px md:bg-gradient-to-r" style="height:0" aria-hidden="true"></span>
-
-          <li class="step relative pl-10 md:pl-0 md:pt-12">
-            <span class="step-dot absolute left-0 top-1 h-[15px] w-[15px] rotate-45 border border-lavender-line bg-eggplant-800 md:top-0" aria-hidden="true"></span>
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-silver/70">Fase 01 · 2–3 semanas</p>
-            <h3 class="mt-2 font-display text-xl font-semibold text-white">Auditoría</h3>
-            <p class="mt-3 text-sm text-silver">Inventario de activos, datos y riesgos. Informe ejecutivo con hallazgos priorizados por impacto económico.</p>
-          </li>
-          <li class="step relative pl-10 md:pl-0 md:pt-12">
-            <span class="step-dot absolute left-0 top-1 h-[15px] w-[15px] rotate-45 border border-lavender-line bg-eggplant-800 md:top-0" aria-hidden="true"></span>
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-silver/70">Fase 02 · 2 semanas</p>
-            <h3 class="mt-2 font-display text-xl font-semibold text-white">Estrategia</h3>
-            <p class="mt-3 text-sm text-silver">Hoja de ruta con coste, plazo y retorno por iniciativa, lista para su aprobación en comité.</p>
-          </li>
-          <li class="step relative pl-10 md:pl-0 md:pt-12">
-            <span class="step-dot absolute left-0 top-1 h-[15px] w-[15px] rotate-45 border border-lavender-line bg-eggplant-800 md:top-0" aria-hidden="true"></span>
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-silver/70">Fase 03 · por entregas</p>
-            <h3 class="mt-2 font-display text-xl font-semibold text-white">Implementación</h3>
-            <p class="mt-3 text-sm text-silver">Equipos senior, entregas por fases y transferencia de conocimiento. Sin dependencia de un único proveedor.</p>
-          </li>
-          <li class="step relative pl-10 md:pl-0 md:pt-12">
-            <span class="step-dot absolute left-0 top-1 h-[15px] w-[15px] rotate-45 border border-lavender-line bg-eggplant-800 md:top-0" aria-hidden="true"></span>
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-silver/70">Fase 04 · continua</p>
-            <h3 class="mt-2 font-display text-xl font-semibold text-white">Monitorización</h3>
-            <p class="mt-3 text-sm text-silver">SLA medibles, cuadro de mando ejecutivo y revisión trimestral con la dirección.</p>
-          </li>
+    <section id="nosotros" class="mt-sec" aria-labelledby="metodo-title">
+    <div class="mt-wrap">
+      <div class="mt-head" data-reveal>
+        <p class="mt-eyebrow">Metodología</p>
+        <h2 id="metodo-title">Cuatro fases. Un ciclo que se repite.</h2>
+        <p class="mt-lead">Cada fase termina con un entregable concreto y un punto de decisión para la dirección. Al cerrar la monitorización, el ciclo vuelve a empezar con una auditoría actualizada.</p>
+      </div>
+      <div class="mt-grid" data-reveal>
+        <div class="mt-ring-wrap"><svg class="mt-ring" viewBox="-300 -300 600 600" role="img" aria-label="Ciclo de cuatro fases: auditoría, estrategia, implementación y monitorización"><circle class="mt-dash" r="208"/><path class="mt-seg" data-i="0" d="M13.1,-249.7 A250,250 0 0 1 249.7,-13.1 L167.8,-8.8 A168,168 0 0 0 8.8,-167.8 Z"/><path class="mt-seg" data-i="1" d="M249.7,13.1 A250,250 0 0 1 13.1,249.7 L8.8,167.8 A168,168 0 0 0 167.8,8.8 Z"/><path class="mt-seg" data-i="2" d="M-13.1,249.7 A250,250 0 0 1 -249.7,13.1 L-167.8,8.8 A168,168 0 0 0 -8.8,167.8 Z"/><path class="mt-seg" data-i="3" d="M-249.7,-13.1 A250,250 0 0 1 -13.1,-249.7 L-8.8,-167.8 A168,168 0 0 0 -167.8,-8.8 Z"/><g class="mt-ico" transform="translate(147.1,-147.1)"><circle cx="-3" cy="-3" r="8"/><path d="M3 3 L11 11"/></g><g class="mt-ico" transform="translate(147.1,147.1)"><circle r="10"/><circle r="4"/><path d="M0 -15 V-7 M0 7 V15 M-15 0 H-7 M7 0 H15"/></g><g class="mt-ico" transform="translate(-147.1,147.1)"><path d="M0 -11 L12 -4 L0 3 L-12 -4 Z"/><path d="M-12 2 L0 9 L12 2"/><path d="M-12 8 L0 15 L12 8"/></g><g class="mt-ico" transform="translate(-147.1,-147.1)"><path d="M-15 0 H-8 L-4 -9 L3 9 L7 0 H15"/></g><text class="mt-num" x="168.3" y="-164.3">01</text><text class="mt-num" x="168.3" y="172.3">02</text><text class="mt-num" x="-168.3" y="172.3">03</text><text class="mt-num" x="-168.3" y="-164.3">04</text><circle class="mt-node" cx="0.0" cy="-208.0" r="6"/><circle class="mt-node" cx="208.0" cy="0.0" r="6"/><circle class="mt-node" cx="0.0" cy="208.0" r="6"/><circle class="mt-node" cx="-208.0" cy="0.0" r="6"/><circle r="118" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1"/><g class="mt-rot"><path d="M119.5,18.9 L110.7,-7.7 L110.7,7.7 Z"/><path d="M-18.9,119.5 L7.7,110.7 L-7.7,110.7 Z"/><path d="M-119.5,-18.9 L-110.7,7.7 L-110.7,-7.7 Z"/><path d="M18.9,-119.5 L-7.7,-110.7 L7.7,-110.7 Z"/></g><text class="mt-center" x="0" y="5">CICLO</text><text class="mt-center-sub" x="0" y="24">continuo</text></svg></div>
+        <ol class="mt-list">
+          <li class="mt-item on" data-i="0"><p class="mt-tag">01 · 2–3 semanas</p><h3 class="mt-h" data-orig="Auditoría">Auditoría</h3><p class="mt-p" data-orig="Inventario de activos, datos y riesgos. Informe ejecutivo con hallazgos priorizados por impacto económico.">Inventario de activos, datos y riesgos. Informe ejecutivo con hallazgos priorizados por impacto económico.</p></li>
+          <li class="mt-item" data-i="1"><p class="mt-tag">02 · 2 semanas</p><h3 class="mt-h" data-orig="Estrategia">Estrategia</h3><p class="mt-p" data-orig="Hoja de ruta con coste, plazo y retorno por iniciativa, lista para su aprobación en comité.">Hoja de ruta con coste, plazo y retorno por iniciativa, lista para su aprobación en comité.</p></li>
+          <li class="mt-item" data-i="2"><p class="mt-tag">03 · por entregas</p><h3 class="mt-h" data-orig="Implementación">Implementación</h3><p class="mt-p" data-orig="Equipos senior, entregas por fases y transferencia de conocimiento. Sin dependencia de un único proveedor.">Equipos senior, entregas por fases y transferencia de conocimiento. Sin dependencia de un único proveedor.</p></li>
+          <li class="mt-item" data-i="3"><p class="mt-tag">04 · continua</p><h3 class="mt-h" data-orig="Monitorización">Monitorización</h3><p class="mt-p" data-orig="SLA medibles, cuadro de mando ejecutivo y revisión trimestral con la dirección. Al cerrar, el ciclo vuelve a la auditoría.">SLA medibles, cuadro de mando ejecutivo y revisión trimestral con la dirección. Al cerrar, el ciclo vuelve a la auditoría.</p></li>
         </ol>
       </div>
-    </section>
+    </div>
+  </section>
 
     <!-- ===================== LEAD MAGNET (única banda clara) ===================== -->
     <section id="insights" class="relative overflow-hidden bg-paper py-24 text-ink" aria-labelledby="whitepaper-title">
@@ -580,16 +589,40 @@
       document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('in'));
     }
 
-    /* ---------- Metodología: línea que avanza con el scroll ---------- */
-    const stepsEl = document.getElementById('steps'), fill = document.getElementById('stepsFill'), steps = [...stepsEl.querySelectorAll('.step')];
-    function updateSteps() {
-      const r = stepsEl.getBoundingClientRect(), vh = innerHeight;
-      const p = Math.max(0, Math.min(1, (vh * 0.85 - r.top) / (r.height + vh * 0.35)));
-      const wide = innerWidth >= 768;
-      if (wide) { fill.style.width = (p * 100) + '%'; fill.style.height = '1px'; } else { fill.style.height = `calc(${p} * (100% - 1rem))`; fill.style.width = '1px'; }
-      steps.forEach((s, i) => s.classList.toggle('active', p >= i / steps.length + 0.02));
-    }
-    addEventListener('scroll', updateSteps, { passive: true }); addEventListener('resize', updateSteps); updateSteps();
+
+    /* ---------- Metodología: ciclo y texto que se escribe ---------- */
+    (() => {
+      const sec = document.querySelector('.mt-sec'); if (!sec) return;
+      const items = [...sec.querySelectorAll('.mt-item')], segs = [...sec.querySelectorAll('.mt-seg')], rot = sec.querySelector('.mt-rot');
+      let cur = -1, timer = null, counter = 0;
+      const showFull = () => items.forEach(it => it.querySelectorAll('.mt-h,.mt-p').forEach(el => el.textContent = el.dataset.orig));
+      function type(el, cb) {
+        const id = (el._id = (el._id || 0) + 1), text = el.dataset.orig; let n = 0; el.textContent = '';
+        (function step() {
+          if (el._id !== id) return;
+          el.textContent = text.slice(0, ++n);
+          if (n < text.length) setTimeout(step, 16); else cb && cb();
+        })();
+      }
+      function go(i) {
+        if (i === cur) return; cur = i;
+        items.forEach((it, k) => { it.classList.toggle('on', k === i); it.classList.remove('typing'); });
+        segs.forEach((sg, k) => sg.classList.toggle('on', k === i));
+        rot.style.transform = `rotate(${i * 90}deg)`;
+        const it = items[i], h = it.querySelector('.mt-h'), p = it.querySelector('.mt-p');
+        const token = ++counter; it.classList.add('typing');
+        h.textContent = ''; p.textContent = '';
+        type(h, () => { if (token !== counter) return; type(p, () => { if (token === counter) it.classList.remove('typing'); }); });
+      }
+      showFull();
+      if (reduce) { items[0].classList.add('on'); segs[0].classList.add('on'); return; }
+      const io = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting && !timer) { go(0); timer = setInterval(() => go((cur + 1) % items.length), 6500); }
+        else if (!e.isIntersecting && timer) { clearInterval(timer); timer = null; }
+      }, { threshold: .3 });
+      items.forEach(it => it.addEventListener('click', () => { const i = +it.dataset.i; if (timer) { clearInterval(timer); timer = null; } go(i); }));
+      io.observe(sec);
+    })();
 
     /* ---------- Utilidad: animar solo mientras es visible ---------- */
     function runWhenVisible(el, frame) {
