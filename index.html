@@ -216,6 +216,38 @@
   .lang button { background:transparent; color:#AFAAB5; border:0; padding:7px 10px; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:11px; letter-spacing:.08em; cursor:pointer; }
   .lang button[aria-pressed="true"] { background:#FFFFFF; color:#0C0B10; }
   .lang button:not([aria-pressed="true"]):hover { color:#FFFFFF; }
+
+  /* ===== Casos de uso · tarjetas que giran ===== */
+  .casos-wrap { position:relative; }
+  .rail { display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding:4px 2px 12px; }
+  .rail::-webkit-scrollbar { display:none; }
+  .flip { flex:0 0 clamp(250px,27vw,320px); height:440px; scroll-snap-align:start; perspective:1400px; outline:none; cursor:pointer; }
+  .flip-in { position:relative; width:100%; height:100%; transition:transform .8s cubic-bezier(.2,.7,.2,1); transform-style:preserve-3d; }
+  .flip:focus-visible .face { outline:2px solid #B9AFD3; outline-offset:3px; }
+  @media (hover:hover) { .flip:hover .flip-in { transform:rotateY(180deg); } }
+  .flip.is-on .flip-in { transform:rotateY(180deg); }
+  .face { position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; overflow:hidden; border:1px solid rgba(255,255,255,.08); background:#131118; }
+  .front img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .front .shade { position:absolute; inset:0; background:linear-gradient(to top,rgba(12,11,16,.96) 0%,rgba(12,11,16,.45) 50%,rgba(12,11,16,.15) 100%); }
+  .fcontent { position:absolute; left:0; right:0; bottom:0; padding:28px; }
+  .fcontent h3 { font-family:"Inter Tight",system-ui,sans-serif; font-size:26px; font-weight:600; color:#fff; margin:10px 0 8px; letter-spacing:-.01em; }
+  .fdesc { color:#D4D0DA; font-size:14.5px; line-height:1.5; }
+  .hint { display:inline-block; margin-top:14px; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:11px; letter-spacing:.08em; color:#B9AFD3; }
+  .mono { font-family:"JetBrains Mono",ui-monospace,monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#AFAAB5; }
+  .back { transform:rotateY(180deg); background:#0C0B10; padding:32px 28px; display:flex; flex-direction:column; }
+  .metric { font-family:"Inter Tight",system-ui,sans-serif; font-size:76px; font-weight:600; line-height:1; color:#fff; margin-top:40px; letter-spacing:-.03em; }
+  .metric span { font-size:30px; color:#AFAAB5; margin-left:4px; }
+  .mlabel { margin-top:14px; font-weight:600; color:#fff; font-size:15px; line-height:1.35; }
+  .btxt { margin-top:18px; color:#AFAAB5; font-size:14px; line-height:1.6; }
+  .bcta { margin-top:auto; font-size:14px; font-weight:500; color:#fff; text-decoration:underline; text-decoration-color:rgba(255,255,255,.3); text-underline-offset:4px; }
+  .rail-ctrl { display:flex; align-items:center; justify-content:center; gap:18px; margin-top:18px; }
+  .rbtn { width:44px; height:44px; border:1px solid rgba(255,255,255,.2); color:#fff; background:transparent; border-radius:2px; cursor:pointer; font-size:16px; transition:border-color .2s, background .2s; }
+  .rbtn:hover { border-color:rgba(255,255,255,.55); background:rgba(255,255,255,.04); }
+  .dots { display:flex; gap:10px; }
+  .dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.25); border:0; padding:0; cursor:pointer; }
+  .dot.on { background:#fff; }
+  @media (max-width:640px) { .flip { flex-basis:80vw; height:420px; } .metric { font-size:64px; } }
+  @media (prefers-reduced-motion: reduce) { .flip-in { transition:none; } }
 </style>
 </head>
 <body class="bg-ink">
@@ -440,25 +472,98 @@
           <a href="#contacto" class="text-sm font-medium text-white underline decoration-white/25 underline-offset-4 hover:decoration-white">Solicitar casos completos bajo NDA →</a>
         </div>
 
-        <div class="mt-14 grid border border-white/[0.08] bg-ink-800 md:grid-cols-3" data-reveal>
-          <article class="spot border-b border-white/[0.08] p-8 md:border-b-0 md:border-r">
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-silver/70">Retail · Datos</p>
-            <p class="mt-8 font-display text-6xl font-semibold tabular-nums tracking-tightest text-white"><span data-count="-38" data-dec="0">−38</span><span class="text-3xl text-silver">%</span></p>
-            <p class="mt-2 font-display text-sm font-medium text-white">Coste anual de plataforma de datos</p>
-            <p class="mt-4 text-sm text-silver">Consolidación de cuatro entornos en uno y modelo de gobierno único. Reporting comercial diario en lugar de semanal.</p>
+        <div class="casos-wrap mt-14" data-reveal>
+          <div class="rail" id="railCasos">
+          <article class="flip" tabindex="0">
+            <div class="flip-in">
+              <div class="face front">
+                <img src="img/casos/retail.jpg" alt="" loading="lazy" width="900" height="1100">
+                <div class="shade" aria-hidden="true"></div>
+                <div class="fcontent">
+                  <p class="mono">Retail · Datos</p>
+                  <h3>Comercio minorista</h3>
+                  <p class="fdesc">Una única fuente de datos para toda la red comercial.</p>
+                  <span class="hint">Ver resultado →</span>
+                </div>
+              </div>
+              <div class="face back">
+                <p class="mono">Retail · Datos</p>
+                <p class="metric">−38<span>%</span></p>
+                <p class="mlabel">Coste anual de plataforma de datos</p>
+                <p class="btxt">Consolidación de cuatro entornos en uno y modelo de gobierno único. Reporting comercial diario en lugar de semanal.</p>
+                <a href="#contacto" class="bcta">Solicitar caso bajo NDA →</a>
+              </div>
+            </div>
           </article>
-          <article class="spot border-b border-white/[0.08] p-8 md:border-b-0 md:border-r">
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-silver/70">Banca · Ciberseguridad</p>
-            <p class="mt-8 font-display text-6xl font-semibold tabular-nums tracking-tightest text-white"><span data-count="-72" data-dec="0">−72</span><span class="text-3xl text-silver">%</span></p>
-            <p class="mt-2 font-display text-sm font-medium text-white">Tiempo medio de contención de incidentes</p>
-            <p class="mt-4 text-sm text-silver">Centralización de la detección, playbooks de respuesta automatizados y simulacros trimestrales con el comité de riesgos.</p>
+          <article class="flip" tabindex="0">
+            <div class="flip-in">
+              <div class="face front">
+                <img src="img/casos/banca.jpg" alt="" loading="lazy" width="900" height="1100">
+                <div class="shade" aria-hidden="true"></div>
+                <div class="fcontent">
+                  <p class="mono">Banca · Ciberseguridad</p>
+                  <h3>Banca</h3>
+                  <p class="fdesc">Detección y respuesta gestionadas, con tiempos comprometidos.</p>
+                  <span class="hint">Ver resultado →</span>
+                </div>
+              </div>
+              <div class="face back">
+                <p class="mono">Banca · Ciberseguridad</p>
+                <p class="metric">−72<span>%</span></p>
+                <p class="mlabel">Tiempo medio de contención de incidentes</p>
+                <p class="btxt">Centralización de la detección, playbooks de respuesta automatizados y simulacros trimestrales con el comité de riesgos.</p>
+                <a href="#contacto" class="bcta">Solicitar caso bajo NDA →</a>
+              </div>
+            </div>
           </article>
-          <article class="spot p-8">
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-silver/70">Industria · IA</p>
-            <p class="mt-8 font-display text-6xl font-semibold tabular-nums tracking-tightest text-white"><span data-count="4.2" data-dec="1" data-sign="+">+4,2</span><span class="text-3xl text-silver"> pp</span></p>
-            <p class="mt-2 font-display text-sm font-medium text-white">Margen bruto en la línea de producto principal</p>
-            <p class="mt-4 text-sm text-silver">Modelo de pricing dinámico con validación humana, desplegado en catorce semanas sobre datos ya existentes.</p>
+          <article class="flip" tabindex="0">
+            <div class="flip-in">
+              <div class="face front">
+                <img src="img/casos/industria.jpg" alt="" loading="lazy" width="900" height="1100">
+                <div class="shade" aria-hidden="true"></div>
+                <div class="fcontent">
+                  <p class="mono">Industria · IA</p>
+                  <h3>Industria</h3>
+                  <p class="fdesc">Modelo de precios con validación humana sobre datos existentes.</p>
+                  <span class="hint">Ver resultado →</span>
+                </div>
+              </div>
+              <div class="face back">
+                <p class="mono">Industria · IA</p>
+                <p class="metric">+4,2<span>pp</span></p>
+                <p class="mlabel">Margen bruto en la línea de producto principal</p>
+                <p class="btxt">Modelo de pricing dinámico con validación humana, desplegado en catorce semanas sobre datos ya existentes.</p>
+                <a href="#contacto" class="bcta">Solicitar caso bajo NDA →</a>
+              </div>
+            </div>
           </article>
+          <article class="flip" tabindex="0">
+            <div class="flip-in">
+              <div class="face front">
+                <img src="img/casos/seguros.jpg" alt="" loading="lazy" width="900" height="1100">
+                <div class="shade" aria-hidden="true"></div>
+                <div class="fcontent">
+                  <p class="mono">Seguros · IA</p>
+                  <h3>Seguros</h3>
+                  <p class="fdesc">Asistente de tramitación con trazabilidad y supervisión humana.</p>
+                  <span class="hint">Ver resultado →</span>
+                </div>
+              </div>
+              <div class="face back">
+                <p class="mono">Seguros · IA</p>
+                <p class="metric">−30<span>%</span></p>
+                <p class="mlabel">Tiempo de tramitación de siniestros</p>
+                <p class="btxt">Clasificación y extracción de documentos con revisión humana en cada decisión. Todo queda registrado para auditoría.</p>
+                <a href="#contacto" class="bcta">Solicitar caso bajo NDA →</a>
+              </div>
+            </div>
+          </article>
+          </div>
+          <div class="rail-ctrl">
+            <button type="button" id="prevC" class="rbtn" aria-label="Anterior">←</button>
+            <div class="dots" id="dotsCasos"></div>
+            <button type="button" id="nextC" class="rbtn" aria-label="Siguiente">→</button>
+          </div>
         </div>
       </div>
     </section>
@@ -558,7 +663,7 @@
 
 
     /* ---------- Idioma ES / EN ---------- */
-    const EN = {"Neoda": "Neoda", "Solutions": "Solutions", "V1": "V1", "Servicios": "Services", "Casos de Uso": "Use cases", "Insights": "Insights", "Nosotros": "About", "Agendar Consultoría": "Book a consultation", "Monitorización activa · 24/7 · UE": "Active monitoring · 24/7 · EU", "Cada dato sin gobierno es un riesgo abierto y una ventaja que no se cobra.": "Every ungoverned data asset is an open risk and an advantage left unclaimed.", "Diseñamos arquitecturas de datos, IA y ciberseguridad que devuelven el control a la dirección: exposición medida, decisiones basadas en información fiable e infraestructura preparada para escalar.": "We design data, AI and cybersecurity architectures that return control to the board: measured exposure, decisions based on reliable information and infrastructure ready to scale.", "Agendar consultoría": "Book a consultation", "Ver casos de uso": "View use cases", "Sesión de 45 min con un arquitecto senior / sin coste / sin compromiso": "45-minute session with a senior architect / no cost / no commitment", "scroll": "scroll", "Partners certificados": "Certified partners", "El punto ciego": "The blind spot", "Lo que no aparece en el cuadro de mando también cuesta dinero.": "What does not appear on the dashboard also costs money.", "La mayoría de los incidentes graves y de las inversiones tecnológicas fallidas comparten un origen: decisiones tomadas sin visibilidad real sobre los propios activos.": "Most serious incidents and failed technology investments share one origin: decisions made without real visibility of the organisation's own assets.", "Exposición que nadie está midiendo": "Exposure nobody is measuring", "riesgo": "risk", "Accesos heredados, proveedores conectados a sistemas críticos y configuraciones cloud sin revisar. El riesgo existe aunque no figure en ningún informe.": "Legacy access, suppliers connected to critical systems and unreviewed cloud configurations. The risk exists even if it appears in no report.", "Datos que cuestan y no rinden": "Data that costs and doesn't pay back", "coste": "cost", "Almacenados, duplicados y sin modelo de gobierno. La empresa paga por ellos cada mes, pero no los convierte en margen ni en decisiones.": "Stored, duplicated and without a governance model. The company pays for them every month, but they do not turn into margin or decisions.", "IA sin perímetro": "AI without boundaries", "cumplimiento": "compliance", "Pilotos aislados, herramientas no autorizadas e información sensible fuera de control. Sin trazabilidad no hay retorno defendible ni cumplimiento normativo.": "Isolated pilots, unauthorised tools and sensitive information outside control. Without traceability there is no defensible return or regulatory compliance.", "Capacidades": "Capabilities", "Tres disciplinas. Una sola responsabilidad: el resultado.": "Three disciplines. One responsibility: the result.", "No vendemos licencias ni horas. Entregamos capacidades operativas con un propietario claro y métricas que su comité puede auditar.": "We don't sell licences or hours. We deliver operational capabilities with a clear owner and metrics your committee can audit.", "Arquitectura de Datos": "Data Architecture", "Una única fuente de verdad para decidir.": "A single source of truth for decisions.", "Gobierno y linaje del dato auditables de extremo a extremo.": "Governance and data lineage auditable end to end.", "Plataformas cloud dimensionadas al uso real, no a la previsión del proveedor.": "Cloud platforms sized for real usage, not for the vendor's forecast.", "Indicadores de negocio disponibles en horas, no en semanas.": "Business indicators available in hours, not weeks.", "Explorar Datos →": "Explore Data →", "Inteligencia Artificial": "Artificial Intelligence", "Automatización con retorno medible y riesgo acotado.": "Automation with measurable return and contained risk.", "Casos de uso priorizados por impacto en la cuenta de resultados.": "Use cases prioritised by impact on the P&L.", "Modelos con trazabilidad, supervisión humana y datos que no salen de su perímetro.": "Models with traceability, human oversight and data that never leaves your perimeter.", "Cumplimiento del Reglamento Europeo de IA desde el diseño.": "EU AI Act compliance by design.", "Explorar IA →": "Explore AI →", "Ciberseguridad": "Cybersecurity", "Exposición conocida, medida y bajo control.": "Known, measured and controlled exposure.", "Evaluación continua de la superficie de ataque, incluida la cadena de suministro.": "Continuous assessment of the attack surface, including the supply chain.", "Detección y respuesta gestionada 24/7 con tiempos de contención comprometidos.": "24/7 managed detection and response with committed containment times.", "Preparación documentada para NIS2 y DORA ante regulador y auditoría.": "Documented NIS2 and DORA readiness for regulators and audits.", "Explorar Ciberseguridad →": "Explore Cybersecurity →", "Casos de uso": "Use cases", "Resultados que se presentan en comité.": "Results ready for the board.", "Solicitar casos completos bajo NDA →": "Request full cases under NDA →", "Retail · Datos": "Retail · Data", "Coste anual de plataforma de datos": "Annual data platform cost", "Consolidación de cuatro entornos en uno y modelo de gobierno único. Reporting comercial diario en lugar de semanal.": "Four environments consolidated into one, with a single governance model. Commercial reporting daily instead of weekly.", "Banca · Ciberseguridad": "Banking · Cybersecurity", "Tiempo medio de contención de incidentes": "Average incident containment time", "Centralización de la detección, playbooks de respuesta automatizados y simulacros trimestrales con el comité de riesgos.": "Centralised detection, automated response playbooks and quarterly drills with the risk committee.", "Industria · IA": "Industry · AI", "Margen bruto en la línea de producto principal": "Gross margin on the main product line", "Modelo de pricing dinámico con validación humana, desplegado en catorce semanas sobre datos ya existentes.": "Dynamic pricing model with human validation, deployed in fourteen weeks on existing data.", "Metodología": "Methodology", "Cuatro fases. Un ciclo que se repite.": "Four phases. One cycle that repeats.", "Cada fase termina con un entregable concreto y un punto de decisión para la dirección. Al cerrar la monitorización, el ciclo vuelve a empezar con una auditoría actualizada.": "Each phase ends with a concrete deliverable and a decision point for the board. When monitoring closes, the cycle starts again with an updated audit.", "Neoda · Whitepaper": "Neoda · Whitepaper", "Marco de Exposición Tecnológica 2027": "Technology Exposure Framework 2027", "Insights · Whitepaper técnico": "Insights · Technical whitepaper", "Datos, IA y ciberriesgo: el marco que su comité de dirección necesita en 2027.": "Data, AI and cyber risk: the framework your board needs in 2027.", "28 páginas con un modelo para cuantificar la exposición tecnológica en términos financieros, una matriz de priorización de inversiones y una checklist de cumplimiento NIS2, DORA y Reglamento Europeo de IA.": "28 pages with a model to quantify technology exposure in financial terms, an investment prioritisation matrix and a compliance checklist for NIS2, DORA and the EU AI Act.", "Email corporativo": "Work email", "Descargar whitepaper": "Download whitepaper", "Solo direcciones corporativas. No compartimos sus datos con terceros y puede darse de baja en un clic.": "Corporate addresses only. We do not share your data with third parties, and you can unsubscribe in one click.", "Siguiente paso": "Next step", "El riesgo no espera a la próxima reunión del comité.": "Risk does not wait for the next board meeting.", "En 45 minutos identificamos sus tres exposiciones prioritarias y el retorno que su información puede generar. Usted decide después.": "In 45 minutes we identify your three priority exposures and the return your information can generate. You decide afterwards.", "Revisar capacidades": "Review capabilities", "contacto@neoda.com · respuesta en <24 h laborables · NDA desde la primera reunión": "contacto@neoda.com · reply within 24 business hours · NDA from the first meeting", "Consultoría boutique en datos, inteligencia artificial y ciberseguridad para comités de dirección.": "Boutique consultancy in data, artificial intelligence and cybersecurity for boards.", "Agendar consultoría →": "Book a consultation →", "Navegación": "Navigation", "Arquitectura de datos": "Data architecture", "Inteligencia artificial": "Artificial intelligence", "Contacto": "Contact", "Aviso legal": "Legal notice", "Privacidad": "Privacy", "Cookies": "Cookies", "[PENDIENTE: teléfono]": "[PENDING: phone]", "[PENDIENTE: dirección]": "[PENDING: address]"};
+    const EN = {"Comercio minorista": "Retail", "Una única fuente de datos para toda la red comercial.": "One data source for the entire retail network.", "Banca": "Banking", "Detección y respuesta gestionadas, con tiempos comprometidos.": "Managed detection and response with committed times.", "Industria": "Industry", "Modelo de precios con validación humana sobre datos existentes.": "Pricing model with human validation on existing data.", "Seguros": "Insurance", "Seguros · IA": "Insurance · AI", "Asistente de tramitación con trazabilidad y supervisión humana.": "Claims assistant with traceability and human oversight.", "Tiempo de tramitación de siniestros": "Claims processing time", "Clasificación y extracción de documentos con revisión humana en cada decisión. Todo queda registrado para auditoría.": "Document classification and extraction with human review at every decision. Everything is logged for audit.", "Ver resultado →": "See result →", "Solicitar caso bajo NDA →": "Request case under NDA →", "Neoda": "Neoda", "Solutions": "Solutions", "V1": "V1", "Servicios": "Services", "Casos de Uso": "Use cases", "Insights": "Insights", "Nosotros": "About", "Agendar Consultoría": "Book a consultation", "Monitorización activa · 24/7 · UE": "Active monitoring · 24/7 · EU", "Cada dato sin gobierno es un riesgo abierto y una ventaja que no se cobra.": "Every ungoverned data asset is an open risk and an advantage left unclaimed.", "Diseñamos arquitecturas de datos, IA y ciberseguridad que devuelven el control a la dirección: exposición medida, decisiones basadas en información fiable e infraestructura preparada para escalar.": "We design data, AI and cybersecurity architectures that return control to the board: measured exposure, decisions based on reliable information and infrastructure ready to scale.", "Agendar consultoría": "Book a consultation", "Ver casos de uso": "View use cases", "Sesión de 45 min con un arquitecto senior / sin coste / sin compromiso": "45-minute session with a senior architect / no cost / no commitment", "scroll": "scroll", "Partners certificados": "Certified partners", "El punto ciego": "The blind spot", "Lo que no aparece en el cuadro de mando también cuesta dinero.": "What does not appear on the dashboard also costs money.", "La mayoría de los incidentes graves y de las inversiones tecnológicas fallidas comparten un origen: decisiones tomadas sin visibilidad real sobre los propios activos.": "Most serious incidents and failed technology investments share one origin: decisions made without real visibility of the organisation's own assets.", "Exposición que nadie está midiendo": "Exposure nobody is measuring", "riesgo": "risk", "Accesos heredados, proveedores conectados a sistemas críticos y configuraciones cloud sin revisar. El riesgo existe aunque no figure en ningún informe.": "Legacy access, suppliers connected to critical systems and unreviewed cloud configurations. The risk exists even if it appears in no report.", "Datos que cuestan y no rinden": "Data that costs and doesn't pay back", "coste": "cost", "Almacenados, duplicados y sin modelo de gobierno. La empresa paga por ellos cada mes, pero no los convierte en margen ni en decisiones.": "Stored, duplicated and without a governance model. The company pays for them every month, but they do not turn into margin or decisions.", "IA sin perímetro": "AI without boundaries", "cumplimiento": "compliance", "Pilotos aislados, herramientas no autorizadas e información sensible fuera de control. Sin trazabilidad no hay retorno defendible ni cumplimiento normativo.": "Isolated pilots, unauthorised tools and sensitive information outside control. Without traceability there is no defensible return or regulatory compliance.", "Capacidades": "Capabilities", "Tres disciplinas. Una sola responsabilidad: el resultado.": "Three disciplines. One responsibility: the result.", "No vendemos licencias ni horas. Entregamos capacidades operativas con un propietario claro y métricas que su comité puede auditar.": "We don't sell licences or hours. We deliver operational capabilities with a clear owner and metrics your committee can audit.", "Arquitectura de Datos": "Data Architecture", "Una única fuente de verdad para decidir.": "A single source of truth for decisions.", "Gobierno y linaje del dato auditables de extremo a extremo.": "Governance and data lineage auditable end to end.", "Plataformas cloud dimensionadas al uso real, no a la previsión del proveedor.": "Cloud platforms sized for real usage, not for the vendor's forecast.", "Indicadores de negocio disponibles en horas, no en semanas.": "Business indicators available in hours, not weeks.", "Explorar Datos →": "Explore Data →", "Inteligencia Artificial": "Artificial Intelligence", "Automatización con retorno medible y riesgo acotado.": "Automation with measurable return and contained risk.", "Casos de uso priorizados por impacto en la cuenta de resultados.": "Use cases prioritised by impact on the P&L.", "Modelos con trazabilidad, supervisión humana y datos que no salen de su perímetro.": "Models with traceability, human oversight and data that never leaves your perimeter.", "Cumplimiento del Reglamento Europeo de IA desde el diseño.": "EU AI Act compliance by design.", "Explorar IA →": "Explore AI →", "Ciberseguridad": "Cybersecurity", "Exposición conocida, medida y bajo control.": "Known, measured and controlled exposure.", "Evaluación continua de la superficie de ataque, incluida la cadena de suministro.": "Continuous assessment of the attack surface, including the supply chain.", "Detección y respuesta gestionada 24/7 con tiempos de contención comprometidos.": "24/7 managed detection and response with committed containment times.", "Preparación documentada para NIS2 y DORA ante regulador y auditoría.": "Documented NIS2 and DORA readiness for regulators and audits.", "Explorar Ciberseguridad →": "Explore Cybersecurity →", "Casos de uso": "Use cases", "Resultados que se presentan en comité.": "Results ready for the board.", "Solicitar casos completos bajo NDA →": "Request full cases under NDA →", "Retail · Datos": "Retail · Data", "Coste anual de plataforma de datos": "Annual data platform cost", "Consolidación de cuatro entornos en uno y modelo de gobierno único. Reporting comercial diario en lugar de semanal.": "Four environments consolidated into one, with a single governance model. Commercial reporting daily instead of weekly.", "Banca · Ciberseguridad": "Banking · Cybersecurity", "Tiempo medio de contención de incidentes": "Average incident containment time", "Centralización de la detección, playbooks de respuesta automatizados y simulacros trimestrales con el comité de riesgos.": "Centralised detection, automated response playbooks and quarterly drills with the risk committee.", "Industria · IA": "Industry · AI", "Margen bruto en la línea de producto principal": "Gross margin on the main product line", "Modelo de pricing dinámico con validación humana, desplegado en catorce semanas sobre datos ya existentes.": "Dynamic pricing model with human validation, deployed in fourteen weeks on existing data.", "Metodología": "Methodology", "Cuatro fases. Un ciclo que se repite.": "Four phases. One cycle that repeats.", "Cada fase termina con un entregable concreto y un punto de decisión para la dirección. Al cerrar la monitorización, el ciclo vuelve a empezar con una auditoría actualizada.": "Each phase ends with a concrete deliverable and a decision point for the board. When monitoring closes, the cycle starts again with an updated audit.", "Neoda · Whitepaper": "Neoda · Whitepaper", "Marco de Exposición Tecnológica 2027": "Technology Exposure Framework 2027", "Insights · Whitepaper técnico": "Insights · Technical whitepaper", "Datos, IA y ciberriesgo: el marco que su comité de dirección necesita en 2027.": "Data, AI and cyber risk: the framework your board needs in 2027.", "28 páginas con un modelo para cuantificar la exposición tecnológica en términos financieros, una matriz de priorización de inversiones y una checklist de cumplimiento NIS2, DORA y Reglamento Europeo de IA.": "28 pages with a model to quantify technology exposure in financial terms, an investment prioritisation matrix and a compliance checklist for NIS2, DORA and the EU AI Act.", "Email corporativo": "Work email", "Descargar whitepaper": "Download whitepaper", "Solo direcciones corporativas. No compartimos sus datos con terceros y puede darse de baja en un clic.": "Corporate addresses only. We do not share your data with third parties, and you can unsubscribe in one click.", "Siguiente paso": "Next step", "El riesgo no espera a la próxima reunión del comité.": "Risk does not wait for the next board meeting.", "En 45 minutos identificamos sus tres exposiciones prioritarias y el retorno que su información puede generar. Usted decide después.": "In 45 minutes we identify your three priority exposures and the return your information can generate. You decide afterwards.", "Revisar capacidades": "Review capabilities", "contacto@neoda.com · respuesta en <24 h laborables · NDA desde la primera reunión": "contacto@neoda.com · reply within 24 business hours · NDA from the first meeting", "Consultoría boutique en datos, inteligencia artificial y ciberseguridad para comités de dirección.": "Boutique consultancy in data, artificial intelligence and cybersecurity for boards.", "Agendar consultoría →": "Book a consultation →", "Navegación": "Navigation", "Arquitectura de datos": "Data architecture", "Inteligencia artificial": "Artificial intelligence", "Contacto": "Contact", "Aviso legal": "Legal notice", "Privacidad": "Privacy", "Cookies": "Cookies", "[PENDIENTE: teléfono]": "[PENDING: phone]", "[PENDIENTE: dirección]": "[PENDING: address]"};
     const normalize = t => t.replace(/\s+/g, ' ').trim();
     const isEN = () => document.documentElement.lang === 'en';
     const T = (es, en) => (isEN() ? en : es);
@@ -606,6 +711,24 @@
       msg.className = 'mt-3 text-xs font-medium text-ink';
       form.reset();
     });
+
+    /* ---------- Carrusel de casos ---------- */
+    (function () {
+      const rail = document.getElementById('railCasos'); if (!rail) return;
+      const cards = [...rail.querySelectorAll('.flip')], dots = document.getElementById('dotsCasos');
+      const step = () => cards[0].offsetWidth + 20;
+      cards.forEach((c, i) => {
+        const d = document.createElement('button'); d.type = 'button'; d.className = 'dot'; d.setAttribute('aria-label', 'Caso ' + (i + 1));
+        d.addEventListener('click', () => rail.scrollTo({ left: c.offsetLeft - rail.offsetLeft, behavior: 'smooth' }));
+        dots.appendChild(d);
+        c.addEventListener('click', () => { if (!matchMedia('(hover:hover)').matches) c.classList.toggle('is-on'); });
+        c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.classList.toggle('is-on'); } });
+      });
+      document.getElementById('prevC').addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: 'smooth' }));
+      document.getElementById('nextC').addEventListener('click', () => rail.scrollBy({ left: step(), behavior: 'smooth' }));
+      const upd = () => { const i = Math.round(rail.scrollLeft / step()); [...dots.children].forEach((d, k) => d.classList.toggle('on', k === i)); };
+      rail.addEventListener('scroll', upd, { passive: true }); upd();
+    })();
 
     /* ---------- Foco de luz en tarjetas ---------- */
     document.querySelectorAll('.spot').forEach(el => el.addEventListener('pointermove', e => {
