@@ -2,7 +2,15 @@
    Los tokens de diseño son los mismos que antes se cargaban por Play CDN.
    Tras cambiar clases o tokens: npm run build:css */
 module.exports = {
-  content: ['./*.html', './assets/js/*.js'],
+  content: [
+    './index.html',
+    './nosotros/index.html',
+    './diagnostico/index.html',
+    './privacidad/index.html',
+    './aviso-legal/index.html',
+    './cookies/index.html',
+    './assets/js/*.js',
+  ],
   theme: {
     extend: {
       colors: {

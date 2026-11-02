@@ -4,7 +4,10 @@
 const fs = require('fs');
 const path = require('path');
 const root = path.join(__dirname, '..');
-const pages = fs.readdirSync(root).filter(f => f.endsWith('.html'));
+const pages = ['index.html', ...fs.readdirSync(root, { withFileTypes: true })
+  .filter(d => d.isDirectory() && !d.name.startsWith('.') && d.name !== 'node_modules' && d.name !== 'scripts' && d.name !== 'assets')
+  .map(d => d.name + '/index.html')
+  .filter(f => fs.existsSync(path.join(root, f)))];
 const errors = [];
 const info = [];
 

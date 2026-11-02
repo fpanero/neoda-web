@@ -10,13 +10,13 @@ Página de inicio y páginas legales de **Neoda Solutions**, consultoría boutiq
 
 | Archivo | Descripción |
 |---|---|
-| `index.html` | Página de inicio: hero 3D, partners, problema, pilares con escenas isométricas, casos, metodología animada, whitepaper y cierre. |
-| `aviso-legal.html` | Aviso legal (LSSI-CE): titular, condiciones de uso, propiedad intelectual, enlaces y jurisdicción. |
-| `privacidad.html` | Política de privacidad (RGPD y LOPDGDD): finalidades, bases jurídicas, encargados, derechos y reclamación ante la AEPD. |
-| `cookies.html` | Política de cookies: estado actual (sin cookies; solo dos claves técnicas del navegador) y categorías previstas si se añade analítica. |
-| `diagnostico.html` | Diagnóstico de visibilidad (autoevaluación de 12 preguntas). Hoy el informe se genera en el navegador; no se envía ningún dato. |
-| `nosotros.html` | Página Nosotros. |
-| `robots.txt`, `security.txt`, `.well-known/security.txt` | Rastreo y contacto de seguridad (ver «Seguridad»). |
+| `index.html` (URL `/`) | Página de inicio: hero 3D, partners, problema, pilares con escenas isométricas, casos, metodología animada, whitepaper y cierre. |
+| `aviso-legal/index.html` (URL `/aviso-legal/`) | Aviso legal (LSSI-CE): titular, condiciones de uso, propiedad intelectual, enlaces y jurisdicción. |
+| `privacidad/index.html` (URL `/privacidad/`) | Política de privacidad (RGPD y LOPDGDD): finalidades, bases jurídicas, encargados, derechos y reclamación ante la AEPD. |
+| `cookies/index.html` (URL `/cookies/`) | Política de cookies: estado actual (sin cookies; solo dos claves técnicas del navegador) y categorías previstas si se añade analítica. |
+| `diagnostico/index.html` (URL `/diagnostico/`) | Diagnóstico de visibilidad (autoevaluación de 12 preguntas). Hoy el informe se genera en el navegador; no se envía ningún dato. |
+| `nosotros/index.html` (URL `/nosotros/`) | Página Nosotros. |
+| `robots.txt`, `security.txt`, `.well-known/security.txt`, `favicon.ico` | Rastreo y contacto de seguridad (ver «Seguridad»). |
 | `.htaccess` | Reglas para Hostinger (Apache): HTTPS, HSTS, cabeceras, CSP y bloqueo de ficheros de desarrollo. |
 | `assets/` | CSS compilado, fuentes, Three.js r128 y scripts propios (`assets/js/`). |
 
@@ -29,6 +29,14 @@ Página de inicio y páginas legales de **Neoda Solutions**, consultoría boutiq
 - Todo el JavaScript está en ficheros externos (`assets/js/`): la web no usa scripts inline, lo que permite una Content-Security-Policy estricta.
 - Sin backend ni base de datos. Es una web estática: se puede servir desde cualquier hosting.
 - Respeta `prefers-reduced-motion`: sin él, las animaciones se detienen y el contenido se muestra completo.
+
+## URLs y rutas
+
+- Cada página secundaria vive en su carpeta con un `index.html` dentro, para que la URL sea `/nosotros/` y no `/nosotros.html`.
+- Todos los enlaces y recursos usan rutas absolutas (`/assets/...`, `/nosotros/`). Así funcionan desde cualquier carpeta, pero el sitio debe publicarse en la raíz del dominio (`neodasolutions.com`), no en una subcarpeta.
+- En **Hostinger**, el `.htaccess` redirige con 301 las URLs antiguas (`/nosotros.html`, `/index.html`).
+- En **GitHub Pages** no hay redirecciones propias: las URLs antiguas con `.html` dan 404. Como el sitio aún no está lanzado, no hay enlaces públicos que las rompan.
+- GitHub Pages redirige `/nosotros` a `/nosotros/` automáticamente.
 
 ## Mantenimiento técnico
 

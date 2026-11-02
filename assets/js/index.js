@@ -51,7 +51,7 @@
       if (personal.includes(domain)) { msg.textContent = T('Utilice su email corporativo para recibir el documento.', 'Please use your work email to receive the document.'); msg.className = 'mt-3 text-xs text-[#A33A3A]'; return; }
       if (!document.getElementById('wConsent').checked) { msg.textContent = T('Necesitamos su consentimiento para enviarle el documento.', 'We need your consent to send you the document.'); msg.className = 'mt-3 text-xs text-[#A33A3A]'; return; }
       msg.textContent = T('Descarga iniciada. Gracias, ' + v + '.', 'Download started. Thank you, ' + v + '.');
-      const a = document.createElement('a'); a.href = 'whitepaper.pdf'; a.download = 'Neoda-Marco-Exposicion-Tecnologica-2027.pdf'; document.body.appendChild(a); a.click(); a.remove();
+      const a = document.createElement('a'); a.href = '/whitepaper.pdf'; a.download = 'Neoda-Marco-Exposicion-Tecnologica-2027.pdf'; document.body.appendChild(a); a.click(); a.remove();
       msg.className = 'mt-3 text-xs font-medium text-ink';
       form.reset();
     });

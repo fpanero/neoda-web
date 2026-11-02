@@ -7,15 +7,16 @@
 <meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0C0B10">
-<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-<title>Nosotros · Neoda Solutions</title>
-<meta name="description" content="Quiénes somos en Neoda Solutions: consultoría boutique en datos, inteligencia artificial y ciberseguridad para comités de dirección.">
+<link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<title>Diagnóstico gratuito de visibilidad · Neoda Solutions</title>
+<meta name="description" content="Diagnóstico gratuito de visibilidad digital: puntuación, áreas a mejorar y plan de acción en pocos minutos.">
 
 
-<link rel="stylesheet" href="assets/css/fonts.css">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/fonts.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script src="/assets/js/boot.js"></script>
 
 <style>
   :root { color-scheme: dark; background: #0C0B10; }
@@ -280,11 +281,40 @@
   .tm:focus-within .ph { filter:blur(6px) brightness(.6); }
   @media (prefers-reduced-motion: reduce) { .tm .ph, .tm .info { transition:none; } }
 </style>
+<style>
+  .dx-card { background:#131118; border:1px solid rgba(255,255,255,.08); border-radius:22px; }
+  .dx-field { width:100%; background:#0C0B10; border:1px solid #35303E; border-radius:999px; padding:14px 20px; color:#fff; font-size:15px; outline:none; }
+  .dx-field:focus { border-color:#8A80A3; box-shadow:0 0 0 3px rgba(138,128,163,.25); }
+  select.dx-field { appearance:none; -webkit-appearance:none; }
+  .dx-label { display:block; margin:0 0 8px; font-size:12px; color:#AFAAB5; font-family:"JetBrains Mono",monospace; letter-spacing:.08em; text-transform:uppercase; }
+  .dx-q { display:grid; gap:12px; padding:18px 0; border-top:1px solid rgba(255,255,255,.07); }
+  .dx-seg { display:inline-flex; border:1px solid #35303E; border-radius:999px; padding:3px; gap:2px; }
+  .dx-seg button { border:0; background:transparent; color:#AFAAB5; border-radius:999px; padding:7px 14px; font-size:13px; cursor:pointer; }
+  .dx-seg button[aria-pressed="true"] { background:#B9AFD3; color:#0C0B10; font-weight:600; }
+  .dx-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border-radius:999px; background:#5F5675; color:#fff; font-weight:500; padding:14px 28px; border:0; cursor:pointer; transition:background .2s; }
+  .dx-btn:hover { background:#6E6487; }
+  .dx-btn:disabled { opacity:.45; cursor:not-allowed; }
+  .dx-bar { height:8px; background:#2A2533; border-radius:999px; overflow:hidden; }
+  .dx-bar > span { display:block; height:100%; width:0; background:linear-gradient(90deg,#8A80A3,#B9AFD3); border-radius:999px; transition:width .9s cubic-bezier(.2,.7,.2,1); }
+  .dx-ring circle.fg { transition:stroke-dashoffset 1.2s cubic-bezier(.2,.7,.2,1); }
+  .dx-spin { animation:dxspin 1.1s linear infinite; transform-origin:center; }
+  @keyframes dxspin { to { transform:rotate(360deg); } }
+  .dx-hidden { display:none !important; }
+  .dx-err { color:#F4A5A5; font-size:13px; min-height:1.2em; margin:8px 0 0; }
+  @media print {
+    header, footer, .no-print { display:none !important; }
+    body, main { background:#fff !important; color:#000 !important; }
+    .dx-card { border:1px solid #ccc; background:#fff !important; color:#000; }
+    .dx-bar { background:#eee; } .dx-bar > span { background:#444; }
+    .dx-print-col * { color:#000 !important; }
+  }
+</style>
+
 </head>
 <body class="bg-ink">
 <header id="nosHeader" class="sticky sticky-top z-50 border-b border-white/[0.06] bg-[#120E19]/90 backdrop-blur-md">
     <nav class="mx-auto flex h-16 max-w-site items-center justify-between px-4 sm:px-6 lg:h-24" aria-label="Principal">
-      <a href="./" class="flex items-center gap-2.5" aria-label="Neoda Solutions, inicio">
+      <a href="/" class="flex items-center gap-2.5" aria-label="Neoda Solutions, inicio">
         <svg width="30" height="30" class="lg:h-9 lg:w-9" viewBox="0 0 26 26" aria-hidden="true">
           <path d="M13 1 24 7.5v11L13 25 2 18.5v-11z" fill="none" stroke="#FFFFFF" stroke-width="1.4"/>
           <path d="M13 1v24M2 7.5l22 11M24 7.5 2 18.5" stroke="#8A80A3" stroke-width="1"/>
@@ -293,14 +323,15 @@
         
       </a>
       <ul class="hidden items-center gap-9 text-[15px] md:flex lg:gap-12 lg:text-[17px]">
-        <li><a href="./#servicios" class="text-silver transition hover:text-white">Servicios</a></li>
-        <li><a href="./#casos" class="text-silver transition hover:text-white">Casos de Uso</a></li>
-        <li><a href="./#insights" class="text-silver transition hover:text-white">Insights</a></li>
-        <li><a href="nosotros.html" aria-current="page" class="text-silver transition hover:text-white">Nosotros</a></li>
+        <li><a href="/#servicios" class="text-silver transition hover:text-white">Servicios</a></li>
+        <li><a href="/#casos" class="text-silver transition hover:text-white">Casos de Uso</a></li>
+        <li><a href="/#insights" class="text-silver transition hover:text-white">Insights</a></li>
+        <li><a href="/nosotros/" class="text-silver transition hover:text-white">Nosotros</a></li>
+        <li><a href="/diagnostico/" aria-current="page" class="text-white transition hover:text-white">Diagnóstico</a></li>
       </ul>
       <div class="flex items-center gap-3">
         
-        <a href="./#contacto" class="hidden rounded-sm bg-lavender px-4 py-2 text-sm font-medium text-white transition hover:bg-lavender-hover sm:inline-flex lg:px-7 lg:py-3.5 lg:text-base">Agendar Consultoría</a>
+        <a href="/#contacto" class="hidden rounded-sm bg-lavender px-4 py-2 text-sm font-medium text-white transition hover:bg-lavender-hover sm:inline-flex lg:px-7 lg:py-3.5 lg:text-base">Agendar Consultoría</a>
         <button id="menuBtn" class="inline-flex h-10 w-10 items-center justify-center border border-steel-700 text-white md:hidden" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
           <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.4"/></svg>
         </button>
@@ -308,130 +339,192 @@
     </nav>
     <div id="mobileMenu" class="hidden border-t border-steel-700 bg-eggplant-900 px-4 py-4 md:hidden">
       <ul class="flex flex-col gap-3 text-sm">
-        <li><a href="./#servicios" class="block py-1 text-silver hover:text-white">Servicios</a></li>
-        <li><a href="./#casos" class="block py-1 text-silver hover:text-white">Casos de Uso</a></li>
-        <li><a href="./#insights" class="block py-1 text-silver hover:text-white">Insights</a></li>
-        <li><a href="nosotros.html" aria-current="page" class="block py-1 text-silver hover:text-white">Nosotros</a></li>
-        <li><a href="./#contacto" class="mt-2 block rounded-sm bg-lavender px-4 py-2.5 text-center font-medium text-white">Agendar Consultoría</a></li>
+        <li><a href="/#servicios" class="block py-1 text-silver hover:text-white">Servicios</a></li>
+        <li><a href="/#casos" class="block py-1 text-silver hover:text-white">Casos de Uso</a></li>
+        <li><a href="/#insights" class="block py-1 text-silver hover:text-white">Insights</a></li>
+        <li><a href="/nosotros/" class="block py-1 text-silver hover:text-white">Nosotros</a></li>
+        <li><a href="/diagnostico/" aria-current="page" class="block py-1 text-white hover:text-white">Diagnóstico</a></li>
+        <li><a href="/#contacto" class="mt-2 block rounded-sm bg-lavender px-4 py-2.5 text-center font-medium text-white">Agendar Consultoría</a></li>
       </ul>
     </div>
   </header>
 
-  <main class="bg-ink text-white">
-    <section class="nos-hero">
-      <img class="bgimg" src="img/nosotros-hero.jpg?v=3" alt="" aria-hidden="true">
-      <div class="fade" aria-hidden="true"></div>
-      <div class="inner">
-        <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-silver">Acerca de nosotros</p>
-        <h1>Tecnología con criterio. Decisiones con valor.</h1>
-        <p class="lead">Somos una consultora boutique de datos, inteligencia artificial y ciberseguridad. Trabajamos para que cada inversión tecnológica pueda explicarse, medirse y auditarse ante el comité de dirección.</p>
-      </div>
-    </section>
+<main class="bg-ink text-white">
 
-    <section class="px-4 py-28 sm:px-6">
-      <div class="mx-auto max-w-site">
-        <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-lavender-glow">Nuestro compromiso</p>
-        <h2 class="mt-4 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-[44px] sm:leading-[1.1]">Lo que prometemos a cada cliente, sin letra pequeña.</h2>
-        <div class="mt-16 grid gap-12 md:grid-cols-3">
-          <div class="border-t border-white/15 pt-8"><p class="font-mono text-xs text-lavender-glow">01</p><h3 class="mt-4 font-display text-2xl font-semibold">Hablamos en euros, no en jerga.</h3><p class="mt-4 leading-relaxed text-silver">Cada riesgo y cada propuesta se expresan en impacto económico, para que el comité decida con la misma información que usa para cualquier otra inversión.</p></div>
-          <div class="border-t border-white/15 pt-8"><p class="font-mono text-xs text-lavender-glow">02</p><h3 class="mt-4 font-display text-2xl font-semibold">Cada resultado tiene un responsable.</h3><p class="mt-4 leading-relaxed text-silver">Sin propietario no hay compromiso. Asignamos nombre y fecha a cada medida desde el primer día del proyecto.</p></div>
-          <div class="border-t border-white/15 pt-8"><p class="font-mono text-xs text-lavender-glow">03</p><h3 class="mt-4 font-display text-2xl font-semibold">Lo que medimos, lo podemos demostrar.</h3><p class="mt-4 leading-relaxed text-silver">Trabajamos con indicadores auditables y evidencias concretas, no con informes de actividad.</p></div>
-        </div>
-      </div>
-    </section>
+  <!-- PASO 1 · Datos de la empresa y autodiagnóstico -->
+  <section id="paso-datos" class="mx-auto max-w-[860px] px-4 pb-24 pt-14 sm:px-6 lg:pt-20">
+    <p class="font-mono text-[11px] uppercase tracking-[.16em] text-[#B9AFD3]">Diagnóstico gratuito · 1 minuto</p>
+    <h1 class="mt-4 font-display text-[36px] font-semibold leading-[1.08] tracking-tight sm:text-[48px]">¿Cuánto de tu empresa se ve online, y qué le falta para convencer?</h1>
+    <p class="mt-5 max-w-[640px] text-[16px] leading-relaxed text-[#AFAAB5]">Responde 12 preguntas sobre tu presencia digital y te damos una puntuación por áreas, con las prioridades para mejorar. Gratis y sin compromiso.</p>
 
-    <section class="border-t border-white/[0.06] px-4 py-28 sm:px-6">
-      <div class="mx-auto grid max-w-site gap-12 md:grid-cols-12">
-        <div class="md:col-span-5">
-          <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-lavender-glow">Lo que queremos</p>
-          <h2 class="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-[40px]">Que la tecnología sea una ventaja que se pueda demostrar.</h2>
-        </div>
-        <div class="space-y-6 text-lg leading-relaxed text-silver md:col-span-6 md:col-start-7">
-          <p>Queremos que las organizaciones sepan qué riesgos asumen, qué valor dejan escapar y qué medidas reducen de verdad su exposición. No buscamos vender más horas ni más licencias.</p>
-          <p>Nuestro éxito se mide por las decisiones que el comité toma con más seguridad y por la exposición que deja de existir.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="border-t border-white/[0.06] px-4 py-28 sm:px-6">
-      <div class="mx-auto max-w-site">
-        <h2 class="text-center font-display text-3xl font-semibold tracking-tight sm:text-[44px]">Conoce a nuestro equipo</h2>
-        <p class="mx-auto mt-4 max-w-xl text-center text-silver">Pasa el cursor sobre cada persona para ver su cargo y su perfil.</p>
-        <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-          <article class="tm" tabindex="0">
-            <div class="ph"><span>[PENDIENTE: foto 1]</span></div>
-            <div class="info">
-              <h3>[PENDIENTE: nombre]</h3>
-              <p>[PENDIENTE: cargo]</p>
-              <a class="li" href="#" aria-label="LinkedIn de [PENDIENTE: nombre]" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"/></svg></a>
-            </div>
-          </article>
-          <article class="tm" tabindex="0">
-            <div class="ph"><span>[PENDIENTE: foto 2]</span></div>
-            <div class="info">
-              <h3>[PENDIENTE: nombre]</h3>
-              <p>[PENDIENTE: cargo]</p>
-              <a class="li" href="#" aria-label="LinkedIn de [PENDIENTE: nombre]" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"/></svg></a>
-            </div>
-          </article>
-          <article class="tm" tabindex="0">
-            <div class="ph"><span>[PENDIENTE: foto 3]</span></div>
-            <div class="info">
-              <h3>[PENDIENTE: nombre]</h3>
-              <p>[PENDIENTE: cargo]</p>
-              <a class="li" href="#" aria-label="LinkedIn de [PENDIENTE: nombre]" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"/></svg></a>
-            </div>
-          </article>
-          <article class="tm" tabindex="0">
-            <div class="ph"><span>[PENDIENTE: foto 4]</span></div>
-            <div class="info">
-              <h3>[PENDIENTE: nombre]</h3>
-              <p>[PENDIENTE: cargo]</p>
-              <a class="li" href="#" aria-label="LinkedIn de [PENDIENTE: nombre]" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"/></svg></a>
-            </div>
-          </article>
-          <article class="tm" tabindex="0">
-            <div class="ph"><span>[PENDIENTE: foto 5]</span></div>
-            <div class="info">
-              <h3>[PENDIENTE: nombre]</h3>
-              <p>[PENDIENTE: cargo]</p>
-              <a class="li" href="#" aria-label="LinkedIn de [PENDIENTE: nombre]" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"/></svg></a>
-            </div>
-          </article>
-          <article class="tm" tabindex="0">
-            <div class="ph"><span>[PENDIENTE: foto 6]</span></div>
-            <div class="info">
-              <h3>[PENDIENTE: nombre]</h3>
-              <p>[PENDIENTE: cargo]</p>
-              <a class="li" href="#" aria-label="LinkedIn de [PENDIENTE: nombre]" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21h-4z"/></svg></a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="border-t border-white/[0.06] px-4 py-24 sm:px-6">
-      <div class="mx-auto flex max-w-site flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+    <form id="formDatos" class="dx-card mt-10 p-6 sm:p-10" novalidate data-js-only>
+      <div class="hidden" aria-hidden="true"><label>No rellenar este campo<input id="dxWeb2" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+      <div class="grid gap-6 sm:grid-cols-2">
         <div>
-          <h2 class="font-display text-3xl font-semibold tracking-tight sm:text-4xl">¿Hablamos de su situación?</h2>
-          <p class="mt-3 max-w-xl text-silver">Una sesión de 45 minutos con un arquitecto senior, sin coste y sin compromiso.</p>
+          <label class="dx-label" for="dxNombre">Nombre de la empresa *</label>
+          <input id="dxNombre" class="dx-field" type="text" maxlength="120" placeholder="Ej. Acme Consultores" autocomplete="organization" required>
         </div>
-        <a href="./#contacto" class="inline-flex items-center justify-center rounded-full bg-lavender px-8 py-4 text-sm font-medium text-white transition hover:bg-lavender-hover">Agendar consultoría →</a>
+        <div>
+          <label class="dx-label" for="dxSector">Sector</label>
+          <select id="dxSector" class="dx-field">
+            <option value="">Selecciona un sector</option>
+            <option>Servicios profesionales</option>
+            <option>Industria y fabricación</option>
+            <option>Retail y consumo</option>
+            <option>Banca y seguros</option>
+            <option>Energía y utilities</option>
+            <option>Salud</option>
+            <option>Hostelería</option>
+            <option>Tecnología</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div>
+          <label class="dx-label" for="dxCiudad">Ciudad</label>
+          <input id="dxCiudad" class="dx-field" type="text" maxlength="80" placeholder="Ej. Madrid" autocomplete="address-level2">
+        </div>
+        <div>
+          <label class="dx-label" for="dxWeb">Web (opcional)</label>
+          <input id="dxWeb" class="dx-field" type="url" maxlength="200" inputmode="url" placeholder="https://tuempresa.com" autocomplete="url">
+        </div>
+        <div>
+          <label class="dx-label" for="dxContactos">Contactos o consultas al mes (aprox.) *</label>
+          <input id="dxContactos" class="dx-field" type="number" min="1" max="1000000" inputmode="numeric" placeholder="Ej. 80">
+        </div>
+        <div>
+          <label class="dx-label" for="dxTicket">Valor medio de un cliente (€) *</label>
+          <input id="dxTicket" class="dx-field" type="number" min="1" max="100000000" inputmode="numeric" placeholder="Ej. 1200">
+        </div>
       </div>
-    </section>
-  </main>
+      <p class="mt-3 text-[12px] leading-relaxed text-[#7A7585]">Los usamos solo para estimar el impacto económico. Son una aproximación: puedes poner cifras redondeadas.</p>
+
+      <div id="preguntas" class="mt-10"></div>
+
+      <p id="dxErrDatos" class="dx-err" role="alert"></p>
+      <div class="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <p class="text-[13px] text-[#7A7585]">Tus respuestas no salen de tu navegador hasta que decidas recibir el informe.</p>
+        <button type="submit" class="dx-btn">Ver mi puntuación →</button>
+      </div>
+    </form>
+    <noscript><p class="mt-10 text-[14px] leading-relaxed text-[#AFAAB5]">Esta herramienta necesita JavaScript para calcular la puntuación. Sin él no se envía ni se guarda ningún dato.</p></noscript>
+  </section>
+
+  <!-- PASO 2 · Análisis (transición corta, sin cuenta atrás) -->
+  <section id="paso-analisis" class="dx-hidden mx-auto max-w-[640px] px-4 py-32 text-center sm:px-6" aria-live="polite">
+    <svg class="dx-spin mx-auto" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18" fill="none" stroke="#35303E" stroke-width="3"/><path d="M22 4a18 18 0 0 1 18 18" fill="none" stroke="#B9AFD3" stroke-width="3" stroke-linecap="round"/></svg>
+    <p class="mt-6 font-display text-[22px]">Calculando tu puntuación…</p>
+    <p class="mt-2 text-[14px] text-[#7A7585]">Revisamos cada área de visibilidad con tus respuestas.</p>
+  </section>
+
+  <!-- PASO 3 · Resultado resumido y puerta de registro -->
+  <section id="paso-resultado" class="dx-hidden mx-auto max-w-[860px] px-4 pb-24 pt-14 sm:px-6 lg:pt-20">
+    <div class="dx-card p-6 sm:p-10">
+      <div class="grid items-center gap-10 md:grid-cols-[auto_1fr]">
+        <div class="flex justify-center">
+          <div class="relative h-[200px] w-[200px]">
+            <svg class="dx-ring absolute inset-0" width="200" height="200" viewBox="0 0 200 200" aria-hidden="true">
+              <circle cx="100" cy="100" r="86" fill="none" stroke="#2A2533" stroke-width="14"/>
+              <circle id="ringFg" class="fg" cx="100" cy="100" r="86" fill="none" stroke="#B9AFD3" stroke-width="14" stroke-linecap="round" stroke-dasharray="540.35" stroke-dashoffset="540.35"/>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <span id="resScore" class="font-display text-[52px] font-semibold leading-none">0</span>
+              <span class="mt-1 text-[13px] text-[#AFAAB5]">de 85</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="font-mono text-[11px] uppercase tracking-[.14em] text-[#AFAAB5]">Puntuación de visibilidad</p>
+          <p class="mt-2 font-display text-[28px] font-semibold"><span id="resEmpresa">Tu empresa</span></p>
+          <p id="resEtiqueta" class="mt-3 inline-block rounded-full border border-[#8A80A3] px-4 py-1 text-[13px] text-[#B9AFD3]"></p>
+          <p class="mt-5 text-[15px] leading-relaxed text-[#AFAAB5]">Hemos revisado 4 áreas. El informe completo te dice qué hacer en cada una, en qué orden y qué esperar de cada cambio.</p>
+        </div>
+      </div>
+
+      <div class="mt-10 rounded-[18px] border border-[#8A80A3]/40 bg-[#0C0B10] p-6 sm:p-8">
+        <p class="font-mono text-[11px] uppercase tracking-[.14em] text-[#B9AFD3]">Impacto estimado</p>
+        <p class="mt-3 text-[16px] leading-relaxed text-[#E6E2EE]">Podrías estar perdiendo un estimado de <span id="resMoney" class="font-display text-[26px] font-semibold text-white">—</span> al mes.</p>
+        <p class="mt-3 text-[13px] leading-relaxed text-[#7A7585]">Cálculo orientativo a partir de tus contactos al mes, tu valor medio por cliente y tu puntuación. Detalle del método en el informe completo.</p>
+      </div>
+
+      <div class="relative mt-12">
+        <div id="previewAreas" class="dx-blur space-y-5" aria-hidden="true"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <!-- Puerta de interfaz: se puede saltar en el navegador. No hay envío de datos todavía (pendiente de Brevo/CRM con validación en servidor). -->
+          <div class="no-print w-full max-w-[460px] rounded-[22px] border border-white/10 bg-[#0C0B10]/95 p-6 shadow-2xl sm:p-8">
+            <p class="font-display text-[22px] font-semibold">Recibe el informe completo</p>
+            <p class="mt-2 text-[14px] leading-relaxed text-[#AFAAB5]">Puntuación por áreas, prioridades y plan de acción, en pantalla y en PDF.</p>
+            <form id="formGate" class="mt-6 space-y-4" novalidate data-js-only>
+              <div class="hidden" aria-hidden="true"><label>No rellenar este campo<input id="gWeb2" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+              <div>
+                <label class="dx-label" for="gNombre">Nombre y apellidos *</label>
+                <input id="gNombre" class="dx-field" type="text" maxlength="120" placeholder="Ej. Ana García" autocomplete="name" required>
+              </div>
+              <div>
+                <label class="dx-label" for="gEmail">Email *</label>
+                <input id="gEmail" class="dx-field" type="email" maxlength="254" inputmode="email" placeholder="tu@empresa.com" autocomplete="email" required>
+              </div>
+              <label class="flex items-start gap-3 text-[13px] leading-relaxed text-[#AFAAB5]">
+                <input id="gConsent" type="checkbox" class="mt-1 h-4 w-4 accent-[#B9AFD3]" required>
+                <span>Acepto recibir el informe y comunicaciones de Neoda Solutions. Puedo darme de baja cuando quiera. Más información en la <a href="/privacidad/" class="underline hover:text-white">política de privacidad</a>.</span>
+              </label>
+              <p id="gErr" class="dx-err" role="alert"></p>
+              <button type="submit" class="dx-btn w-full">Ver informe completo →</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASO 4 · Informe completo -->
+  <section id="paso-informe" class="dx-hidden mx-auto max-w-[860px] px-4 pb-24 pt-14 sm:px-6 lg:pt-20">
+    <div class="dx-print-col">
+      <div class="no-print flex flex-wrap items-center justify-between gap-4">
+        <p class="font-mono text-[11px] uppercase tracking-[.16em] text-[#B9AFD3]">Informe de visibilidad</p>
+        <button type="button" id="btnPdf" class="dx-btn !py-2.5 !px-5 text-[14px]">Guardar como PDF</button>
+      </div>
+      <h2 class="mt-4 font-display text-[34px] font-semibold leading-tight" id="infoTitulo"></h2>
+      <p class="mt-2 text-[14px] text-[#7A7585]" id="infoFecha"></p>
+
+      <div class="dx-card mt-8 p-6 sm:p-10">
+        <p class="font-display text-[20px] font-semibold">Resumen</p>
+        <p class="mt-3 text-[15px] leading-relaxed text-[#AFAAB5]" id="infoResumen"></p>
+        <div id="infoAreas" class="mt-8 space-y-7"></div>
+      </div>
+
+      <div class="dx-card mt-6 p-6 sm:p-10">
+        <p class="font-display text-[20px] font-semibold">Impacto económico estimado</p>
+        <p class="mt-3 text-[15px] leading-relaxed text-[#AFAAB5]">Podrías estar perdiendo un estimado de <span id="infoMoney" class="font-semibold text-white">—</span> al mes.</p>
+        <p class="mt-4 text-[13px] leading-relaxed text-[#7A7585]" id="infoMetodo"></p>
+      </div>
+
+      <div class="dx-card mt-6 p-6 sm:p-10">
+        <p class="font-display text-[20px] font-semibold">Plan de acción</p>
+        <ol id="infoPlan" class="mt-5 space-y-4 text-[15px] leading-relaxed text-[#AFAAB5]"></ol>
+      </div>
+
+      <div class="no-print mt-10 rounded-[22px] border border-white/10 bg-[#131118] p-6 sm:p-10">
+        <p class="font-display text-[22px] font-semibold">¿Quieres que lo revisemos contigo?</p>
+        <p class="mt-2 text-[15px] leading-relaxed text-[#AFAAB5]">En 30 minutos repasamos tu informe y te decimos por dónde empezar, sin compromiso.</p>
+        <a href="/#contacto" class="dx-btn mt-6">Agendar consultoría →</a>
+      </div>
+      <p class="mt-6 text-[12px] leading-relaxed text-[#7A7585]">Puntuación orientativa basada en tus respuestas. No sustituye una auditoría técnica de tu presencia digital.</p>
+    </div>
+  </section>
+
+</main>
+
 
   <footer class="nf">
   <div class="nf-wrap">
     <div class="nf-top">
       <div class="nf-brand">
-        <a href="./" class="nf-logo">Neoda<span> Solutions</span></a>
+        <a href="/" class="nf-logo">Neoda<span> Solutions</span></a>
         <p>Consultoría boutique en datos, inteligencia artificial y ciberseguridad para comités de dirección.</p>
-        <a href="./#contacto" class="nf-cta">Agendar consultoría →</a>
+        <a href="/#contacto" class="nf-cta">Agendar consultoría →</a>
       </div>
-      <nav class="nf-col" aria-label="Navegación"><h3>Navegación</h3><ul><li><a href="./#servicios">Servicios</a></li><li><a href="./#casos">Casos de Uso</a></li><li><a href="./#insights">Insights</a></li><li><a href="nosotros.html">Nosotros</a></li></ul></nav>
-      <nav class="nf-col" aria-label="Capacidades"><h3>Capacidades</h3><ul><li><a href="./#servicios">Arquitectura de datos</a></li><li><a href="./#servicios">Inteligencia artificial</a></li><li><a href="./#servicios">Ciberseguridad</a></li></ul></nav>
+      <nav class="nf-col" aria-label="Navegación"><h3>Navegación</h3><ul><li><a href="/#servicios">Servicios</a></li><li><a href="/#casos">Casos de Uso</a></li><li><a href="/#insights">Insights</a></li><li><a href="/nosotros/">Nosotros</a></li></ul></nav>
+      <nav class="nf-col" aria-label="Capacidades"><h3>Capacidades</h3><ul><li><a href="/#servicios">Arquitectura de datos</a></li><li><a href="/#servicios">Inteligencia artificial</a></li><li><a href="/#servicios">Ciberseguridad</a></li></ul></nav>
       <div class="nf-col"><h3>Contacto</h3><ul>
         <li><a href="mailto:contacto@neoda.com">contacto@neoda.com</a></li>
         <li><span class="nf-pend">[PENDIENTE: teléfono]</span></li>
@@ -440,11 +533,13 @@
     </div>
     <div class="nf-bottom">
       <span>© 2026 Neoda Solutions</span>
-      <nav aria-label="Legal"><a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Privacidad</a><a href="cookies.html">Cookies</a></nav>
+      <nav aria-label="Legal"><a href="/aviso-legal/">Aviso legal</a><a href="/privacidad/">Privacidad</a><a href="/cookies/">Cookies</a></nav>
     </div>
   </div>
 </footer>
 
-  <script src="assets/js/nosotros.js" defer></script>
+  <script src="/assets/js/diagnostico-menu.js" defer></script>
+</body>
+<script src="/assets/js/diagnostico.js" defer></script>
 </body>
 </html>

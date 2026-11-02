@@ -70,6 +70,6 @@
     err.textContent = '';
     // El nombre viaja en sessionStorage (no en la URL) y el diagnóstico lo recoge y lo borra.
     try { sessionStorage.setItem('neoda-empresa', name.slice(0, 80)); } catch (e) {}
-    location.href = 'diagnostico.html';
+    location.href = '/diagnostico/';
   });
 })();
