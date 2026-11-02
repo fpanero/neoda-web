@@ -2,12 +2,13 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#1A1524">
 <title>Política de cookies · Neoda Solutions</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/fonts.css">
 <style>
   :root { color-scheme: light; --bg:#FFFFFF; --ink:#16131C; --text:#4A4552; --muted:#7A7585; --line:#E4E2E9; --accent:#5F5675; --pend-bg:#EEEBF5; --pend-fg:#3E3650; }
   html, body { overflow-x: clip; }
@@ -108,12 +109,15 @@
     <table>
       <thead><tr><th>Nombre</th><th>Titular</th><th>Tipo</th><th>Finalidad</th><th>Duración</th></tr></thead>
       <tbody>
-        <tr><td colspan="5">Ninguna en la versión actual <span class="pend">[PENDIENTE: verificar con las herramientas de desarrollador del navegador antes de publicar]</span></td></tr>
+        <tr><td>Sin cookies</td><td>—</td><td>—</td><td>No se instala ninguna cookie</td><td>—</td></tr>
+        <tr><td><code>neoda-lang</code> (localStorage)</td><td>Neoda Solutions</td><td>Preferencia técnica, no es cookie</td><td>Recordar el idioma elegido (ES/EN)</td><td>Hasta que se borre desde el navegador</td></tr>
+        <tr><td><code>neoda-empresa</code> (sessionStorage)</td><td>Neoda Solutions</td><td>Técnica, temporal, no es cookie</td><td>Pasar el nombre de empresa del análisis de la home al diagnóstico. Se borra al usarlo</td><td>Hasta cerrar la pestaña</td></tr>
+        <tr><td colspan="5">Base jurídica de las dos claves anteriores: servicio solicitado por el usuario, sin envío a terceros <span class="pend">[PENDIENTE: confirmar con asesoría jurídica si se exime del consentimiento según el art. 22.2 LSSI-CE]</span>. Verificadas en el código del Sitio <span class="pend">[PENDIENTE: verificar también con las herramientas de desarrollador del navegador antes de publicar]</span></td></tr>
       </tbody>
     </table>
 
     <h2>3. Recursos externos que no instalan cookies</h2>
-    <p>El Sitio carga fuentes tipográficas y librerías desde Google Fonts, cdnjs y el CDN de Tailwind. Estos recursos no se utilizan para identificarte ni para medir tu navegación desde el Sitio. Sin embargo, al cargarse, los servidores de esos proveedores pueden recibir tu dirección IP, tal y como se explica en la Política de privacidad.</p>
+    <p>El Sitio no carga recursos de terceros: fuentes, estilos y scripts se sirven desde el propio dominio, sin Google Fonts ni CDN externos. Los proveedores de alojamiento registran la dirección IP en sus registros de servidor, tal y como se explica en la Política de privacidad. <span class="pend">[PENDIENTE: fecha de aplicación de esta versión]</span></p>
 
     <h2>4. Si en el futuro se añaden cookies</h2>
     <p>Si incorporamos herramientas que instalen cookies, actualizaremos esta página con la siguiente información para cada una: nombre, titular, finalidad, tipo y duración. Antes de instalar cualquier cookie que no sea técnica, pediremos tu consentimiento mediante un panel que te permita aceptarlas, rechazarlas o configurarlas por categorías, conforme al artículo 22.2 de la LSSI-CE. Podrás cambiar tu decisión en cualquier momento desde un enlace visible en el Sitio.</p>
@@ -155,9 +159,6 @@
     </div>
   </div>
 </footer>
-<script>
-  const burger = document.querySelector('.nh-burger'), menu = document.getElementById('nhMenu');
-  burger.addEventListener('click', () => { const open = menu.hidden; menu.hidden = !open; burger.setAttribute('aria-expanded', String(open)); });
-</script>
+<script src="assets/js/menu.js" defer></script>
 </body>
 </html>

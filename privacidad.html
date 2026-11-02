@@ -2,12 +2,13 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#1A1524">
 <title>Política de privacidad · Neoda Solutions</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/fonts.css">
 <style>
   :root { color-scheme: light; --bg:#FFFFFF; --ink:#16131C; --text:#4A4552; --muted:#7A7585; --line:#E4E2E9; --accent:#5F5675; --pend-bg:#EEEBF5; --pend-fg:#3E3650; }
   html, body { overflow-x: clip; }
@@ -118,6 +119,8 @@
     <ul>
       <li><strong>Datos de contacto y de la solicitud</strong>: correo electrónico corporativo al descargar el whitepaper; nombre, empresa, cargo y teléfono cuando los indicas al solicitar una consultoría o al contactar con nosotros; y el contenido de tu consulta.</li>
       <li><strong>Datos técnicos de navegación</strong>: la dirección IP y los datos del navegador y del dispositivo que el servidor de alojamiento registra al servir las páginas, necesarios para que el Sitio funcione y se mantenga seguro.</li>
+      <li><strong>Datos del diagnóstico de visibilidad</strong>: nombre de empresa, sector, ciudad, web, cifras aproximadas de contactos y de valor por cliente, respuestas al cuestionario y, en el informe, nombre y email. Hoy estos datos se procesan en tu navegador y no se envían a Neoda <span class="pend">[PENDIENTE: actualizar cuando se conecte el envío del informe]</span>.</li>
+      <li><strong>Datos guardados en tu navegador</strong>: tu preferencia de idioma (clave <code>neoda-lang</code>, en localStorage) y, de forma temporal, el nombre de empresa que escribes en el análisis de la home (clave <code>neoda-empresa</code>, en sessionStorage). No se envían a Neoda y puedes borrarlos desde la configuración de tu navegador.</li>
     </ul>
     <p>Neoda no trata categorías especiales de datos (las del artículo 9 del RGPD) a través del Sitio. Si en el futuro fuera necesario, se pedirá un consentimiento específico y expreso antes de hacerlo. Tampoco tratamos datos de menores de 14 años.</p>
 
@@ -125,7 +128,8 @@
     <table>
       <thead><tr><th>Finalidad</th><th>Base jurídica</th></tr></thead>
       <tbody>
-        <tr><td>Enviarte el whitepaper técnico que solicitas</td><td>Ejecución de tu solicitud (art. 6.1.b RGPD)</td></tr>
+        <tr><td>Enviarte el whitepaper técnico que solicitas</td><td>Tu consentimiento (art. 6.1.a RGPD), que marcas en el formulario antes de la descarga</td></tr>
+        <tr><td>Enviarte el informe del diagnóstico de visibilidad (cuando se active el envío)</td><td>Tu consentimiento (art. 6.1.a RGPD) <span class="pend">[PENDIENTE: revisión jurídica]</span></td></tr>
         <tr><td>Responder a tu consulta y preparar una propuesta de consultoría</td><td>Medidas precontractuales a petición tuya (art. 6.1.b RGPD)</td></tr>
         <tr><td>Enviarte información comercial sobre nuestros servicios</td><td>Tu consentimiento (art. 6.1.a RGPD). Cuando el destinatario sea una empresa, podrá basarse en el artículo 21 LSSI-CE, con opción de baja en cada envío <span class="pend">[PENDIENTE: confirmar base según el uso real]</span></td></tr>
         <tr><td>Garantizar la seguridad, el funcionamiento y la mejora técnica del Sitio</td><td>Interés legítimo (art. 6.1.f RGPD)</td></tr>
@@ -141,19 +145,20 @@
     <p>No vendemos ni cedemos datos personales a terceros con fines comerciales propios. Algunas empresas tratan datos por cuenta de Neoda como encargados del tratamiento, con contrato conforme al artículo 28 RGPD:</p>
     <ul>
       <li>Proveedor de alojamiento web: Hostinger <span class="pend">[PENDIENTE: confirmar entidad contratante]</span></li>
-      <li>Herramienta de gestión de contactos y de envío de documentos: <span class="pend">[PENDIENTE: indicar proveedor, si se usa]</span></li>
+      <li>Alojamiento temporal previo a la migración: GitHub, Inc. (GitHub Pages) <span class="pend">[PENDIENTE: confirmar; deja de aplicar al migrar a Hostinger]</span></li>
+      <li>Herramienta de gestión de contactos y de envío de documentos: <span class="pend">[PENDIENTE: indicar proveedor (por ejemplo Brevo), si se usa, y su contrato de encargo]</span></li>
     </ul>
     <p>Los datos también pueden comunicarse a autoridades y órganos judiciales cuando una norma lo exija.</p>
 
     <h2>8. Recursos de terceros y transferencias internacionales</h2>
-    <p>Para mostrar las páginas, tu navegador descarga fuentes tipográficas y librerías desde servidores externos: Google Fonts (Google LLC), cdnjs (Cloudflare, Inc.) y el CDN de Tailwind. Al hacerlo, esos servidores pueden recibir tu dirección IP. Estos proveedores pueden tratar datos fuera del Espacio Económico Europeo, en particular en Estados Unidos, con las garantías previstas en el RGPD, como las cláusulas contractuales tipo aprobadas por la Comisión Europea o el marco UE-EE. UU. de protección de datos cuando resulte aplicable.</p>
+    <p>El Sitio no carga recursos de terceros: fuentes, estilos y scripts se sirven desde el propio dominio, sin Google Fonts, cdnjs ni CDN externos. Por tanto, cargar el Sitio no transfiere tu dirección IP a esos proveedores. <span class="pend">[PENDIENTE: fecha a partir de la que se aplica esta versión]</span> Sí intervienen los proveedores de alojamiento indicados en el apartado 7, que registran la IP en sus registros de servidor. Esos proveedores pueden tratar datos fuera del Espacio Económico Europeo, con las garantías previstas en el RGPD, como las cláusulas contractuales tipo aprobadas por la Comisión Europea <span class="pend">[PENDIENTE: confirmar transferencias según el proveedor]</span>.</p>
     <p>El Sitio no utiliza, a fecha de esta versión, herramientas de analítica ni de publicidad que transfieran datos a terceros. Si esto cambia, esta política se actualizará antes de activarlas.</p>
 
     <h2>9. Menores de edad</h2>
     <p>Los servicios de Neoda están dirigidos a empresas y profesionales. No recogemos conscientemente datos de menores de 14 años, edad a partir de la cual, en España, se puede prestar consentimiento por uno mismo. Si detectamos datos de un menor de esa edad, los eliminaremos.</p>
 
     <h2>10. Seguridad y brechas de datos</h2>
-    <p>Aplicamos medidas técnicas y organizativas proporcionadas al riesgo: conexión cifrada mediante HTTPS, acceso restringido a los datos según la necesidad de cada persona, deber de confidencialidad del personal y revisión periódica de los proveedores. Ningún sistema es totalmente invulnerable. Si se produjera una brecha de seguridad que suponga un riesgo para tus derechos, te lo comunicaremos sin dilación indebida y notificaremos la incidencia a la autoridad de control cuando proceda.</p>
+    <p>Aplicamos medidas técnicas y organizativas proporcionadas al riesgo: conexión cifrada mediante HTTPS <span class="pend">[PENDIENTE: confirmar que el HTTPS forzado está activo antes de publicar]</span>, acceso restringido a los datos según la necesidad de cada persona, deber de confidencialidad del personal y revisión periódica de los proveedores. Ningún sistema es totalmente invulnerable. Si se produjera una brecha de seguridad que suponga un riesgo para tus derechos, te lo comunicaremos sin dilación indebida y notificaremos la incidencia a la autoridad de control cuando proceda.</p>
 
     <h2>11. Tus derechos</h2>
     <p>Puedes ejercer en cualquier momento los derechos de:</p>
@@ -199,9 +204,6 @@
     </div>
   </div>
 </footer>
-<script>
-  const burger = document.querySelector('.nh-burger'), menu = document.getElementById('nhMenu');
-  burger.addEventListener('click', () => { const open = menu.hidden; menu.hidden = !open; burger.setAttribute('aria-expanded', String(open)); });
-</script>
+<script src="assets/js/menu.js" defer></script>
 </body>
 </html>

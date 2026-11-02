@@ -1,0 +1,5 @@
+# Sitio en fase previa a publicación. Mientras dure, las páginas llevan <meta name="robots" content="noindex,nofollow">.
+# No se usa "Disallow: /" porque bloquearía el rastreo y los buscadores no llegarían a leer el noindex.
+# Al publicar: quitar las metas noindex (ver README) y, si procede, añadir "Sitemap: https://neodasolutions.com/sitemap.xml".
+User-agent: *
+Allow: /
