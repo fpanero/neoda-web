@@ -825,6 +825,7 @@
 
   $('btnPdf').addEventListener('click', () => window.print());
 
+  try { const q = new URLSearchParams(location.search).get('empresa'); if (q) $('dxNombre').value = q.slice(0, 80); } catch (e) {}
   renderQuestions();
 })();
 
