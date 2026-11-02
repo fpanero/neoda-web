@@ -7,3 +7,6 @@ html:not(.js) [data-js-only] { display: none !important; }
 
 /* Vista previa del diagnóstico: áreas difuminadas tras la puerta del informe. */
 .dx-blur { filter: blur(6px); user-select: none; pointer-events: none; }
+
+/* Las secciones quedan debajo de la cabecera fija al navegar a ellas. */
+[id] { scroll-margin-top: 90px; }
