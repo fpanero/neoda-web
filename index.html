@@ -253,6 +253,15 @@
   .an-glow { background: radial-gradient(ellipse 60% 50% at 50% 30%, rgba(95,86,117,.35), transparent 70%); }
   .an-input { flex:1; min-width:0; background:#fff; color:#0C0B10; border:0; border-radius:999px; padding:15px 22px; font-size:15px; outline:none; }
   .an-input:focus { box-shadow:0 0 0 3px rgba(185,175,211,.45); }
+  .an-field { position:relative; flex:1; min-width:0; display:flex; }
+  .an-field > .an-input { width:100%; }
+  /* Ejemplo que se escribe y se borra dentro del buscador (solo visual; el campo sigue teniendo su placeholder) */
+  .an-ghost { position:absolute; left:22px; right:22px; top:50%; transform:translateY(-50%); display:none; color:#6E6880; font-size:15px; white-space:nowrap; overflow:hidden; pointer-events:none; }
+  .an-field.ghost-on .an-ghost { display:block; }
+  .an-field.ghost-on .an-input::placeholder { color:transparent; }
+  .an-ghost::after { content:"|"; margin-left:2px; color:#5F5675; animation:an-cur 1s steps(1) infinite; }
+  @keyframes an-cur { 50% { opacity:0; } }
+  @media (prefers-reduced-motion: reduce) { .an-ghost::after { animation:none; } }
   .an-btn { background:#5F5675; color:#fff; border:0; border-radius:999px; padding:15px 26px; font-weight:500; font-size:15px; white-space:nowrap; cursor:pointer; transition:background .2s; }
   .an-btn:hover { background:#6E6487; }
   .an-mock { background:#131118; border:1px solid rgba(255,255,255,.1); border-radius:22px; overflow:hidden; box-shadow:0 40px 80px -40px rgba(0,0,0,.9); }
@@ -360,6 +369,7 @@
     <!-- ===================== ANALIZA (interactivo) ===================== -->
     <section id="analiza" class="relative overflow-hidden bg-ink py-20 lg:py-28" aria-labelledby="analiza-title">
       <div class="an-glow pointer-events-none absolute inset-0" aria-hidden="true"></div>
+      <canvas class="net media-layer fade-x opacity-80" data-density="20000" aria-hidden="true"></canvas>
       <div class="relative mx-auto max-w-site px-4 sm:px-6">
         <div class="mx-auto max-w-[760px] text-center">
           <p class="font-mono text-[11px] uppercase tracking-[.16em] text-[#B9AFD3]">Diagnóstico gratuito · 1 minuto</p>
@@ -367,7 +377,10 @@
           <p class="mt-4 text-[16px] leading-relaxed text-silver">Escribe el nombre de tu empresa y te enseñamos tu puntuación, el impacto estimado y por dónde empezar.</p>
           <form id="anForm" class="mx-auto mt-8 flex max-w-[600px] flex-col gap-3 sm:flex-row" novalidate data-js-only>
             <label for="anInput" class="sr-only">Nombre de tu empresa</label>
-            <input id="anInput" class="an-input" type="text" maxlength="80" placeholder="Nombre de tu empresa" autocomplete="organization">
+            <div class="an-field">
+              <input id="anInput" class="an-input" type="text" maxlength="80" placeholder="Nombre de tu empresa" autocomplete="organization">
+              <span id="anGhost" class="an-ghost" aria-hidden="true" data-i18n-skip></span>
+            </div>
             <button type="submit" class="an-btn">Analizar gratis →</button>
           </form>
           <noscript><p class="mt-4 text-[14px] leading-relaxed text-[#AFAAB5]">El análisis necesita JavaScript activado.</p></noscript>

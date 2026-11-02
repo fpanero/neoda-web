@@ -540,7 +540,7 @@
     while (w.nextNode()) nodes.push(w.currentNode);
     nodes.forEach(n => {
       const par = n.parentElement;
-      if (!par || par.closest('.mt-list') || par.closest('script,style,noscript,textarea')) return;
+      if (!par || par.closest('.mt-list,[data-i18n-skip]') || par.closest('script,style,noscript,textarea')) return;
       if (n._es === undefined) n._es = n.nodeValue;
       const core = norm(n._es);
       if (en && EN[core]) {

@@ -75,3 +75,32 @@
     location.href = '/diagnostico/';
   });
 })();
+
+/* Buscador de la sección de diagnóstico: escribe y borra nombres de empresas inventadas, uno tras otro. */
+(function () {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const field = document.querySelector('.an-field'), input = document.getElementById('anInput'), ghost = document.getElementById('anGhost');
+  if (!field || !input || !ghost) return;
+  const NAMES = ['Brizna Analytics', 'Órbita Quantum Labs', 'Kaelu Cloud Systems'];
+  const sync = () => {
+    const show = !input.value && document.activeElement !== input;
+    field.classList.toggle('ghost-on', show);
+  };
+  input.addEventListener('focus', sync);
+  input.addEventListener('blur', sync);
+  input.addEventListener('input', sync);
+  sync();
+  if (reduce) { ghost.textContent = NAMES[0]; return; }
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+  (async function loop() {
+    let i = 0;
+    for (;;) {
+      const name = NAMES[i % NAMES.length];
+      for (let n = 1; n <= name.length; n++) { ghost.textContent = name.slice(0, n); await wait(70); }
+      await wait(1600);
+      for (let n = name.length; n >= 0; n--) { ghost.textContent = name.slice(0, n); await wait(35); }
+      await wait(400);
+      i++;
+    }
+  })();
+})();
