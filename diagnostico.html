@@ -681,7 +681,7 @@
     return out;
   }
 
-  const label = t => t < 30 ? 'Visibilidad crítica' : t < 50 ? 'Visibilidad baja' : t < 65 ? 'Visibilidad en desarrollo' : 'Visibilidad avanzada';
+  const label = t => t < 35 ? 'Visibilidad baja' : t < 65 ? 'Visibilidad en desarrollo' : 'Visibilidad avanzada';
   const band = s => s < 30 ? 0 : s < 50 ? 1 : s < 70 ? 2 : 3;
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const areasByScore = s => Object.keys(AREAS).sort((a, b) => s.areas[a] - s.areas[b]);

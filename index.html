@@ -1239,8 +1239,8 @@
   const money = document.getElementById('anMoney'), areas = document.getElementById('anAreas');
   const status = document.getElementById('anStatus'), pill = document.getElementById('anPill');
   const timers = []; let running = false, idx = 0;
-  const bandColor = s => s < 50 ? RED : s < 65 ? AMBER : GREEN;
-  const bandText = s => s < 30 ? 'Visibilidad crítica' : s < 50 ? 'Visibilidad baja' : s < 65 ? 'Visibilidad en desarrollo' : 'Visibilidad avanzada';
+  const bandColor = s => s < 35 ? RED : s < 65 ? AMBER : GREEN;
+  const bandText = s => s < 35 ? 'Visibilidad baja' : s < 65 ? 'Visibilidad en desarrollo' : 'Visibilidad avanzada';
   const clear = () => { timers.forEach(clearTimeout); timers.length = 0; };
   const later = (fn, ms) => timers.push(setTimeout(fn, ms));
   function countTo(el, to, ms, fmt) {
