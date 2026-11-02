@@ -259,6 +259,14 @@
     #servicios article.spot:hover { transform: translateY(-8px); border-color: rgba(255,255,255,.18); box-shadow: 0 26px 50px -24px rgba(0,0,0,.9), inset 0 0 0 1px rgba(255,255,255,.07), inset 0 1px 0 rgba(255,255,255,.22), inset 0 -1px 0 rgba(255,255,255,.06); }
   }
   @media (prefers-reduced-motion: reduce) { #servicios article.spot { transition: none; } }
+
+  /* ===== Whitepaper · aspecto de libro ===== */
+  .book { position:relative; width:15rem; aspect-ratio:3/4; border-radius:3px 7px 7px 3px; background:#1A1524; box-shadow: 0 2px 0 rgba(0,0,0,.2), 0 30px 60px -26px rgba(12,11,16,.7), 0 12px 24px -12px rgba(12,11,16,.5); transform-style:preserve-3d; }
+  .book .bk-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:3px 7px 7px 3px; }
+  .book .bk-spine { position:absolute; left:0; top:0; bottom:0; width:12px; border-radius:3px 0 0 3px; background:linear-gradient(90deg, rgba(0,0,0,.65) 0%, rgba(255,255,255,.22) 35%, rgba(255,255,255,.06) 60%, rgba(0,0,0,.45) 100%); box-shadow: inset -1px 0 0 rgba(255,255,255,.12); }
+  .book .bk-pages-r { position:absolute; right:-7px; top:5px; bottom:5px; width:9px; border-radius:0 3px 3px 0; background: repeating-linear-gradient(90deg,#F3F2F5 0 1px,#CFCBD8 1px 2px); box-shadow: 3px 3px 8px rgba(0,0,0,.35); z-index:-1; }
+  .book .bk-pages-b { position:absolute; left:5px; right:5px; bottom:-6px; height:8px; border-radius:0 0 3px 3px; background: repeating-linear-gradient(0deg,#F3F2F5 0 1px,#CFCBD8 1px 2px); box-shadow: 0 4px 8px rgba(0,0,0,.3); z-index:-1; }
+  @media (max-width:640px) { .book { width:13rem; } }
 </style>
 </head>
 <body class="bg-ink">
@@ -640,12 +648,11 @@
       <div class="bg-grid-light pointer-events-none absolute inset-0 [mask-image:linear-gradient(90deg,#000,transparent_60%)]" aria-hidden="true"></div>
       <div class="relative mx-auto grid max-w-site items-center gap-12 px-4 sm:px-6 lg:grid-cols-12">
         <div class="flex justify-center lg:col-span-5" data-reveal aria-hidden="true">
-          <div id="cover" class="relative aspect-[3/4] w-56 overflow-hidden border border-ink/80 bg-gradient-to-br from-eggplant-800 via-ink-800 to-ink p-6 shadow-[0_40px_80px_-30px_rgba(12,11,16,.55)] transition-transform duration-300 will-change-transform">
-            <div class="bg-grid-fine absolute inset-0"></div>
-            <p class="relative font-mono text-[9px] uppercase tracking-[0.18em] text-silver">Neoda · Whitepaper</p>
-            <p class="relative mt-5 font-display text-lg font-semibold leading-tight text-white">Marco de Exposición Tecnológica 2027</p>
-            <p class="relative mt-3 font-mono text-[9px] text-silver/70">28 pp · NIS2 · DORA · AI Act</p>
-            <svg viewBox="0 0 100 100" class="absolute -bottom-6 -right-6 w-36 opacity-90"><path class="spin-slow" d="M50 8 88 30v40L50 92 12 70V30Z M50 8v84M12 30l76 40M88 30 12 70" fill="none" stroke="#B9AFD3" stroke-width=".8"/></svg>
+          <div id="cover" class="book">
+            <img class="bk-img" src="img/whitepaper-cover.jpg?v=1" alt="" width="760" height="1075" loading="lazy">
+            <span class="bk-spine" aria-hidden="true"></span>
+            <span class="bk-pages-r" aria-hidden="true"></span>
+            <span class="bk-pages-b" aria-hidden="true"></span>
           </div>
         </div>
         <div class="lg:col-span-7" data-reveal>
