@@ -50,6 +50,7 @@ npm run build:css      # recompila assets/css/site.css tras cambiar clases o col
 
 - Tras añadir clases nuevas en el HTML o en `assets/js/`, ejecuta `npm run build:css`. Tailwind solo genera las clases que encuentra en esos ficheros.
 - Los colores y tipografías están en `tailwind.config.js`.
+- **Idioma ES/EN**: el selector de cabecera (`.lang`) está en todas las páginas. La lógica y el diccionario de inglés están en `assets/js/i18n.js`; las claves son los textos en español tal cual aparecen en el HTML. Para añadir o cambiar un texto, edita el HTML en español y añade su traducción en ese diccionario. "Neoda Solutions" nunca se traduce. Los textos generados por `assets/js/diagnostico.js` usan `tr()` y se traducen con las mismas claves.
 - Versiones fijadas: Tailwind 3.4.17, Three.js 0.128.0 (r128) y @fontsource 5.1.0. Cambiar de versión puede romper shaders o clases: revisa la web antes de subirla.
 
 ## Seguridad

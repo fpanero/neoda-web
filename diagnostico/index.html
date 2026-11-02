@@ -311,6 +311,7 @@
   }
 </style>
 
+<link rel="stylesheet" href="/assets/css/lang.css">
 </head>
 <body class="bg-ink">
 <header id="nosHeader" class="sticky sticky-top z-50 border-b border-white/[0.06] bg-[#120E19]/90 backdrop-blur-md">
@@ -331,6 +332,8 @@
         <li><a href="/diagnostico/" aria-current="page" class="text-white transition hover:text-white">Diagnóstico</a></li>
       </ul>
       <div class="flex items-center gap-3">
+        
+        <div class="lang" data-on="es" role="group" aria-label="Idioma"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="es" aria-pressed="true">ES</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
         
         <a href="/#contacto" class="hidden rounded-sm bg-lavender px-4 py-2 text-sm font-medium text-white transition hover:bg-lavender-hover sm:inline-flex lg:px-7 lg:py-3.5 lg:text-base">Agendar Consultoría</a>
         <button id="menuBtn" class="inline-flex h-10 w-10 items-center justify-center border border-steel-700 text-white md:hidden" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
@@ -539,7 +542,8 @@
   </div>
 </footer>
 
-  <script src="/assets/js/diagnostico-menu.js" defer></script>
+  <script src="/assets/js/i18n.js" defer></script>
+<script src="/assets/js/diagnostico-menu.js" defer></script>
 </body>
 <script src="/assets/js/diagnostico.js" defer></script>
 <script src="/assets/js/nav.js" defer></script>

@@ -81,6 +81,9 @@
 
   const answers = {};
   const $ = id => document.getElementById(id);
+  // Idioma: textos en español y en inglés (diccionario compartido de i18n.js). Se lee en cada render.
+  const isEN = () => document.documentElement.lang === 'en';
+  const tr = s => (window.NeodaLang ? window.NeodaLang.tr(s) : s);
   // Escapado único para cualquier valor que se inserte como HTML. Los datos del usuario se insertan siempre con textContent.
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   // Honeypot: si un bot rellena el campo oculto, se ignora el envío sin avisar.
@@ -93,25 +96,29 @@
     wrap.textContent = '';
     const titulo = document.createElement('p');
     titulo.className = 'dx-label';
-    titulo.textContent = 'Autodiagnóstico · ' + QUESTIONS.length + ' preguntas';
+    titulo.textContent = tr('Autodiagnóstico · ' + QUESTIONS.length + ' preguntas');
     wrap.appendChild(titulo);
     QUESTIONS.forEach((q, i) => {
       const row = document.createElement('div');
       row.className = 'dx-q';
       row.innerHTML =
-        '<p class="text-[15px] leading-relaxed"><span class="font-mono text-[12px] text-[#7A7585]">' + esc(String(i + 1).padStart(2, '0')) + '</span>&nbsp; ' + esc(q.text) + '</p>' +
-        '<div class="dx-seg flex-wrap" role="group" aria-label="' + esc(q.text) + '">' +
-        Object.keys(VALUE).map(k => '<button type="button" data-q="' + esc(q.id) + '" data-v="' + esc(k) + '" aria-pressed="false">' + esc(LABEL[k]) + '</button>').join('') +
+        '<p class="text-[15px] leading-relaxed"><span class="font-mono text-[12px] text-[#7A7585]">' + esc(String(i + 1).padStart(2, '0')) + '</span>&nbsp; ' + esc(tr(q.text)) + '</p>' +
+        '<div class="dx-seg flex-wrap" role="group" aria-label="' + esc(tr(q.text)) + '">' +
+        Object.keys(VALUE).map(k => '<button type="button" data-q="' + esc(q.id) + '" data-v="' + esc(k) + '" aria-pressed="false">' + esc(tr(LABEL[k])) + '</button>').join('') +
         '</div>';
       wrap.appendChild(row);
     });
-    wrap.addEventListener('click', e => {
-      const b = e.target.closest('button[data-q]'); if (!b) return;
-      answers[b.dataset.q] = b.dataset.v;
-      b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-      $('dxErrDatos').textContent = '';
+    wrap.querySelectorAll('button[data-q]').forEach(x => {
+      x.setAttribute('aria-pressed', String(answers[x.dataset.q] === x.dataset.v));
     });
   }
+
+  $('preguntas').addEventListener('click', e => {
+    const b = e.target.closest('button[data-q]'); if (!b) return;
+    answers[b.dataset.q] = b.dataset.v;
+    b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    $('dxErrDatos').textContent = '';
+  });
 
   function scores() {
     const out = { areas: {} };
@@ -124,14 +131,14 @@
     return out;
   }
 
-  const label = t => t < 35 ? 'Visibilidad baja' : t < 65 ? 'Visibilidad en desarrollo' : 'Visibilidad avanzada';
+  const label = t => tr(t < 35 ? 'Visibilidad baja' : t < 65 ? 'Visibilidad en desarrollo' : 'Visibilidad avanzada');
   const band = s => s < 30 ? 0 : s < 50 ? 1 : s < 70 ? 2 : 3;
   const areasByScore = s => Object.keys(AREAS).sort((a, b) => s.areas[a] - s.areas[b]);
 
   // Impacto económico orientativo. Supuestos de partida (hipótesis, no datos medidos):
   // entre un 15 % y un 35 % de la brecha de visibilidad (100 − puntuación) se traduce en contactos perdidos.
   const IMPACT_LOW = 0.15, IMPACT_HIGH = 0.35;
-  const eur = n => new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(Math.round(n / 10) * 10);
+  const eur = n => new Intl.NumberFormat(isEN() ? 'en-GB' : 'es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(Math.round(n / 10) * 10);
   function impacto(total) {
     const contactos = Number($('dxContactos').value), ticket = Number($('dxTicket').value);
     const brecha = (100 - total) / 100;
@@ -141,7 +148,7 @@
 
   function areaBars(s) {
     return Object.keys(AREAS).map(a =>
-      '<div><div class="flex items-baseline justify-between gap-4"><p class="text-[15px] font-medium">' + esc(AREAS[a].name) + '</p><p class="font-mono text-[13px] text-[#AFAAB5]">' + esc(s.areas[a]) + '/' + esc(MAX) + '</p></div>' +
+      '<div><div class="flex items-baseline justify-between gap-4"><p class="text-[15px] font-medium">' + esc(tr(AREAS[a].name)) + '</p><p class="font-mono text-[13px] text-[#AFAAB5]">' + esc(s.areas[a]) + '/' + esc(MAX) + '</p></div>' +
       '<div class="dx-bar mt-2"><span data-w="' + Math.round(s.areas[a] / MAX * 100) + '"></span></div></div>').join('');
   }
   function animateBars(root) {
@@ -166,7 +173,7 @@
 
   function buildPreview(s) {
     $('resEmpresa').textContent = $('dxNombre').value.trim();
-    $('resEtiqueta').textContent = label(s.total) + ' · ' + s.total + ' de ' + MAX + ' posibles';
+    $('resEtiqueta').textContent = label(s.total) + ' · ' + s.total + (isEN() ? ' of ' + MAX + ' possible' : ' de ' + MAX + ' posibles');
     $('resMoney').textContent = impacto(s.total).text;
     $('previewAreas').innerHTML = areaBars(s);
     animateBars($('previewAreas'));
@@ -185,23 +192,25 @@
     const empresa = $('dxNombre').value.trim();
     const sector = $('dxSector').value;
     const ciudad = $('dxCiudad').value.trim();
-    $('infoTitulo').textContent = 'Informe de visibilidad: ' + empresa;
-    $('infoFecha').textContent = [sector, ciudad, new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })].filter(Boolean).join(' · ');
+    $('infoTitulo').textContent = (isEN() ? 'Visibility report: ' : 'Informe de visibilidad: ') + empresa;
+    $('infoFecha').textContent = [sector, ciudad, new Date().toLocaleDateString(isEN() ? 'en-GB' : 'es-ES', { day: 'numeric', month: 'long', year: 'numeric' })].filter(Boolean).join(' · ');
     const orden = areasByScore(s);
-    const peor = AREAS[orden[0]].name.toLowerCase(), mejor = AREAS[orden[orden.length - 1]].name.toLowerCase();
-    $('infoResumen').textContent = 'Puntuación global de ' + s.total + ' sobre ' + MAX + ' (' + label(s.total).toLowerCase() + '). Tu área más fuerte es ' + mejor + ' y la más débil es ' + peor + '. Corregir la más débil suele dar el resultado más rápido, porque es donde se pierde un cliente que ya estaba interesado.';
+    const peor = tr(AREAS[orden[0]].name).toLowerCase(), mejor = tr(AREAS[orden[orden.length - 1]].name).toLowerCase();
+    $('infoResumen').textContent = isEN()
+      ? 'Overall score of ' + s.total + ' out of ' + MAX + ' (' + label(s.total).toLowerCase() + '). Your strongest area is ' + mejor + ' and the weakest is ' + peor + '. Fixing the weakest one usually gives the fastest result, because that is where a client who was already interested is lost.'
+      : 'Puntuación global de ' + s.total + ' sobre ' + MAX + ' (' + label(s.total).toLowerCase() + '). Tu área más fuerte es ' + mejor + ' y la más débil es ' + peor + '. Corregir la más débil suele dar el resultado más rápido, porque es donde se pierde un cliente que ya estaba interesado.';
 
     // Diagnóstico por áreas, con la respuesta dada a cada pregunta
     $('infoAreas').innerHTML = Object.keys(AREAS).map(a => {
       const items = QUESTIONS.filter(q => q.area === a).map(q => {
         const tono = val(q.id) >= 70 ? 'text-[#B9AFD3]' : 'text-[#E6A5A5]';
-        return '<li class="flex items-start gap-3"><span class="mt-[2px] whitespace-nowrap font-mono text-[11px] ' + tono + '">' + esc(LABEL[answers[q.id]]) + '</span><span class="text-[14px] leading-relaxed text-[#AFAAB5]">' + esc(q.text) + '</span></li>';
+        return '<li class="flex items-start gap-3"><span class="mt-[2px] whitespace-nowrap font-mono text-[11px] ' + tono + '">' + esc(tr(LABEL[answers[q.id]])) + '</span><span class="text-[14px] leading-relaxed text-[#AFAAB5]">' + esc(tr(q.text)) + '</span></li>';
       }).join('');
       return '<div>' +
-        '<div class="flex items-baseline justify-between gap-4"><p class="text-[17px] font-semibold">' + esc(AREAS[a].name) + '</p><p class="font-mono text-[13px] text-[#AFAAB5]">' + esc(s.areas[a]) + '/' + esc(MAX) + '</p></div>' +
+        '<div class="flex items-baseline justify-between gap-4"><p class="text-[17px] font-semibold">' + esc(tr(AREAS[a].name)) + '</p><p class="font-mono text-[13px] text-[#AFAAB5]">' + esc(s.areas[a]) + '/' + esc(MAX) + '</p></div>' +
         '<div class="dx-bar mt-3"><span data-w="' + Math.round(s.areas[a] / MAX * 100) + '"></span></div>' +
-        '<p class="mt-4 text-[15px] leading-relaxed text-white">' + esc(AREAS[a].bands[band(s.areas[a])]) + '</p>' +
-        '<p class="mt-2 text-[14px] leading-relaxed text-[#7A7585]">Por qué importa: ' + esc(AREAS[a].why) + '</p>' +
+        '<p class="mt-4 text-[15px] leading-relaxed text-white">' + esc(tr(AREAS[a].bands[band(s.areas[a])])) + '</p>' +
+        '<p class="mt-2 text-[14px] leading-relaxed text-[#7A7585]">' + esc(tr('Por qué importa:')) + ' ' + esc(tr(AREAS[a].why)) + '</p>' +
         '<ul class="mt-4 space-y-2.5 border-t border-white/[0.07] pt-4">' + items + '</ul>' +
         '</div>';
     }).join('');
@@ -209,7 +218,9 @@
     // Impacto económico
     const imp = impacto(s.total);
     $('infoMoney').textContent = imp.text;
-    $('infoMetodo').textContent = 'Método: contactos al mes × (100 − puntuación) / ' + MAX + ' × entre un 15 % y un 35 % (hipótesis de partida) × valor medio por cliente. Cifras redondeadas a 10 €. Es una estimación para priorizar, no una previsión de ventas.';
+    $('infoMetodo').textContent = isEN()
+      ? 'Method: monthly enquiries × (100 − score) / ' + MAX + ' × between 15% and 35% (starting assumption) × average customer value. Figures rounded to €10. This is an estimate to help prioritise, not a sales forecast.'
+      : 'Método: contactos al mes × (100 − puntuación) / ' + MAX + ' × entre un 15 % y un 35 % (hipótesis de partida) × valor medio por cliente. Cifras redondeadas a 10 €. Es una estimación para priorizar, no una previsión de ventas.';
 
     // Plan 30 · 60 · 90 con las acciones pendientes, de más urgente a menos
     const pend = pendientes(s);
@@ -220,9 +231,9 @@
     ];
     $('infoPlan').innerHTML = fases.map(f => {
       const lista = f.items.length
-        ? f.items.map(q => '<li class="ml-4 list-disc">' + esc(q.action) + '</li>').join('')
-        : '<li class="ml-4 list-disc">' + esc(NEXT) + '</li>';
-      return '<li class="list-none"><p class="font-semibold text-white">' + f.t + '</p><ul class="mt-2 space-y-2">' + lista + '</ul></li>';
+        ? f.items.map(q => '<li class="ml-4 list-disc">' + esc(tr(q.action)) + '</li>').join('')
+        : '<li class="ml-4 list-disc">' + esc(tr(NEXT)) + '</li>';
+      return '<li class="list-none"><p class="font-semibold text-white">' + tr(f.t) + '</p><ul class="mt-2 space-y-2">' + lista + '</ul></li>';
     }).join('');
   }
 
@@ -231,13 +242,15 @@
     e.preventDefault();
     if (isBot('dxWeb2')) return;
     const missing = QUESTIONS.filter(q => !answers[q.id]);
-    if (!$('dxNombre').value.trim()) { $('dxErrDatos').textContent = 'Indica el nombre de la empresa.'; $('dxNombre').focus(); return; }
+    if (!$('dxNombre').value.trim()) { $('dxErrDatos').textContent = tr('Indica el nombre de la empresa.'); $('dxNombre').focus(); return; }
     if (!(Number($('dxContactos').value) > 0) || !(Number($('dxTicket').value) > 0)) {
-      $('dxErrDatos').textContent = 'Indica los contactos al mes y el valor medio por cliente para estimar el impacto.';
+      $('dxErrDatos').textContent = tr('Indica los contactos al mes y el valor medio por cliente para estimar el impacto.');
       (Number($('dxContactos').value) > 0 ? $('dxTicket') : $('dxContactos')).focus(); return;
     }
     if (missing.length) {
-      $('dxErrDatos').textContent = 'Responde las ' + QUESTIONS.length + ' preguntas para ver tu puntuación (faltan ' + missing.length + ').';
+      $('dxErrDatos').textContent = isEN()
+        ? 'Answer the ' + QUESTIONS.length + ' questions to see your score (' + missing.length + ' missing).'
+        : 'Responde las ' + QUESTIONS.length + ' preguntas para ver tu puntuación (faltan ' + missing.length + ').';
       document.querySelector('[data-q="' + missing[0].id + '"]').scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
@@ -256,9 +269,9 @@
     e.preventDefault();
     if (isBot('gWeb2')) return;
     const nombre = $('gNombre').value.trim(), email = $('gEmail').value.trim();
-    if (!nombre) { $('gErr').textContent = 'Indica tu nombre.'; return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $('gErr').textContent = 'Revisa el email.'; return; }
-    if (!$('gConsent').checked) { $('gErr').textContent = 'Necesitamos tu consentimiento para enviarte el informe.'; return; }
+    if (!nombre) { $('gErr').textContent = tr('Indica tu nombre.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $('gErr').textContent = tr('Revisa el email.'); return; }
+    if (!$('gConsent').checked) { $('gErr').textContent = tr('Necesitamos tu consentimiento para enviarte el informe.'); return; }
     $('gErr').textContent = '';
     // IMPORTANTE: esta puerta es solo de interfaz. Hoy no se envía ningún dato a ningún sitio: el informe se genera en el navegador.
     // Pendiente: enviar {nombre, email, empresa, respuestas} a Brevo (doble opt-in) cuando esté configurado.
@@ -279,4 +292,13 @@
   // Si la página se abrió con un parámetro en la URL (enlaces antiguos), se elimina sin usarlo.
   if (location.search) { try { history.replaceState(null, '', location.pathname); } catch (e) {} }
   renderQuestions();
+
+  // Al cambiar ES/EN se vuelven a pintar las partes generadas por este script.
+  window.addEventListener('neoda:lang', () => {
+    renderQuestions();
+    const s = window.__dxScores;
+    if (!s) return;
+    if (!$('paso-informe').classList.contains('dx-hidden')) buildReport(s);
+    else if (!$('paso-resultado').classList.contains('dx-hidden')) buildPreview(s);
+  });
 })();
