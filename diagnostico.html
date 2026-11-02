@@ -13,6 +13,7 @@
 
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/boot.js"></script>
 
 <style>
   :root { color-scheme: dark; background: #0C0B10; }
@@ -353,7 +354,7 @@
     <h1 class="mt-4 font-display text-[36px] font-semibold leading-[1.08] tracking-tight sm:text-[48px]">¿Cuánto de tu empresa se ve online, y qué le falta para convencer?</h1>
     <p class="mt-5 max-w-[640px] text-[16px] leading-relaxed text-[#AFAAB5]">Responde 12 preguntas sobre tu presencia digital y te damos una puntuación por áreas, con las prioridades para mejorar. Gratis y sin compromiso.</p>
 
-    <form id="formDatos" class="dx-card mt-10 p-6 sm:p-10" novalidate>
+    <form id="formDatos" class="dx-card mt-10 p-6 sm:p-10" novalidate data-js-only>
       <div class="hidden" aria-hidden="true"><label>No rellenar este campo<input id="dxWeb2" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
       <div class="grid gap-6 sm:grid-cols-2">
         <div>
@@ -402,6 +403,7 @@
         <button type="submit" class="dx-btn">Ver mi puntuación →</button>
       </div>
     </form>
+    <noscript><p class="mt-10 text-[14px] leading-relaxed text-[#AFAAB5]">Esta herramienta necesita JavaScript para calcular la puntuación. Sin él no se envía ni se guarda ningún dato.</p></noscript>
   </section>
 
   <!-- PASO 2 · Análisis (transición corta, sin cuenta atrás) -->
@@ -448,7 +450,7 @@
           <div class="no-print w-full max-w-[460px] rounded-[22px] border border-white/10 bg-[#0C0B10]/95 p-6 shadow-2xl sm:p-8">
             <p class="font-display text-[22px] font-semibold">Recibe el informe completo</p>
             <p class="mt-2 text-[14px] leading-relaxed text-[#AFAAB5]">Puntuación por áreas, prioridades y plan de acción, en pantalla y en PDF.</p>
-            <form id="formGate" class="mt-6 space-y-4" novalidate>
+            <form id="formGate" class="mt-6 space-y-4" novalidate data-js-only>
               <div class="hidden" aria-hidden="true"><label>No rellenar este campo<input id="gWeb2" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
               <div>
                 <label class="dx-label" for="gNombre">Nombre y apellidos *</label>

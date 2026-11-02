@@ -5,7 +5,8 @@
   "description": "Sitio estático de Neoda Solutions. Sin backend.",
   "scripts": {
     "build:css": "tailwindcss -c tailwind.config.js -i assets/css/tailwind.src.css -o assets/css/site.css --minify",
-    "vendor:fetch": "node scripts/fetch-vendor.js"
+    "vendor:fetch": "node scripts/fetch-vendor.js",
+    "check": "node scripts/check-security.js"
   },
   "devDependencies": {
     "@fontsource/inter": "5.1.0",

@@ -13,6 +13,7 @@
 
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/boot.js"></script>
 <script src="assets/js/vendor/three.r128.min.js" defer></script>
 
 <style>
@@ -371,11 +372,12 @@
           <p class="font-mono text-[11px] uppercase tracking-[.16em] text-[#B9AFD3]">Diagnóstico gratuito · 1 minuto</p>
           <h2 id="analiza-title" class="mt-4 font-display text-[32px] font-semibold leading-tight tracking-tight sm:text-[44px]">Mira cómo se ve tu empresa desde fuera</h2>
           <p class="mt-4 text-[16px] leading-relaxed text-silver">Escribe el nombre de tu empresa y te enseñamos tu puntuación, el impacto estimado y por dónde empezar.</p>
-          <form id="anForm" class="mx-auto mt-8 flex max-w-[600px] flex-col gap-3 sm:flex-row" novalidate>
+          <form id="anForm" class="mx-auto mt-8 flex max-w-[600px] flex-col gap-3 sm:flex-row" novalidate data-js-only>
             <label for="anInput" class="sr-only">Nombre de tu empresa</label>
             <input id="anInput" class="an-input" type="text" maxlength="80" placeholder="Nombre de tu empresa" autocomplete="organization">
             <button type="submit" class="an-btn">Analizar gratis →</button>
           </form>
+          <noscript><p class="mt-4 text-[14px] leading-relaxed text-[#AFAAB5]">El análisis necesita JavaScript activado.</p></noscript>
           <p id="anErr" class="mt-3 min-h-[1.2em] text-[13px] text-[#E6A5A5]" role="alert"></p>
           <p class="mt-1 text-[12px] text-silver/70">Sin compromiso · Informe completo en pantalla y en PDF</p>
         </div>
@@ -718,7 +720,7 @@
           <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-lavender">Insights · Whitepaper técnico</p>
           <h2 id="whitepaper-title" class="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">Datos, IA y ciberriesgo: el marco que su comité de dirección necesita en 2027.</h2>
           <p class="mt-4 max-w-xl text-[#4A4552]">28 páginas con un modelo para cuantificar la exposición tecnológica en términos financieros, una matriz de priorización de inversiones y una checklist de cumplimiento NIS2, DORA y Reglamento Europeo de IA.</p>
-          <form id="leadForm" class="mt-8 max-w-xl" novalidate>
+          <form id="leadForm" class="mt-8 max-w-xl" novalidate data-js-only>
             <div class="hidden" aria-hidden="true"><label>No rellenar este campo<input id="wWeb2" name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
             <label for="email" class="block text-sm font-medium text-ink">Email corporativo</label>
             <div class="mt-2 flex flex-col gap-3 sm:flex-row">
@@ -733,6 +735,7 @@
             </label>
             <p id="formMsg" class="mt-3 text-xs text-[#5E5966]" role="status">Solo direcciones corporativas. No compartimos sus datos con terceros y puede darse de baja en un clic.</p>
           </form>
+          <noscript><p class="mt-4 text-[14px] leading-relaxed text-[#AFAAB5]">Para descargar el whitepaper sin JavaScript, usa el <a href="whitepaper.pdf" class="underline hover:text-ink">enlace directo al PDF</a>. No se recoge ningún dato.</p></noscript>
         </div>
       </div>
     </section>

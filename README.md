@@ -46,23 +46,37 @@ npm run build:css      # recompila assets/css/site.css tras cambiar clases o col
 
 ## Seguridad
 
-- **Content-Security-Policy**: cada página lleva una `<meta http-equiv="Content-Security-Policy">` estricta (`script-src 'self'`, sin CDN, sin scripts inline). En **Hostinger**, el `.htaccess` envía además las cabeceras reales (HSTS, `X-Frame-Options`, `Permissions-Policy`, COOP/CORP, CSP y redirección a HTTPS). GitHub Pages no permite cabeceras propias, por eso la meta es la protección vigente allí.
-- **`frame-ancestors`** no funciona en una meta: solo se aplica por cabecera HTTP (`.htaccess` en Hostinger).
-- **Formularios**: las validaciones son solo de interfaz. Cuando se conecte Brevo o un CRM, la validación, el límite de envíos y el registro del consentimiento deben hacerse en servidor, por HTTPS. Los formularios tienen un campo oculto anti-bot (honeypot).
-- **Datos del usuario**: el nombre de empresa del análisis viaja en `sessionStorage`, no en la URL. Todo texto procedente del usuario se inserta con `textContent` o con la función `esc()`.
-- **Whitepaper**: el PDF es público en `whitepaper.pdf`. La puerta del formulario es solo de interfaz y se puede saltar. Si el documento debe ser de acceso restringido, habrá que servirlo tras autenticación en servidor.
-- **Diagnóstico**: la «puerta» del informe también es solo de interfaz. Hoy no envía nada.
-- **Seguridad de contacto**: `security.txt` (en `/.well-known/` y en la raíz). Antes de publicar, rellena la línea `Policy` o quítala, y renueva la fecha `Expires` al menos una vez al año.
+Lo que hay ahora, y sus límites:
 
-### Noindex temporal
+- **Content-Security-Policy:** cada página lleva una `<meta http-equiv="Content-Security-Policy">` colocada antes de cualquier recurso. Impide scripts de terceros y scripts inline (`script-src 'self'`). **No es una CSP estricta:** `style-src` incluye `'unsafe-inline'` porque las páginas usan bloques `<style>` y estilos en atributos generados por JS. Quitarlo exige mover esos estilos a ficheros CSS, y no está hecho.
+- **Lo que solo existe en Hostinger:** el `.htaccess` envía las cabeceras reales (HSTS, `X-Frame-Options`, `Permissions-Policy`, COOP/CORP, CSP con `frame-ancestors 'none'` y redirección a HTTPS). **En GitHub Pages no hay cabeceras propias**: no hay protección contra clickjacking ni HSTS real, y `frame-ancestors` se ignora en la meta. Mientras el sitio esté en Pages, la postura es más débil de lo que sugieren las cabeceras.
+- **HSTS:** `max-age=31536000` sin `includeSubDomains` ni `preload`, para no afectar a subdominios (correo, etc.). El `preload` se valorará solo cuando el HTTPS sea estable: es difícil de revertir.
+- **CSP duplicada:** `.htaccess` y la meta usan la misma política. La única diferencia es `frame-ancestors`, que la meta no admite. `npm run check` comprueba que coinciden.
+- **Sin JavaScript:** los formularios se ocultan y se muestra un aviso `<noscript>`. Así no se envía ningún dato por la URL ni se recarga la página con datos.
+- **Formularios:** las validaciones, el honeypot (campo oculto anti-bot) y el consentimiento marcado son **solo de interfaz**. Un honeypot sin backend no protege nada, y un consentimiento solo en el navegador no permite demostrar que se dio. Hasta que haya Brevo o un CRM con registro en servidor, son un aviso para el usuario, no un control.
+- **Datos del usuario:** el nombre de empresa del análisis viaja en `sessionStorage`, no en la URL. Todo texto que procede del usuario se inserta con `textContent` o con `esc()`.
+- **Dependencias de terceros:** Three.js r128 y las fuentes van en `assets/`. El script `npm run vendor:fetch` comprueba el SHA-256 del fichero antes de copiarlo y se detiene si no coincide. Ni el despliegue ni el build lo ejecutan.
+- **Caché:** las fuentes y `three.r128.min.js` tienen caché larga e `immutable` en el `.htaccess`. Si cambian, hay que renombrarlos (por ejemplo, `three.r129.min.js`), no sobrescribirlos.
+- **Whitepaper:** el PDF es público en `whitepaper.pdf`. La puerta del formulario se puede saltar. Si el documento debe ser de acceso restringido, habrá que servirlo tras autenticación en servidor.
+- **Diagnóstico:** la puerta del informe también es solo de interfaz. Hoy no envía nada a ningún sitio.
+- **Contacto de seguridad:** `security.txt` está en `/.well-known/` y en la raíz. La línea `Policy` está comentada hasta que exista una URL. Renueva `Expires` al menos una vez al año.
 
-Mientras haya datos `[PENDIENTE]` o cifras de ejemplo, todas las páginas llevan `<meta name="robots" content="noindex,nofollow">` y `robots.txt` permite el rastreo para que los buscadores lean esa meta.
+### Comprobación automática
 
-**Para quitarlo al publicar:**
+```bash
+npm run check
+```
 
-1. Borra la línea `<meta name="robots" content="noindex,nofollow">` de cada `.html` (busca `noindex`).
-2. Añade `Sitemap: https://neodasolutions.com/sitemap.xml` a `robots.txt` si creas el mapa del sitio.
-3. Confirma que no quedan marcadores `[PENDIENTE` en las páginas (`grep -r "PENDIENTE" *.html`).
+Falla si hay scripts inline, recursos de terceros, enlaces `target="_blank"` sin `noopener`, una CSP que llega después de un recurso o que no coincide con el `.htaccess`. Muestra también las páginas que siguen con `noindex`.
+
+### Antes del lanzamiento (en este orden)
+
+1. **Quitar `noindex`:** borra `<meta name="robots" content="noindex,nofollow">` de cada `.html` (busca `noindex`). Si no, Google no indexará nada. `robots.txt` debe seguir con `Allow: /`, no con `Disallow`, para que los buscadores lean la meta antes de quitarla.
+2. **Activar HTTPS:** en GitHub Pages, marca **Enforce HTTPS** y confirma que la privacidad lo afirma. Si el sitio ya está en Hostinger, la redirección 301 lo hace el `.htaccess`.
+3. **Subir el `.htaccess` a Hostinger** (es un fichero oculto) y verificar las cabeceras con `curl -I https://neodasolutions.com` o securityheaders.com.
+4. **Ejecutar `npm run check`** y que no haya errores.
+5. **Buscar marcadores pendientes:** `grep -r "PENDIENTE" *.html`. Cada uno debe estar resuelto o validado por asesoría jurídica.
+6. **Verificar en el navegador:** consola sin `Refused to…`, pestaña Red sin peticiones externas, y el flujo completo del diagnóstico.
 
 ## Paleta
 

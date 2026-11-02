@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Sin JavaScript no hay formularios: se ocultan y se muestra el aviso <noscript>. */
+html:not(.js) [data-js-only] { display: none !important; }
+
+/* Vista previa del diagnóstico: áreas difuminadas tras la puerta del informe. */
+.dx-blur { filter: blur(6px); user-select: none; pointer-events: none; }
