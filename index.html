@@ -252,6 +252,13 @@
   .arrow:hover, .arrow:focus-visible { background:rgba(255,255,255,.3); outline:none; }
   .arrow-l { left:10px; } .arrow-r { right:10px; }
   @media (prefers-reduced-motion: reduce) { .flip-in { transition:none; } }
+
+  /* ===== Capacidades · tarjetas que se elevan ===== */
+  #servicios article.spot { transition: transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s ease, border-color .45s ease; will-change: transform; }
+  @media (hover:hover) {
+    #servicios article.spot:hover { transform: translateY(-8px); border-color: rgba(255,255,255,.18); box-shadow: 0 26px 50px -24px rgba(0,0,0,.9), inset 0 0 0 1px rgba(255,255,255,.07), inset 0 1px 0 rgba(255,255,255,.22), inset 0 -1px 0 rgba(255,255,255,.06); }
+  }
+  @media (prefers-reduced-motion: reduce) { #servicios article.spot { transition: none; } }
 </style>
 </head>
 <body class="bg-ink">
