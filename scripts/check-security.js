@@ -1,5 +1,5 @@
 // Comprobaciones de seguridad del sitio estático. Uso: npm run check
-// Falla (código 1) si hay scripts inline, recursos de terceros, enlaces target=_blank sin noopener,
+// Falla (código 1) si hay scripts inline (salvo JSON-LD válido), recursos de terceros, enlaces target=_blank sin noopener,
 // una CSP en <meta> que no va antes de los recursos, o una CSP distinta entre .htaccess y las metas.
 const fs = require('fs');
 const path = require('path');
@@ -19,8 +19,16 @@ if (!htCsp) errors.push('.htaccess: falta la cabecera Content-Security-Policy');
 for (const page of pages) {
   const s = fs.readFileSync(path.join(root, page), 'utf8');
   const withoutComments = s.replace(/<!--[\s\S]*?-->/g, '');
-  if (/<script(?![^>]*\ssrc=)[^>]*>/i.test(withoutComments)) errors.push(`${page}: script inline`);
-  if (/<(script|link)\b[^>]*\b(src|href)\s*=\s*["']https?:\/\//i.test(withoutComments)) errors.push(`${page}: recurso externo en script/link`);
+  // Los bloques JSON-LD (datos estructurados para buscadores) no se ejecutan: se validan como JSON y se excluyen.
+  const LDJSON = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/gi;
+  for (const m of withoutComments.matchAll(LDJSON)) {
+    try { JSON.parse(m[1]); } catch (e) { errors.push(`${page}: JSON-LD no válido (${e.message})`); }
+  }
+  const withoutLd = withoutComments.replace(LDJSON, '');
+  if (/<script(?![^>]*\ssrc=)[^>]*>/i.test(withoutLd)) errors.push(`${page}: script inline`);
+  // rel="canonical" no carga ningún recurso: solo indica la URL preferida a los buscadores, y debe ser absoluta.
+  const withoutCanonical = withoutLd.replace(/<link rel="canonical" href="https:\/\/neodasolutions\.com\/[^"]*">/g, '');
+  if (/<(script|link)\b[^>]*\b(src|href)\s*=\s*["']https?:\/\//i.test(withoutCanonical)) errors.push(`${page}: recurso externo en script/link`);
   for (const a of withoutComments.match(/<a\b[^>]*target="_blank"[^>]*>/gi) || []) {
     if (!/rel="[^"]*noopener[^"]*"/.test(a)) errors.push(`${page}: enlace target=_blank sin rel="noopener noreferrer"`);
   }

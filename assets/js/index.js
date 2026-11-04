@@ -19,9 +19,9 @@
       e.preventDefault();
       if (form.website && form.website.value) return; // honeypot: bot detectado, se ignora sin avisar
       const v = form.email.value.trim().toLowerCase(), domain = v.split('@')[1] || '';
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || v.length > 254) { msg.textContent = T('Introduzca una dirección de email válida.', 'Please enter a valid email address.'); msg.className = 'mt-3 text-xs text-[#A33A3A]'; return; }
-      if (personal.includes(domain)) { msg.textContent = T('Utilice su email corporativo para recibir el documento.', 'Please use your work email to receive the document.'); msg.className = 'mt-3 text-xs text-[#A33A3A]'; return; }
-      if (!document.getElementById('wConsent').checked) { msg.textContent = T('Necesitamos su consentimiento para enviarle el documento.', 'We need your consent to send you the document.'); msg.className = 'mt-3 text-xs text-[#A33A3A]'; return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || v.length > 254) { msg.textContent = T('Introduce una dirección de email válida.', 'Please enter a valid email address.'); msg.className = 'mt-3 text-xs text-[#A33A3A]'; return; }
+      if (personal.includes(domain)) { msg.textContent = T('Usa tu email corporativo para recibir el documento.', 'Please use your work email to receive the document.'); msg.className = 'mt-3 text-xs text-[#A33A3A]'; return; }
+      if (!document.getElementById('wConsent').checked) { msg.textContent = T('Necesitamos tu consentimiento para enviarte el documento.', 'We need your consent to send you the document.'); msg.className = 'mt-3 text-xs text-[#A33A3A]'; return; }
       msg.textContent = T('Descarga iniciada. Gracias, ' + v + '.', 'Download started. Thank you, ' + v + '.');
       const a = document.createElement('a'); a.href = '/whitepaper.pdf'; a.download = 'Neoda-Marco-Exposicion-Tecnologica-2027.pdf'; document.body.appendChild(a); a.click(); a.remove();
       msg.className = 'mt-3 text-xs font-medium text-ink';
@@ -268,7 +268,7 @@
     /* ---------- Escenas isométricas de los pilares ---------- */
     function isoScene(canvas, kind) {
       const renderer = makeRenderer(canvas); if (!renderer) return;
-      const ACC = { data: 0x7CC4FF, ai: 0xF2B66D, sec: 0x6FD6B0 }[kind] || 0x9a8fc0;
+      const ACC = { data: 0x7CC4FF, ai: 0xF2B66D, soft: 0xB9AFD3, sec: 0x6FD6B0 }[kind] || 0x9a8fc0;
       const scene = new THREE.Scene(), s = 3.7;
       const cam = new THREE.OrthographicCamera(-s, s, s, -s, 0.1, 100);
       cam.position.set(8, 7.2, 8); cam.lookAt(0, 0.85, 0);
@@ -324,6 +324,28 @@
           });
           lineGeo.attributes.position.needsUpdate = true;
         };
+      }
+
+      if (kind === 'soft') {
+        // Software a medida: capas de una aplicación que se apilan y se ajustan entre sí.
+        const panels = [];
+        for (let k = 0; k < 4; k++) {
+          const p = new THREE.Group();
+          p.add(new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.08, 1.5), k === 3 ? hi : steel));
+          const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(2.3, 0.08, 1.5)), new THREE.LineBasicMaterial({ color: k === 3 ? 0xffffff : ACC, transparent: true, opacity: k === 3 ? 0.8 : 0.35 }));
+          p.add(edge);
+          for (let l = 0; l < 3; l++) {
+            const w = 0.45 + ((k + l) % 3) * 0.35;
+            const bar = new THREE.Mesh(new THREE.BoxGeometry(w, 0.02, 0.09), k === 3 ? white : glow);
+            bar.position.set(-0.95 + w / 2, 0.055, -0.45 + l * 0.42); p.add(bar);
+          }
+          p.position.y = Y0 + 0.45 + k * 0.52; root.add(p); panels.push(p);
+        }
+        update = t => panels.forEach((p, k) => {
+          p.position.x = Math.sin(t * 1.1 + k * 0.9) * 0.16;
+          p.position.y = Y0 + 0.45 + k * 0.52 + Math.sin(t * 1.6 + k) * 0.04;
+          p.rotation.y = Math.sin(t * 0.6 + k * 0.5) * 0.14;
+        });
       }
 
       if (kind === 'sec') {

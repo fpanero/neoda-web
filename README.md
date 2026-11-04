@@ -10,13 +10,15 @@ Página de inicio y páginas legales de **Neoda Solutions**, consultoría boutiq
 
 | Archivo | Descripción |
 |---|---|
-| `index.html` (URL `/`) | Página de inicio: hero 3D, partners, problema, pilares con escenas isométricas, casos, metodología animada, whitepaper y cierre. |
+| `index.html` (URL `/`) | Página de inicio: hero 3D, tecnologías, diagnóstico rápido, problema, las cuatro líneas de servicio con escenas isométricas, casos de uso ilustrativos, metodología animada, whitepaper y cierre. |
+| `servicios/index.html` (URL `/servicios/`) | Página de servicios: cuatro líneas (datos, IA, software a medida, ciberseguridad) más formación, 16 servicios con entregable y plazo orientativo, formas de contratar, proceso y preguntas frecuentes. |
 | `aviso-legal/index.html` (URL `/aviso-legal/`) | Aviso legal (LSSI-CE): titular, condiciones de uso, propiedad intelectual, enlaces y jurisdicción. |
 | `privacidad/index.html` (URL `/privacidad/`) | Política de privacidad (RGPD y LOPDGDD): finalidades, bases jurídicas, encargados, derechos y reclamación ante la AEPD. |
 | `cookies/index.html` (URL `/cookies/`) | Política de cookies: estado actual (sin cookies; solo dos claves técnicas del navegador) y categorías previstas si se añade analítica. |
 | `diagnostico/index.html` (URL `/diagnostico/`) | Diagnóstico de visibilidad (autoevaluación de 12 preguntas). Hoy el informe se genera en el navegador; no se envía ningún dato. |
 | `nosotros/index.html` (URL `/nosotros/`) | Página Nosotros. |
-| `robots.txt`, `security.txt`, `.well-known/security.txt`, `favicon.ico` | Rastreo y contacto de seguridad (ver «Seguridad»). |
+| `robots.txt`, `sitemap.xml`, `security.txt`, `.well-known/security.txt`, `favicon.ico` | Rastreo, mapa del sitio y contacto de seguridad (ver «Seguridad» y «SEO»). |
+| `img/og/neoda-og.jpg` | Imagen de 1200×630 que se muestra al compartir enlaces en redes y mensajería. |
 | `.htaccess` | Reglas para Hostinger (Apache): HTTPS, HSTS, cabeceras, CSP y bloqueo de ficheros de desarrollo. |
 | `assets/` | CSS compilado, fuentes, Three.js r128 y scripts propios (`assets/js/`). |
 
@@ -51,7 +53,16 @@ npm run build:css      # recompila assets/css/site.css tras cambiar clases o col
 - Tras añadir clases nuevas en el HTML o en `assets/js/`, ejecuta `npm run build:css`. Tailwind solo genera las clases que encuentra en esos ficheros.
 - Los colores y tipografías están en `tailwind.config.js`.
 - **Idioma ES/EN**: el selector de cabecera (`.lang`) está en todas las páginas. La lógica y el diccionario de inglés están en `assets/js/i18n.js`; las claves son los textos en español tal cual aparecen en el HTML. Para añadir o cambiar un texto, edita el HTML en español y añade su traducción en ese diccionario. "Neoda Solutions" nunca se traduce. Los textos generados por `assets/js/diagnostico.js` usan `tr()` y se traducen con las mismas claves.
+- **SEO**: `npm run seo` regenera en todas las páginas el título, la descripción, el canonical, las etiquetas Open Graph y los datos estructurados (JSON-LD). El JSON-LD de `/servicios/` se construye leyendo los servicios y las preguntas frecuentes del propio HTML: **ejecútalo después de cambiar esos textos**. Los títulos y descripciones están al principio de `scripts/seo.py`; su traducción al inglés va en el mapa `HEAD` de `assets/js/i18n.js`.
 - Versiones fijadas: Tailwind 3.4.17, Three.js 0.128.0 (r128) y @fontsource 5.1.0. Cambiar de versión puede romper shaders o clases: revisa la web antes de subirla.
+
+## SEO
+
+- **Palabras clave por página:** la home apunta a «consultoría de datos», «consultoría de inteligencia artificial» y «consultora de datos e IA para pymes». `/servicios/` tiene un H2 por línea y un H3 por servicio con su búsqueda principal (analítica de datos y cuadros de mando, automatización de procesos con IA, desarrollo de software a medida, adecuación al RGPD, pentesting…). No se ha usado una herramienta de volumen de búsqueda: conviene validarlas con Google Search Console tras el lanzamiento.
+- **Un solo H1 por página**, con la palabra clave principal. Los demás títulos son H2/H3 en orden.
+- **Datos estructurados:** `Organization` y `WebSite` (home), `Service`, `ItemList`, `BreadcrumbList` y `FAQPage` (servicios), `AboutPage` (nosotros). Son bloques `<script type="application/ld+json">`: no se ejecutan, así que no afectan a la CSP. `npm run check` los valida como JSON y no los cuenta como scripts inline.
+- **Idioma:** la versión en inglés se genera en el navegador sobre la misma URL, así que Google indexa la versión en español. Si más adelante queréis posicionar en inglés, hace falta una URL propia por idioma (por ejemplo `/en/`) con etiquetas `hreflang`.
+- **Casos de uso:** son escenarios ilustrativos y lo dicen en la página. Cuando haya clientes, sustituirlos por casos reales con su permiso: es la señal de confianza que más pesa.
 
 ## Seguridad
 
@@ -84,8 +95,9 @@ Falla si hay scripts inline, recursos de terceros, enlaces `target="_blank"` sin
 2. **Activar HTTPS:** en GitHub Pages, marca **Enforce HTTPS** y confirma que la privacidad lo afirma. Si el sitio ya está en Hostinger, la redirección 301 lo hace el `.htaccess`.
 3. **Subir el `.htaccess` a Hostinger** (es un fichero oculto) y verificar las cabeceras con `curl -I https://neodasolutions.com` o securityheaders.com.
 4. **Ejecutar `npm run check`** y que no haya errores.
-5. **Buscar marcadores pendientes:** `grep -r "PENDIENTE" *.html`. Cada uno debe estar resuelto o validado por asesoría jurídica.
-6. **Verificar en el navegador:** consola sin `Refused to…`, pestaña Red sin peticiones externas, y el flujo completo del diagnóstico.
+5. **Dar de alta el sitio en Google Search Console y en Bing Webmaster Tools**, enviar `https://neodasolutions.com/sitemap.xml` y revisar los resultados enriquecidos con la prueba de Google.
+6. **Buscar marcadores pendientes:** `grep -r "PENDIENTE" *.html`. Cada uno debe estar resuelto o validado por asesoría jurídica.
+7. **Verificar en el navegador:** consola sin `Refused to…`, pestaña Red sin peticiones externas, y el flujo completo del diagnóstico.
 
 ## Paleta
 
@@ -107,9 +119,11 @@ Falla si hay scripts inline, recursos de terceros, enlaces `target="_blank"` sin
 - [ ] Razón social, NIF, domicilio y registro mercantil (marcados como `[PENDIENTE]` en las páginas legales y en el pie).
 - [ ] Teléfono y dirección en el pie de página.
 - [ ] Fechas de última actualización de las páginas legales.
-- [ ] Casos de éxito: sustituir las cifras de ejemplo por datos verificados o marcarlos como ilustrativos.
-- [ ] Logotipos oficiales de partners (AWS, Snowflake, Azure, CrowdStrike), respetando sus guías de marca.
-- [ ] Sección de equipo con nombres, cargos y fotos.
+- [ ] Casos de uso: hoy son escenarios ilustrativos sin cifras. Sustituir por casos reales, con permiso del cliente, cuando los haya.
+- [ ] Confirmar las tecnologías de la banda (Python, Power BI, Azure, AWS, PostgreSQL, n8n) y, si se usan logotipos, respetar sus guías de marca.
+- [ ] Revisar los plazos orientativos de cada servicio en `/servicios/` y confirmar el partner de pentesting.
+- [ ] Confirmar el dominio del correo (`contacto@neoda.com` frente a `neodasolutions.com`).
+- [ ] Sección de equipo: nombres, fotos y enlaces de LinkedIn de las tres personas (los cargos ya están).
 - [ ] Conectar el formulario del whitepaper y el informe del diagnóstico a Brevo o a un CRM, con validación en servidor (ahora no envían nada).
 - [ ] Revisión de los textos legales por asesoría jurídica.
 - [ ] Verificar la marca «Neoda» frente a homónimos (existe otra empresa con un nombre muy parecido).
