@@ -265,8 +265,10 @@
   /* ===== Nosotros · hero que se funde con el menú ===== */
   .nos-hero { position:relative; min-height:100vh; min-height:100svh; margin-top:-64px; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#0C0B10; }
   @media (min-width:1024px) { .nos-hero { margin-top:-96px; } }
-  .nos-hero .bgimg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 40%; opacity:.8; }
-  .nos-hero .fade { position:absolute; inset:0; background:radial-gradient(ellipse 52% 46% at 50% 50%, rgba(12,11,16,.82) 0%, rgba(12,11,16,.6) 55%, rgba(12,11,16,0) 100%), linear-gradient(180deg, rgba(12,11,16,.45) 0%, rgba(12,11,16,.12) 40%, rgba(12,11,16,.45) 72%, #0C0B10 100%); }
+  .nos-hero .bgimg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 40%; opacity:.9; }
+  /* En vertical la foto apaisada se recorta: se centra en la tableta y la mano, que es lo que cuenta la imagen. */
+  @media (max-aspect-ratio: 4/5) { .nos-hero .bgimg { object-position:74% 50%; opacity:.75; } }
+  .nos-hero .fade { position:absolute; inset:0; background:radial-gradient(ellipse 52% 46% at 50% 50%, rgba(12,11,16,.74) 0%, rgba(12,11,16,.5) 55%, rgba(12,11,16,0) 100%), linear-gradient(180deg, rgba(12,11,16,.45) 0%, rgba(12,11,16,.12) 40%, rgba(12,11,16,.45) 72%, #0C0B10 100%); }
   .nos-hero .inner { position:relative; text-align:center; padding:0 20px; max-width:980px; }
   .nos-hero h1 { font-family:"Inter Tight",system-ui,sans-serif; font-weight:600; letter-spacing:-.02em; line-height:1.04; font-size:clamp(40px,7vw,84px); color:#fff; margin-top:18px; text-shadow:0 2px 28px rgba(12,11,16,.9), 0 0 6px rgba(12,11,16,.6); }
   .nos-hero p.lead { color:#F1EEF6; font-size:clamp(16px,1.6vw,19px); max-width:640px; margin:26px auto 0; line-height:1.6; text-shadow:0 1px 14px rgba(12,11,16,.95), 0 0 4px rgba(12,11,16,.8); }
@@ -274,7 +276,8 @@
   /* tarjetas del equipo */
   .tm { position:relative; border-radius:22px; overflow:hidden; aspect-ratio:4/5; background:linear-gradient(160deg,#2B2439,#16121F 60%,#0C0B10); border:1px solid rgba(255,255,255,.08); }
   .tm .ph { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; transition:filter .5s ease, transform .6s ease; }
-  .tm .ph span { font-family:"JetBrains Mono",ui-monospace,monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(175,170,181,.7); }
+  .tm .ph { flex-direction:column; gap:18px; color:var(--c, #B9AFD3); background:radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--c, #B9AFD3) 16%, transparent), transparent 60%); }
+  .tm .ph span { font-family:"Inter Tight",system-ui,sans-serif; font-size:18px; font-weight:500; color:#ECE9F1; }
   .tm .info { position:absolute; inset:auto 0 0 0; padding:26px; background:linear-gradient(to top, rgba(12,11,16,.95), rgba(12,11,16,.4) 70%, transparent); opacity:0; transform:translateY(10px); transition:opacity .45s ease, transform .45s ease; }
   .tm .info h3 { color:#fff; font-size:20px; font-weight:600; font-family:"Inter Tight",system-ui,sans-serif; }
   .tm .info p { color:#B9AFD3; font-size:13px; margin-top:4px; font-family:"JetBrains Mono",ui-monospace,monospace; letter-spacing:.06em; text-transform:uppercase; }
@@ -287,6 +290,10 @@
   .tm:focus-within .info { opacity:1; transform:none; }
   .tm:focus-within .ph { filter:blur(6px) brightness(.6); }
   @media (prefers-reduced-motion: reduce) { .tm .ph, .tm .info { transition:none; } }
+  .nos-how { border-top:1px solid rgba(255,255,255,.15); padding-top:26px; position:relative; }
+  .nos-how::before { content:""; position:absolute; top:-1px; left:0; width:48px; height:2px; background:var(--c); }
+  .nos-how h3 { font-family:"Inter Tight",system-ui,sans-serif; font-size:24px; font-weight:600; line-height:1.25; color:#fff; }
+  .nos-how p { margin-top:12px; line-height:1.65; color:#AFAAB5; }
 </style>
 <link rel="stylesheet" href="/assets/css/lang.css">
 </head>
@@ -311,7 +318,7 @@
         
         <div class="lang" data-on="es" role="group" aria-label="Idioma"><span class="lang-pill" aria-hidden="true"></span><button type="button" data-lang="es" aria-pressed="true">ES</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
         
-        <a href="/#contacto" class="hidden whitespace-nowrap rounded-sm bg-lavender px-4 py-2 text-sm font-medium text-white transition hover:bg-lavender-hover lg:inline-flex lg:px-7 lg:py-3.5 lg:text-base">Agendar Consultoría</a>
+        <a href="/#contacto" class="hidden whitespace-nowrap rounded-sm bg-lavender px-4 py-2 text-sm font-medium text-white transition hover:bg-lavender-hover xl:inline-flex lg:px-7 lg:py-3.5 lg:text-base">Agendar Consultoría</a>
         <button id="menuBtn" class="inline-flex h-10 w-10 items-center justify-center border border-steel-700 text-white md:hidden" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
           <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.4"/></svg>
         </button>
@@ -333,45 +340,42 @@
       <img class="bgimg" src="/img/nosotros-hero.jpg?v=3" alt="" aria-hidden="true">
       <div class="fade" aria-hidden="true"></div>
       <div class="inner">
-        <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-silver">Acerca de nosotros</p>
-        <h1>Tecnología con criterio. Decisiones con valor.</h1>
-        <p class="lead">Somos una consultora boutique de datos, inteligencia artificial, software a medida y ciberseguridad. Un equipo pequeño y especializado que trabaja para que cada inversión tecnológica se pueda explicar, medir y defender ante la dirección.</p>
+        <h1>Una consultora pequeña, a propósito.</h1>
+        <p class="lead">Neoda Solutions la formamos tres especialistas en datos, inteligencia artificial y ciberseguridad. Preferimos pocos proyectos bien hechos a muchos a medias, y que cada cliente hable siempre con quien hace el trabajo.</p>
       </div>
     </section>
 
     <section class="px-4 py-28 sm:px-6">
-      <div class="mx-auto max-w-site">
-        <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-lavender-glow">Nuestro compromiso</p>
-        <h2 class="mt-4 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-[44px] sm:leading-[1.1]">Lo que prometemos a cada cliente, sin letra pequeña.</h2>
-        <div class="mt-16 grid gap-12 md:grid-cols-3">
-          <div class="border-t border-white/15 pt-8"><p class="font-mono text-xs text-lavender-glow">01</p><h3 class="mt-4 font-display text-2xl font-semibold">Hablamos en euros, no en jerga.</h3><p class="mt-4 leading-relaxed text-silver">Cada riesgo y cada propuesta se expresan en impacto económico, para que la dirección decida con la misma información que usa para cualquier otra inversión.</p></div>
-          <div class="border-t border-white/15 pt-8"><p class="font-mono text-xs text-lavender-glow">02</p><h3 class="mt-4 font-display text-2xl font-semibold">Cada resultado tiene un responsable.</h3><p class="mt-4 leading-relaxed text-silver">Sin propietario no hay compromiso. Asignamos nombre y fecha a cada medida desde el primer día del proyecto.</p></div>
-          <div class="border-t border-white/15 pt-8"><p class="font-mono text-xs text-lavender-glow">03</p><h3 class="mt-4 font-display text-2xl font-semibold">Lo que medimos, lo podemos demostrar.</h3><p class="mt-4 leading-relaxed text-silver">Trabajamos con indicadores auditables y evidencias concretas, no con informes de actividad.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="border-t border-white/[0.06] px-4 py-28 sm:px-6">
       <div class="mx-auto grid max-w-site gap-12 md:grid-cols-12">
         <div class="md:col-span-5">
-          <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-lavender-glow">Lo que queremos</p>
-          <h2 class="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-[40px]">Que la tecnología sea una ventaja que se pueda demostrar.</h2>
+          <h2 class="font-display text-3xl font-semibold tracking-tight sm:text-[44px] sm:leading-[1.08]">Por qué existe Neoda</h2>
         </div>
         <div class="space-y-6 text-lg leading-relaxed text-silver md:col-span-6 md:col-start-7">
-          <p>Queremos que las organizaciones sepan qué riesgos asumen, qué valor dejan escapar y qué medidas reducen de verdad su exposición. No buscamos vender más horas ni más licencias.</p>
-          <p>Nuestro éxito se mide por las decisiones que la dirección toma con más seguridad y por los riesgos que dejan de existir.</p>
+          <p>La mayoría de las pymes tiene más datos de los que usa y más riesgos de los que conoce. Las grandes consultoras no están pensadas para su tamaño, y comprar otra herramienta casi nunca resuelve el problema.</p>
+          <p>Queremos ocupar ese hueco: trabajo técnico serio, explicado sin jerga y a un precio que una empresa mediana pueda justificar. Si una mejora no se traduce en horas ahorradas, en dinero o en un riesgo menos, no te la proponemos.</p>
         </div>
       </div>
     </section>
 
     <section class="border-t border-white/[0.06] px-4 py-28 sm:px-6">
       <div class="mx-auto max-w-site">
-        <h2 class="text-center font-display text-3xl font-semibold tracking-tight sm:text-[44px]">Conoce a nuestro equipo</h2>
-        <p class="mx-auto mt-4 max-w-xl text-center text-silver">Tres especialistas, uno por cada disciplina. Pasa el cursor sobre cada persona para ver su perfil.</p>
+        <h2 class="max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-[44px] sm:leading-[1.1]">Cómo trabajamos</h2>
+        <div class="mt-14 grid gap-12 md:grid-cols-3">
+          <div class="nos-how" style="--c:#7CC4FF"><h3>Te lo explicamos en euros.</h3><p>Cada propuesta dice cuánto cuesta, cuánto puede ahorrar o qué riesgo reduce, para que puedas compararla con cualquier otra inversión.</p></div>
+          <div class="nos-how" style="--c:#F2B66D"><h3>Cada tarea tiene nombre y fecha.</h3><p>Desde el primer día sabes quién hace qué y cuándo lo vas a tener.</p></div>
+          <div class="nos-how" style="--c:#6FD6B0"><h3>Lo que entregamos se queda.</h3><p>Código, cuadros de mando y documentación son tuyos. Si mañana trabajas con otro proveedor, puede seguir donde lo dejamos.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t border-white/[0.06] px-4 py-28 sm:px-6">
+      <div class="mx-auto max-w-site">
+        <h2 class="text-center font-display text-3xl font-semibold tracking-tight sm:text-[44px]">Quiénes somos</h2>
+        <p class="mx-auto mt-4 max-w-xl text-center text-silver">Somos tres, cada uno al frente de una disciplina, y trabajamos juntos en cada proyecto. Pasa el cursor sobre cada foto para ver su perfil.</p>
         <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
           <article class="tm" tabindex="0">
-            <div class="ph"><span>[PENDIENTE: foto 1]</span></div>
+            <div class="ph" style="--c:#7CC4FF"><!-- [PENDIENTE: foto 1] sustituir este bloque por <img> cuando haya foto --><svg width="64" height="64" viewBox="0 0 26 26" aria-hidden="true"><path d="M13 1 24 7.5v11L13 25 2 18.5v-11z" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M13 1v24M2 7.5l22 11M24 7.5 2 18.5" stroke="currentColor" stroke-opacity=".45" stroke-width=".6"/></svg><span>Datos</span></div>
             <div class="info">
               <h3>[PENDIENTE: nombre]</h3>
               <p>Analista y científico de datos</p>
@@ -379,7 +383,7 @@
             </div>
           </article>
           <article class="tm" tabindex="0">
-            <div class="ph"><span>[PENDIENTE: foto 2]</span></div>
+            <div class="ph" style="--c:#F2B66D"><!-- [PENDIENTE: foto 2] sustituir este bloque por <img> cuando haya foto --><svg width="64" height="64" viewBox="0 0 26 26" aria-hidden="true"><path d="M13 1 24 7.5v11L13 25 2 18.5v-11z" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M13 1v24M2 7.5l22 11M24 7.5 2 18.5" stroke="currentColor" stroke-opacity=".45" stroke-width=".6"/></svg><span>Inteligencia artificial</span></div>
             <div class="info">
               <h3>[PENDIENTE: nombre]</h3>
               <p>Analista de datos e IA</p>
@@ -387,7 +391,7 @@
             </div>
           </article>
           <article class="tm" tabindex="0">
-            <div class="ph"><span>[PENDIENTE: foto 3]</span></div>
+            <div class="ph" style="--c:#6FD6B0"><!-- [PENDIENTE: foto 3] sustituir este bloque por <img> cuando haya foto --><svg width="64" height="64" viewBox="0 0 26 26" aria-hidden="true"><path d="M13 1 24 7.5v11L13 25 2 18.5v-11z" fill="none" stroke="currentColor" stroke-width=".9"/><path d="M13 1v24M2 7.5l22 11M24 7.5 2 18.5" stroke="currentColor" stroke-opacity=".45" stroke-width=".6"/></svg><span>Ciberseguridad</span></div>
             <div class="info">
               <h3>[PENDIENTE: nombre]</h3>
               <p>Especialista en ciberseguridad</p>
@@ -402,9 +406,9 @@
       <div class="mx-auto flex max-w-site flex-col items-start justify-between gap-8 md:flex-row md:items-center">
         <div>
           <h2 class="font-display text-3xl font-semibold tracking-tight sm:text-4xl">¿Hablamos de tu situación?</h2>
-          <p class="mt-3 max-w-xl text-silver">Una sesión de 45 minutos con nuestro equipo, sin coste y sin compromiso.</p>
+          <p class="mt-3 max-w-xl text-silver">Una llamada de 45 minutos con nosotros, sin coste y sin compromiso.</p>
         </div>
-        <a href="/#contacto" class="inline-flex items-center justify-center rounded-full bg-lavender px-8 py-4 text-sm font-medium text-white transition hover:bg-lavender-hover">Agendar consultoría →</a>
+        <a href="/#contacto" class="inline-flex items-center justify-center rounded-full bg-lavender px-8 py-4 text-sm font-medium text-white transition hover:bg-lavender-hover">Agendar consultoría</a>
       </div>
     </section>
   </main>

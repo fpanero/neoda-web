@@ -1,4 +1,4 @@
-/* Página de servicios: menú móvil, foco de luz en tarjetas, red de nodos de la cabecera y entrada al hacer scroll. */
+/* Página de servicios: menú móvil, animación de las maquetas y red de nodos de la cabecera. */
 (function () {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -9,22 +9,15 @@
     btn.setAttribute('aria-expanded', String(open));
   });
 
-  // Foco de luz que sigue al cursor
-  document.querySelectorAll('.spot').forEach(el => el.addEventListener('pointermove', e => {
-    const r = el.getBoundingClientRect();
-    el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-    el.style.setProperty('--my', (e.clientY - r.top) + 'px');
-  }));
-
-  // Entrada al hacer scroll (el contenido es visible aunque no se ejecute)
-  const items = document.querySelectorAll('[data-reveal]');
+  // Cada maqueta se anima una sola vez, cuando entra en pantalla. Sin JS o con movimiento reducido se ve en su estado final.
+  const mocks = document.querySelectorAll('.mock');
   if ('IntersectionObserver' in window && !reduce) {
     const io = new IntersectionObserver(entries => entries.forEach(en => {
       if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
-    }), { rootMargin: '0px 0px -8% 0px' });
-    items.forEach(el => io.observe(el));
+    }), { threshold: 0.35 });
+    mocks.forEach(el => io.observe(el));
   } else {
-    items.forEach(el => el.classList.add('in'));
+    mocks.forEach(el => el.classList.add('in'));
   }
 
   // Red de nodos 2D (misma que en la home), solo mientras está a la vista

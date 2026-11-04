@@ -52,13 +52,14 @@
         c.addEventListener('click', () => { if (!matchMedia('(hover:hover)').matches) c.classList.toggle('is-on'); });
         c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.classList.toggle('is-on'); } });
       });
-      document.getElementById('prevC').addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: 'smooth' }));
-      document.getElementById('nextC').addEventListener('click', () => rail.scrollBy({ left: step(), behavior: 'smooth' }));
+      const cur = () => Math.round(rail.scrollLeft / step());
+      document.getElementById('prevC').addEventListener('click', () => go(Math.max(0, cur() - 1)));
+      document.getElementById('nextC').addEventListener('click', () => go(Math.min(pages() - 1, cur() + 1)));
       rail.addEventListener('scroll', upd, { passive: true });
       addEventListener('resize', build);
       build();
       const wrap = rail.parentElement; let timer = null;
-      const next = () => { const atEnd = rail.scrollLeft >= maxLeft() - 4; rail.scrollTo({ left: atEnd ? 0 : Math.min(rail.scrollLeft + step(), maxLeft()), behavior: 'smooth' }); };
+      const next = () => { const atEnd = rail.scrollLeft >= maxLeft() - 4; go(atEnd ? 0 : Math.round(rail.scrollLeft / step()) + 1); };
       const play = () => { if (timer || matchMedia('(prefers-reduced-motion: reduce)').matches) return; timer = setInterval(next, 4000); };
       const pause = () => { clearInterval(timer); timer = null; };
       wrap.addEventListener('mouseenter', pause); wrap.addEventListener('mouseleave', play);

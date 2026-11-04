@@ -63,9 +63,9 @@ FOOT_SERV = ('<nav class="nf-col" aria-label="Servicios"><h3>Servicios</h3><ul>'
 
 def servicios_graph(s, url):
     services = []
-    for sec_id, block in re.findall(r'<section id="(datos|ia|software|ciberseguridad|formacion)" class="sv-line".*?>(.*?)</section>', s, re.S):
+    for sec_id, block in re.findall(r'<section id="(datos|ia|software|ciberseguridad|formacion)" class="line[^"]*".*?>(.*?)</section>', s, re.S):
         line = text(re.search(r'<h2[^>]*>(.*?)</h2>', block, re.S).group(1))
-        for h3, p in re.findall(r'<article class="sv-item[^"]*"[^>]*>\s*<h3>(.*?)</h3>\s*<p>(.*?)</p>', block, re.S):
+        for h3, p in re.findall(r'<li class="svc">\s*<div class="svc-main"><h3>(.*?)</h3><p>(.*?)</p>', block, re.S):
             services.append({"@type": "Service", "name": text(h3), "description": text(p), "serviceType": line,
                              "url": url + "#" + sec_id, "provider": {"@id": ORG_ID}, "areaServed": {"@type": "Country", "name": "España"}})
     faqs = [{"@type": "Question", "name": text(q), "acceptedAnswer": {"@type": "Answer", "text": text(a)}}
