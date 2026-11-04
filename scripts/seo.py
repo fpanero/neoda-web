@@ -16,7 +16,7 @@ ORG = {
   "description": "Consultora boutique de datos, inteligencia artificial, software a medida y ciberseguridad para pymes y empresas medianas.",
   "areaServed": {"@type": "Country", "name": "España"},
   "knowsAbout": ["Analítica de datos", "Cuadros de mando", "Ingeniería de datos", "Gobierno del dato", "Ciencia de datos",
-                 "Inteligencia artificial", "Automatización de procesos", "Agentes de IA", "Desarrollo de software a medida",
+                 "Inteligencia artificial", "Automatización de procesos", "Agentes de IA", "Desarrollo de software a medida", "CRM a medida",
                  "Integración de sistemas", "Ciberseguridad", "RGPD", "NIS2", "Reglamento Europeo de IA"],
   "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Servicios de Neoda Solutions", "url": SITE + "/servicios/",
     "itemListElement": [
@@ -40,7 +40,7 @@ PAGES = {
        desc='Consultora de datos e inteligencia artificial para pymes y empresas medianas: analítica, automatización con IA, software a medida y ciberseguridad.',
        ogtitle='Consultoría de datos, IA y ciberseguridad para pymes', kind='home'),
   'servicios/index.html': dict(path='/servicios/', title='Servicios de datos, IA y software a medida | Neoda Solutions',
-       desc='Analítica de datos, inteligencia artificial, automatización, software a medida y ciberseguridad para pymes y empresas medianas, con alcance y precio cerrados.',
+       desc='Analítica de datos, inteligencia artificial, CRM y software a medida, y ciberseguridad para pymes y empresas medianas, con alcance y precio cerrados.',
        ogtitle='Servicios de datos, IA, software a medida y ciberseguridad', kind='servicios', crumb='Servicios'),
   'nosotros/index.html': dict(path='/nosotros/', title='Nosotros: consultora boutique de datos e IA | Neoda Solutions',
        desc='Conoce a Neoda Solutions: una consultora boutique de datos, inteligencia artificial, software a medida y ciberseguridad para pymes y empresas medianas.',
@@ -65,12 +65,12 @@ def servicios_graph(s, url):
     services = []
     for sec_id, block in re.findall(r'<section id="(datos|ia|software|ciberseguridad|formacion)" class="line[^"]*".*?>(.*?)</section>', s, re.S):
         line = text(re.search(r'<h2[^>]*>(.*?)</h2>', block, re.S).group(1))
-        for h3, p in re.findall(r'<li class="svc">\s*<div class="svc-main"><h3>(.*?)</h3><p>(.*?)</p>', block, re.S):
+        for h3, p in re.findall(r'<li class="svc"[^>]*>\s*<div class="svc-main"><h3>(.*?)</h3><p>(.*?)</p>', block, re.S):
             services.append({"@type": "Service", "name": text(h3), "description": text(p), "serviceType": line,
                              "url": url + "#" + sec_id, "provider": {"@id": ORG_ID}, "areaServed": {"@type": "Country", "name": "España"}})
     faqs = [{"@type": "Question", "name": text(q), "acceptedAnswer": {"@type": "Answer", "text": text(a)}}
             for q, a in re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>', s, re.S)]
-    assert len(services) == 16, len(services)
+    assert len(services) == 17, len(services)
     assert len(faqs) == 8, len(faqs)
     return [
       {"@type": "WebPage", "@id": url, "url": url, "name": PAGES['servicios/index.html']['title'], "inLanguage": "es-ES",

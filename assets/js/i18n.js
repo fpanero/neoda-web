@@ -885,7 +885,34 @@
   "Un socio dirige tu proyecto.": "A partner leads your project.",
   "La persona que conoces en la primera reunión es la que dirige el proyecto hasta la entrega, sin intermediarios.": "The person you meet in the first meeting leads the project through to delivery, with no intermediaries.",
   "Proyectos dirigidos por especialistas, con alcance y precio cerrados, y entregables que se quedan en tu empresa.": "Projects led by specialists, with fixed scope and price, and deliverables that stay in your company.",
-  "Analítica de datos, inteligencia artificial, software a medida y ciberseguridad para pymes y empresas medianas. Proyectos dirigidos por especialistas, con alcance y precio cerrados, y entregables que se quedan en tu empresa.": "Data analytics, artificial intelligence, custom software and cybersecurity for small and mid-sized companies. Projects led by specialists, with fixed scope and price, and deliverables that stay in your company."
+  "Analítica de datos, inteligencia artificial, software a medida y ciberseguridad para pymes y empresas medianas. Proyectos dirigidos por especialistas, con alcance y precio cerrados, y entregables que se quedan en tu empresa.": "Data analytics, artificial intelligence, custom software and cybersecurity for small and mid-sized companies. Projects led by specialists, with fixed scope and price, and deliverables that stay in your company.",
+  "Es el primer paso de nuestro": "It is the first step of our",
+  "CRM a medida": "Custom CRM",
+  ": te enseña cuántos contactos se pierden antes de llegar a tu equipo comercial.": ": it shows you how many leads are lost before they reach your sales team.",
+  "CRM a medida y herramientas internas, con código tuyo.": "Custom CRM and internal tools, with code you own.",
+  "Perdemos contactos porque nadie hace seguimiento.": "We lose leads because nobody follows up.",
+  "Contactos de esta semana": "This week's leads",
+  "Sincronizado con la web": "Synced with the website",
+  "Origen": "Source",
+  "Valor": "Value",
+  "Formulario web": "Web form",
+  "Nuevo": "New",
+  "Propuesta enviada": "Proposal sent",
+  "Teléfono": "Phone",
+  "Sin respuesta, 2 días": "No reply, 2 days",
+  "Recomendación": "Referral",
+  "Ganado": "Won",
+  "Formularios": "Forms",
+  "Contactos": "Leads",
+  "Correo": "Email",
+  "Ejemplo de CRM a medida con datos ficticios": "Example custom CRM with fictitious data",
+  "Un CRM hecho para tu forma de vender: recoge cada contacto de la web, el correo o el teléfono, sabe de qué canal llega, le asigna un responsable y avisa si nadie responde a tiempo.": "A CRM built around the way you sell: it captures every lead from the website, email or phone, knows which channel it came from, assigns an owner and warns you if nobody replies in time.",
+  "Empieza por el diagnóstico gratuito": "Start with the free diagnosis",
+  "CRM en producción, conectado a tu web, tu correo y tu facturación": "CRM in production, connected to your website, email and billing",
+  "Es el punto de partida de nuestro": "It is the starting point of our",
+  ", que se ocupa de que ningún contacto se quede sin respuesta.": ", which makes sure no lead goes unanswered.",
+  "En 30 minutos repasamos tu informe y te decimos por dónde empezar, sin compromiso. Si el problema está en la captación y el seguimiento de contactos, te enseñamos cómo lo resolvería un CRM a medida.": "In 30 minutes we go through your report and tell you where to start, with no commitment. If the problem is in capturing and following up leads, we show you how a custom CRM would solve it.",
+  "servicio de CRM a medida": "custom CRM service"
   };
 
   const HEAD = {
@@ -907,7 +934,8 @@
   "Diagnóstico gratuito de visibilidad digital | Neoda Solutions": "Free digital visibility diagnosis | Neoda Solutions",
   "Cómo trata Neoda Solutions los datos personales que nos facilitas y cómo ejercer tus derechos.": "How Neoda Solutions processes the personal data you provide and how to exercise your rights.",
   "Aviso legal y condiciones de uso del sitio web de Neoda Solutions.": "Legal notice and terms of use of the Neoda Solutions website.",
-  "Qué cookies utiliza el sitio web de Neoda Solutions y cómo gestionarlas.": "Which cookies the Neoda Solutions website uses and how to manage them."
+  "Qué cookies utiliza el sitio web de Neoda Solutions y cómo gestionarlas.": "Which cookies the Neoda Solutions website uses and how to manage them.",
+  "Analítica de datos, inteligencia artificial, CRM y software a medida, y ciberseguridad para pymes y empresas medianas, con alcance y precio cerrados.": "Data analytics, artificial intelligence, custom CRM and software, and cybersecurity for small and mid-sized companies, with fixed scope and price."
   };
 
   const root = document.documentElement;

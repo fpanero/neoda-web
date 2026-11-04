@@ -273,11 +273,11 @@
       const scene = new THREE.Scene(), s = 3.7;
       const cam = new THREE.OrthographicCamera(-s, s, s, -s, 0.1, 100);
       cam.position.set(8, 7.2, 8); cam.lookAt(0, 0.85, 0);
-      scene.add(new THREE.AmbientLight(0x4a4358, 1.0));
+      scene.add(new THREE.AmbientLight(0x454649, 1.0));
       const key = new THREE.DirectionalLight(0xffffff, 1.05); key.position.set(5, 9, 3); scene.add(key);
       const fillL = new THREE.PointLight(ACC, 2.4, 14); fillL.position.set(-3, 1.2, 3); scene.add(fillL);
-      const steel = new THREE.MeshStandardMaterial({ color: 0x4d4856, metalness: 0.8, roughness: 0.36 });
-      const dark = new THREE.MeshStandardMaterial({ color: 0x15121a, metalness: 0.55, roughness: 0.55 });
+      const steel = new THREE.MeshStandardMaterial({ color: 0x494a4d, metalness: 0.8, roughness: 0.36 });
+      const dark = new THREE.MeshStandardMaterial({ color: 0x121316, metalness: 0.55, roughness: 0.55 });
       const glow = new THREE.MeshBasicMaterial({ color: ACC });
       const white = new THREE.MeshBasicMaterial({ color: 0xffffff });
       const hi = new THREE.MeshStandardMaterial({ color: ACC, metalness: 0.4, roughness: 0.3, emissive: ACC, emissiveIntensity: 0.5 });
@@ -285,7 +285,7 @@
       const root = new THREE.Group(); scene.add(root);
       // Pedestal
       const base = new THREE.Mesh(new THREE.CylinderGeometry(2.75, 2.9, 0.32, 72), dark); base.position.y = 0.16; root.add(base);
-      const top = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, 0.05, 72), new THREE.MeshStandardMaterial({ color: 0x1f1a27, metalness: 0.6, roughness: 0.45 })); top.position.y = 0.345; root.add(top);
+      const top = new THREE.Mesh(new THREE.CylinderGeometry(2.5, 2.5, 0.05, 72), new THREE.MeshStandardMaterial({ color: 0x1b1c1f, metalness: 0.6, roughness: 0.45 })); top.position.y = 0.345; root.add(top);
       const ring = new THREE.Mesh(new THREE.TorusGeometry(2.62, 0.014, 8, 128), glow); ring.rotation.x = Math.PI / 2; ring.position.y = 0.33; root.add(ring);
       const ticks = new THREE.Group(); root.add(ticks);
       for (let i = 0; i < 36; i++) { const m = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.02, i % 9 === 0 ? 0.22 : 0.1), i % 9 === 0 ? white : steel); const a = i / 36 * Math.PI * 2; m.position.set(Math.cos(a) * 2.32, 0.38, Math.sin(a) * 2.32); m.rotation.y = -a; ticks.add(m); }
@@ -307,7 +307,7 @@
 
       if (kind === 'ai') {
         const col = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.24, 1.2, 6), steel); col.position.y = Y0 + 0.6; root.add(col);
-        const core = new THREE.Mesh(new THREE.OctahedronGeometry(0.62, 0), new THREE.MeshStandardMaterial({ color: 0x5c5666, metalness: 0.85, roughness: 0.28, emissive: 0x2e2c36, flatShading: true }));
+        const core = new THREE.Mesh(new THREE.OctahedronGeometry(0.62, 0), new THREE.MeshStandardMaterial({ color: 0x57585b, metalness: 0.85, roughness: 0.28, emissive: 0x2c2d30, flatShading: true }));
         core.position.y = 2.1; root.add(core);
         const coreEdges = new THREE.LineSegments(new THREE.EdgesGeometry(core.geometry), new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.7 })); core.add(coreEdges);
         const rings = [1.15, 1.55].map((r, k) => { const m = new THREE.Mesh(new THREE.TorusGeometry(r, 0.012, 6, 120), k ? glow : white); m.position.y = 2.1; m.rotation.x = Math.PI / 2 + (k ? 0.5 : -0.35); root.add(m); return m; });
@@ -402,13 +402,13 @@
         for (const n of nodes) { n.x += n.vx; n.y += n.vy; if (n.x < 0 || n.x > w) n.vx *= -1; if (n.y < 0 || n.y > h) n.vy *= -1; }
         for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
           const a = nodes[i], b = nodes[j], dist = Math.hypot(a.x - b.x, a.y - b.y);
-          if (dist < 150) { ctx.strokeStyle = `rgba(138,128,163,${(1 - dist / 150) * .3})`; ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+          if (dist < 150) { ctx.strokeStyle = `rgba(150,151,154,${(1 - dist / 150) * .3})`; ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
         }
         for (const n of nodes) {
           const md = Math.hypot(n.x - mouse.x, n.y - mouse.y);
           if (md < 180) { ctx.strokeStyle = `rgba(255,255,255,${(1 - md / 180) * .35})`; ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
           if (n.d) { ctx.strokeStyle = 'rgba(255,255,255,.75)'; ctx.save(); ctx.translate(n.x, n.y); ctx.rotate(Math.PI / 4); ctx.strokeRect(-3, -3, 6, 6); ctx.restore(); }
-          else { ctx.fillStyle = 'rgba(175,170,181,.55)'; ctx.fillRect(n.x - 1, n.y - 1, 2, 2); }
+          else { ctx.fillStyle = 'rgba(171,172,175,.55)'; ctx.fillRect(n.x - 1, n.y - 1, 2, 2); }
         }
       });
     }

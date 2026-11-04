@@ -11,7 +11,7 @@ Página de inicio y páginas legales de **Neoda Solutions**, consultoría boutiq
 | Archivo | Descripción |
 |---|---|
 | `index.html` (URL `/`) | Página de inicio: hero 3D, tecnologías, diagnóstico rápido, problema, las cuatro líneas de servicio con escenas isométricas, casos de uso ilustrativos, metodología animada, whitepaper y cierre. |
-| `servicios/index.html` (URL `/servicios/`) | Página de servicios: cuatro líneas (datos, IA, software a medida, ciberseguridad) más formación, 16 servicios con entregable y plazo orientativo, formas de contratar, proceso y preguntas frecuentes. |
+| `servicios/index.html` (URL `/servicios/`) | Página de servicios: cuatro líneas (datos, IA, software a medida, ciberseguridad) más formación, 17 servicios (incluido el CRM a medida, al que lleva el diagnóstico) con entregable y plazo orientativo, formas de contratar, proceso y preguntas frecuentes. |
 | `aviso-legal/index.html` (URL `/aviso-legal/`) | Aviso legal (LSSI-CE): titular, condiciones de uso, propiedad intelectual, enlaces y jurisdicción. |
 | `privacidad/index.html` (URL `/privacidad/`) | Política de privacidad (RGPD y LOPDGDD): finalidades, bases jurídicas, encargados, derechos y reclamación ante la AEPD. |
 | `cookies/index.html` (URL `/cookies/`) | Política de cookies: estado actual (sin cookies; solo dos claves técnicas del navegador) y categorías previstas si se añade analítica. |

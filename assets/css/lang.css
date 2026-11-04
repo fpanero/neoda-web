@@ -3,7 +3,7 @@
 .lang { position:relative; display:inline-flex; border:1px solid rgba(255,255,255,.22); border-radius:999px; overflow:hidden; padding:2px; isolation:isolate; }
 .lang-pill { position:absolute; top:2px; bottom:2px; left:2px; width:calc(50% - 2px); border-radius:999px; background:#FFFFFF; transition:transform .35s cubic-bezier(.4,0,.2,1); z-index:0; }
 .lang[data-on="en"] .lang-pill { transform:translateX(100%); }
-.lang button { position:relative; z-index:1; background:transparent; color:#AFAAB5; border:0; padding:7px 14px; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:11px; letter-spacing:.08em; cursor:pointer; transition:color .35s; }
+.lang button { position:relative; z-index:1; background:transparent; color:#ABACAF; border:0; padding:7px 14px; font-family:"JetBrains Mono",ui-monospace,monospace; font-size:11px; letter-spacing:.08em; cursor:pointer; transition:color .35s; }
 .lang button[aria-pressed="true"] { color:#0C0B10; }
 .lang button:not([aria-pressed="true"]):hover { color:#FFFFFF; }
 @media (prefers-reduced-motion: reduce) { .lang-pill { transition:none; } }
