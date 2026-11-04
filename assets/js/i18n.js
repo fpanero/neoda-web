@@ -872,7 +872,20 @@
   "Código, cuadros de mando y documentación son tuyos. Si mañana trabajas con otro proveedor, puede seguir donde lo dejamos.": "Code, dashboards and documentation are yours. If tomorrow you work with another provider, they can pick up where we left off.",
   "Quiénes somos": "Who we are",
   "Somos tres, cada uno al frente de una disciplina, y trabajamos juntos en cada proyecto. Pasa el cursor sobre cada foto para ver su perfil.": "There are three of us, each leading one discipline, and we work together on every project. Hover over each photo to see their profile.",
-  "Una llamada de 45 minutos con nosotros, sin coste y sin compromiso.": "A 45-minute call with us, at no cost and with no commitment."
+  "Una llamada de 45 minutos con nosotros, sin coste y sin compromiso.": "A 45-minute call with us, at no cost and with no commitment.",
+  "Consultoría de datos, IA y ciberseguridad con nombre y apellidos.": "Data, AI and cybersecurity consulting with a name and a face.",
+  "En Neoda Solutions cada proyecto lo dirige un socio especialista en datos, inteligencia artificial o ciberseguridad, que te acompaña desde la primera reunión hasta la entrega.": "At Neoda Solutions every project is led by a partner who specialises in data, artificial intelligence or cybersecurity, and who stays with you from the first meeting to delivery.",
+  "Quién dirige Neoda": "Who leads Neoda",
+  "Los socios fundadores dirigen cada área en persona y, según lo que pida cada proyecto, coordinan a especialistas y partners de confianza. Pasa el cursor sobre cada foto para ver su perfil.": "The founding partners lead each area in person and, depending on what each project needs, coordinate trusted specialists and partners. Hover over each photo to see their profile.",
+  "Socio fundador · Datos y analítica": "Founding partner · Data and analytics",
+  "Socio fundador · Inteligencia artificial": "Founding partner · Artificial intelligence",
+  "Socio fundador · Ciberseguridad": "Founding partner · Cybersecurity",
+  "Somos una consultora especializada en datos, IA y ciberseguridad. Trabajamos con pymes y empresas medianas, y antes de empezar dejamos por escrito qué entregamos, cuándo y por cuánto.": "We are a consultancy specialising in data, AI and cybersecurity. We work with small and mid-sized companies, and before we start we put in writing what we deliver, when and for how much.",
+  "Así trabajamos en cada proyecto, sea del tamaño que sea.": "This is how we work on every project, whatever its size.",
+  "Un socio dirige tu proyecto.": "A partner leads your project.",
+  "La persona que conoces en la primera reunión es la que dirige el proyecto hasta la entrega, sin intermediarios.": "The person you meet in the first meeting leads the project through to delivery, with no intermediaries.",
+  "Proyectos dirigidos por especialistas, con alcance y precio cerrados, y entregables que se quedan en tu empresa.": "Projects led by specialists, with fixed scope and price, and deliverables that stay in your company.",
+  "Analítica de datos, inteligencia artificial, software a medida y ciberseguridad para pymes y empresas medianas. Proyectos dirigidos por especialistas, con alcance y precio cerrados, y entregables que se quedan en tu empresa.": "Data analytics, artificial intelligence, custom software and cybersecurity for small and mid-sized companies. Projects led by specialists, with fixed scope and price, and deliverables that stay in your company."
   };
 
   const HEAD = {
