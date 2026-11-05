@@ -11,7 +11,7 @@ Página de inicio y páginas legales de **Neoda Solutions**, consultoría boutiq
 | Archivo | Descripción |
 |---|---|
 | `index.html` (URL `/`) | Página de inicio: hero 3D, tecnologías, diagnóstico rápido, problema, las cuatro líneas de servicio con escenas isométricas, casos de uso ilustrativos, metodología animada, whitepaper y cierre. |
-| `servicios/index.html` (URL `/servicios/`) | Página de servicios: cuatro líneas (datos, IA, software a medida, ciberseguridad) más formación, 17 servicios (incluido el CRM a medida, al que lleva el diagnóstico) con entregable y plazo orientativo, formas de contratar, proceso y preguntas frecuentes. |
+| `servicios/index.html` (URL `/servicios/`) | Página de servicios: cuatro líneas (datos, IA, software a medida, ciberseguridad) más formación, 17 servicios (incluido el CRM a medida, al que lleva el diagnóstico), cada uno con icono y una frase, formas de contratar, proceso y preguntas frecuentes. |
 | `aviso-legal/index.html` (URL `/aviso-legal/`) | Aviso legal (LSSI-CE): titular, condiciones de uso, propiedad intelectual, enlaces y jurisdicción. |
 | `privacidad/index.html` (URL `/privacidad/`) | Política de privacidad (RGPD y LOPDGDD): finalidades, bases jurídicas, encargados, derechos y reclamación ante la AEPD. |
 | `cookies/index.html` (URL `/cookies/`) | Política de cookies: estado actual (sin cookies; solo dos claves técnicas del navegador) y categorías previstas si se añade analítica. |
@@ -121,7 +121,7 @@ Falla si hay scripts inline, recursos de terceros, enlaces `target="_blank"` sin
 - [ ] Fechas de última actualización de las páginas legales.
 - [ ] Casos de uso: hoy son escenarios ilustrativos sin cifras. Sustituir por casos reales, con permiso del cliente, cuando los haya.
 - [ ] Confirmar las tecnologías de la banda (Python, Power BI, Azure, AWS, PostgreSQL, n8n) y, si se usan logotipos, respetar sus guías de marca.
-- [ ] Revisar los plazos orientativos de cada servicio en `/servicios/` y confirmar el partner de pentesting.
+- [ ] Confirmar el partner de pentesting.
 - [ ] Confirmar el dominio del correo (`contacto@neoda.com` frente a `neodasolutions.com`).
 - [ ] Sección de equipo: nombres, fotos y enlaces de LinkedIn de las tres personas (los cargos ya están).
 - [ ] Conectar el formulario del whitepaper y el informe del diagnóstico a Brevo o a un CRM, con validación en servidor (ahora no envían nada).
