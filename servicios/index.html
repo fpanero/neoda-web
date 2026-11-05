@@ -105,7 +105,7 @@
     .hero-in { padding: 150px 0 112px; }
     .scroll-cue { bottom: 18px; }
   }
-  @media (max-width: 767px) { .bg-video { object-position: 66% 50%; transform: scale(.72); transform-origin: 66% 50%; } }
+  @media (max-width: 767px) { .bg-video { object-position: 50% 50%; } }
   @media (prefers-reduced-motion: reduce) { .beam, .scroll-cue i::after { animation: none; } }
 
   /* ===== Líneas de servicio ===== */
@@ -451,9 +451,9 @@
     <section class="hero" aria-labelledby="sv-title">
       <div class="stage">
         <div class="beam" aria-hidden="true"></div>
-        <video class="bg-video" autoplay muted loop playsinline preload="auto" poster="/assets/media/poster.jpg?v=2" aria-hidden="true" tabindex="-1">
-          <source src="/assets/media/logo-loop.webm?v=2" type="video/webm">
-          <source src="/assets/media/logo-loop.mp4?v=2" type="video/mp4">
+        <video class="bg-video" autoplay muted loop playsinline preload="auto" poster="/assets/media/poster.jpg?v=3" aria-hidden="true" tabindex="-1">
+          <source src="/assets/media/hero-loop.webm" type="video/webm">
+          <source src="/assets/media/hero-loop.mp4" type="video/mp4">
         </video>
         <div class="wrap">
           <div class="hero-in">
@@ -856,7 +856,7 @@
 </footer>
 
 <script src="/assets/js/i18n.js" defer></script>
-<script src="/assets/js/servicios.js?v=5" defer></script>
+<script src="/assets/js/servicios.js?v=6" defer></script>
 <script src="/assets/js/nav.js" defer></script>
 </body>
 </html>
