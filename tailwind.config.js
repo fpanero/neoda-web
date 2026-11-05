@@ -15,12 +15,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        eggplant: { 900: '#16171A', 850: '#1A1B1E', 800: '#1E1F22' }, // fondo institucional
-        ink:      { DEFAULT: '#0C0B10', 900: '#0C0B10', 800: '#111215' }, // negro de contraste (uso puntual)
+        eggplant: { 900: '#191621', 850: '#1D1926', 800: '#211D2A' }, // fondo institucional
+        ink:      { DEFAULT: '#0C0B10', 900: '#0C0B10', 800: '#121117' }, // negro de contraste (uso puntual)
         paper:    { DEFAULT: '#F3F2F5', line: '#DCD9E0' },               // blanco de contraste (una sola banda)
         lavender: { DEFAULT: '#5F5675', hover: '#6E6487', line: '#8A80A3', glow: '#B9AFD3' },
-        steel:    { 500: '#4D4E51', 600: '#3F4043', 700: '#313235' },
-        silver:   '#ABACAF',
+        steel:    { 500: '#504D57', 600: '#423F49', 700: '#34313B' },
+        silver:   '#AEABB3',
       },
       fontFamily: {
         display: ['"Inter Tight"', 'system-ui', 'sans-serif'],

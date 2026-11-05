@@ -36,13 +36,13 @@
       if (!reduce) for (const n of nodes) { n.x += n.vx; n.y += n.vy; if (n.x < 0 || n.x > w) n.vx *= -1; if (n.y < 0 || n.y > h) n.vy *= -1; }
       for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
         const a = nodes[i], b = nodes[j], dist = Math.hypot(a.x - b.x, a.y - b.y);
-        if (dist < 150) { ctx.strokeStyle = `rgba(150,151,154,${(1 - dist / 150) * .3})`; ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+        if (dist < 150) { ctx.strokeStyle = `rgba(142,135,160,${(1 - dist / 150) * .3})`; ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
       }
       for (const n of nodes) {
         const md = Math.hypot(n.x - mouse.x, n.y - mouse.y);
         if (md < 180) { ctx.strokeStyle = `rgba(255,255,255,${(1 - md / 180) * .35})`; ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
         if (n.d) { ctx.strokeStyle = 'rgba(255,255,255,.75)'; ctx.save(); ctx.translate(n.x, n.y); ctx.rotate(Math.PI / 4); ctx.strokeRect(-3, -3, 6, 6); ctx.restore(); }
-        else { ctx.fillStyle = 'rgba(171,172,175,.55)'; ctx.fillRect(n.x - 1, n.y - 1, 2, 2); }
+        else { ctx.fillStyle = 'rgba(174,171,179,.55)'; ctx.fillRect(n.x - 1, n.y - 1, 2, 2); }
       }
     }
     function loop() { raf = 0; if (!visible) return; draw(); if (!reduce) raf = requestAnimationFrame(loop); }

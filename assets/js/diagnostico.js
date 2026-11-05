@@ -102,7 +102,7 @@
       const row = document.createElement('div');
       row.className = 'dx-q';
       row.innerHTML =
-        '<p class="text-[15px] leading-relaxed"><span class="font-mono text-[12px] text-[#76777A]">' + esc(String(i + 1).padStart(2, '0')) + '</span>&nbsp; ' + esc(tr(q.text)) + '</p>' +
+        '<p class="text-[15px] leading-relaxed"><span class="font-mono text-[12px] text-[#797682]">' + esc(String(i + 1).padStart(2, '0')) + '</span>&nbsp; ' + esc(tr(q.text)) + '</p>' +
         '<div class="dx-seg flex-wrap" role="group" aria-label="' + esc(tr(q.text)) + '">' +
         Object.keys(VALUE).map(k => '<button type="button" data-q="' + esc(q.id) + '" data-v="' + esc(k) + '" aria-pressed="false">' + esc(tr(LABEL[k])) + '</button>').join('') +
         '</div>';
@@ -148,7 +148,7 @@
 
   function areaBars(s) {
     return Object.keys(AREAS).map(a =>
-      '<div><div class="flex items-baseline justify-between gap-4"><p class="text-[15px] font-medium">' + esc(tr(AREAS[a].name)) + '</p><p class="font-mono text-[13px] text-[#ABACAF]">' + esc(s.areas[a]) + '/' + esc(MAX) + '</p></div>' +
+      '<div><div class="flex items-baseline justify-between gap-4"><p class="text-[15px] font-medium">' + esc(tr(AREAS[a].name)) + '</p><p class="font-mono text-[13px] text-[#AEABB3]">' + esc(s.areas[a]) + '/' + esc(MAX) + '</p></div>' +
       '<div class="dx-bar mt-2"><span data-w="' + Math.round(s.areas[a] / MAX * 100) + '"></span></div></div>').join('');
   }
   function animateBars(root) {
@@ -204,13 +204,13 @@
     $('infoAreas').innerHTML = Object.keys(AREAS).map(a => {
       const items = QUESTIONS.filter(q => q.area === a).map(q => {
         const tono = val(q.id) >= 70 ? 'text-[#B9AFD3]' : 'text-[#E6A5A5]';
-        return '<li class="flex items-start gap-3"><span class="mt-[2px] whitespace-nowrap font-mono text-[11px] ' + tono + '">' + esc(tr(LABEL[answers[q.id]])) + '</span><span class="text-[14px] leading-relaxed text-[#ABACAF]">' + esc(tr(q.text)) + '</span></li>';
+        return '<li class="flex items-start gap-3"><span class="mt-[2px] whitespace-nowrap font-mono text-[11px] ' + tono + '">' + esc(tr(LABEL[answers[q.id]])) + '</span><span class="text-[14px] leading-relaxed text-[#AEABB3]">' + esc(tr(q.text)) + '</span></li>';
       }).join('');
       return '<div>' +
-        '<div class="flex items-baseline justify-between gap-4"><p class="text-[17px] font-semibold">' + esc(tr(AREAS[a].name)) + '</p><p class="font-mono text-[13px] text-[#ABACAF]">' + esc(s.areas[a]) + '/' + esc(MAX) + '</p></div>' +
+        '<div class="flex items-baseline justify-between gap-4"><p class="text-[17px] font-semibold">' + esc(tr(AREAS[a].name)) + '</p><p class="font-mono text-[13px] text-[#AEABB3]">' + esc(s.areas[a]) + '/' + esc(MAX) + '</p></div>' +
         '<div class="dx-bar mt-3"><span data-w="' + Math.round(s.areas[a] / MAX * 100) + '"></span></div>' +
         '<p class="mt-4 text-[15px] leading-relaxed text-white">' + esc(tr(AREAS[a].bands[band(s.areas[a])])) + '</p>' +
-        '<p class="mt-2 text-[14px] leading-relaxed text-[#76777A]">' + esc(tr('Por qué importa:')) + ' ' + esc(tr(AREAS[a].why)) + '</p>' +
+        '<p class="mt-2 text-[14px] leading-relaxed text-[#797682]">' + esc(tr('Por qué importa:')) + ' ' + esc(tr(AREAS[a].why)) + '</p>' +
         '<ul class="mt-4 space-y-2.5 border-t border-white/[0.07] pt-4">' + items + '</ul>' +
         '</div>';
     }).join('');
