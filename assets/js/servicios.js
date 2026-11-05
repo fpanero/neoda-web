@@ -10,15 +10,19 @@
   });
 
   // Cada maqueta se anima una sola vez, cuando entra en pantalla. Sin JS o con movimiento reducido se ve en su estado final.
-  const mocks = document.querySelectorAll('.mock');
-  if ('IntersectionObserver' in window && !reduce) {
-    const io = new IntersectionObserver(entries => entries.forEach(en => {
-      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
-    }), { threshold: 0.35 });
-    mocks.forEach(el => io.observe(el));
-  } else {
-    mocks.forEach(el => el.classList.add('in'));
-  }
+  // El proceso (.reveal) es más alto, así que arranca antes (15 % visible).
+  const reveal = (els, threshold) => {
+    if ('IntersectionObserver' in window && !reduce) {
+      const io = new IntersectionObserver(entries => entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      }), { threshold });
+      els.forEach(el => io.observe(el));
+    } else {
+      els.forEach(el => el.classList.add('in'));
+    }
+  };
+  reveal(document.querySelectorAll('.mock'), 0.35);
+  reveal(document.querySelectorAll('.reveal'), 0.15);
 
   // Red de nodos 2D (misma que en la home), solo mientras está a la vista
   document.querySelectorAll('canvas.net').forEach(canvas => {

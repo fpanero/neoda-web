@@ -197,35 +197,124 @@
   .line--short .top { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
   .line--short .svcs { margin-top: 0; grid-template-columns: minmax(0, 1fr); }
 
-  /* ===== Banda clara: formas de contratar ===== */
-  .band { background: var(--paper); color: #494650; padding: 112px 0; }
-  .band .h2 { color: #0C0B10; }
-  .band .lede { color: #494650; }
-  .plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 56px; border-top: 1px solid #CFCBD8; }
-  .plan { padding: 30px 32px 6px 0; }
-  .plan + .plan { padding-left: 32px; border-left: 1px solid #DCD9E0; }
-  .plan h3 { font-family: "Inter Tight", system-ui, sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -.015em; color: #0C0B10; }
-  .plan > p { margin-top: 6px; font-size: 15px; color: #5D5A64; }
-  .plan dl { margin: 26px 0 0; }
-  .plan dl > div { padding: 14px 0; border-top: 1px solid #E2DFE6; }
-  .plan dt { font-size: 12.5px; color: #8D8A94; }
-  .plan dd { margin: 4px 0 0; font-size: 15.5px; line-height: 1.45; color: #191621; }
-
-  /* ===== Compromisos ===== */
+  /* ===== Formas de empezar: tres caminos con ilustración ===== */
   .sec { padding: 112px 0; border-bottom: 1px solid var(--line); }
-  .promise { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; }
-  .promise ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 40px 48px; }
-  .promise li { border-top: 1px solid rgba(255,255,255,.16); padding-top: 22px; }
-  .promise h3 { font-family: "Inter Tight", system-ui, sans-serif; font-size: 20px; font-weight: 600; line-height: 1.3; color: #fff; }
-  .promise p { margin-top: 8px; line-height: 1.65; }
+  .chip { display: inline-block; padding: 4px 11px; border-radius: 999px; font-size: 12.5px; line-height: 1.4; color: var(--c); background: color-mix(in srgb, var(--c) 13%, transparent); border: 1px solid color-mix(in srgb, var(--c) 34%, transparent); }
+  .chip--ghost { color: var(--hi); background: transparent; border-color: rgba(255,255,255,.16); }
+  .plans2 { background: radial-gradient(ellipse 60% 70% at 12% 0%, rgba(95,86,117,.26), transparent 70%), var(--ink); }
+  .paths { list-style: none; margin: 56px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+  .paths > li { position: relative; display: flex; flex-direction: column; padding: 18px 24px 24px; border: 1px solid rgba(255,255,255,.1); border-radius: 20px; background: linear-gradient(180deg, #17151F, #111017); transition: border-color .3s, transform .3s; }
+  .paths > li:hover { border-color: color-mix(in srgb, var(--c) 55%, transparent); transform: translateY(-3px); }
+  .paths > li + li::before { content: ""; position: absolute; left: -31px; top: 66px; width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(255,255,255,.18); background: var(--ink); }
+  .paths > li + li::after { content: ""; position: absolute; left: -24px; top: 74px; width: 6px; height: 6px; border-top: 1.5px solid var(--lav-2); border-right: 1.5px solid var(--lav-2); transform: rotate(45deg); }
+  .pic { height: 132px; margin: 0 -8px 18px; border-radius: 14px; color: var(--c); background: radial-gradient(ellipse 55% 75% at 50% 55%, color-mix(in srgb, var(--c) 17%, transparent), transparent 72%); }
+  .pic svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .pic .dots circle, .pic .ticks circle { fill: currentColor; stroke: none; opacity: .38; }
+  .pic .hit { fill: currentColor; stroke: none; filter: drop-shadow(0 0 5px currentColor); }
+  .pic .glass { fill: color-mix(in srgb, var(--c) 10%, #111017); }
+  .pic .blk { fill: color-mix(in srgb, var(--c) 20%, transparent); }
+  .pic .lens { animation: scan 6s ease-in-out infinite alternate; }
+  .pic .grow { transform-box: fill-box; transform-origin: bottom; animation: grow 4s cubic-bezier(.6,0,.3,1) infinite; }
+  .pic .orbit { transform-box: view-box; transform-origin: 120px 58px; animation: orbit 9s linear infinite; }
+  @keyframes scan { from { transform: translateX(-62px); } to { transform: translateX(62px); } }
+  @keyframes grow { 0%, 12% { transform: scaleY(0); } 55%, 88% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+  @keyframes orbit { to { transform: rotate(360deg); } }
+  .paths h3 { font-family: "Inter Tight", system-ui, sans-serif; font-size: 25px; font-weight: 600; letter-spacing: -.015em; color: #fff; }
+  .paths .for { margin-top: 4px; font-size: 15px; }
+  .paths dl { margin: 22px 0 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); display: grid; gap: 14px; }
+  .paths dt { font-size: 12.5px; color: #8D8A94; }
+  .paths dd { margin: 4px 0 0; font-size: 15px; line-height: 1.45; color: var(--hi); }
 
-  /* ===== Proceso (sí es una secuencia: va numerado) ===== */
-  .steps { position: relative; list-style: none; margin: 60px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; counter-reset: st; }
-  .steps::before { content: ""; position: absolute; left: 22px; right: 22px; top: 22px; height: 1px; background: linear-gradient(90deg, #7CC4FF, #F2B66D, #B9AFD3, #6FD6B0); opacity: .55; }
-  .steps li { position: relative; counter-increment: st; }
-  .steps li::before { content: counter(st); display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,.3); background: var(--ink); font-family: "Inter Tight", system-ui, sans-serif; font-weight: 600; color: #fff; position: relative; }
-  .steps h3 { margin-top: 22px; font-family: "Inter Tight", system-ui, sans-serif; font-size: 19px; font-weight: 600; color: #fff; }
-  .steps p { margin-top: 8px; line-height: 1.6; font-size: 15px; }
+  /* ===== Compromisos: cada uno con su esquema ===== */
+  .promise { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 64px; }
+  .proms { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .proms > li { padding: 22px 24px 26px; border: 1px solid rgba(255,255,255,.08); border-radius: 18px; background: #0F0E14; }
+  .proms h3 { font-family: "Inter Tight", system-ui, sans-serif; font-size: 19px; font-weight: 600; line-height: 1.3; color: #fff; }
+  .proms p { margin-top: 6px; font-size: 15px; line-height: 1.6; }
+  .dg { display: flex; align-items: center; min-height: 92px; margin-bottom: 18px; padding: 0 2px; }
+  .dg svg { fill: none; stroke: var(--c); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .who { display: inline-flex; align-items: center; gap: 8px; flex: none; padding: 6px 12px 6px 6px; border-radius: 999px; border: 1px solid rgba(255,255,255,.14); font-size: 13px; color: var(--hi); }
+  .who b { width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,.12); }
+  .who--n { border-color: color-mix(in srgb, var(--c) 45%, transparent); }
+  .who--n b { background: var(--c); box-shadow: 0 0 12px var(--c); }
+  .dg-link i { position: relative; flex: 1; min-width: 24px; height: 1.5px; margin: 0 6px; background: linear-gradient(90deg, rgba(255,255,255,.25), var(--c)); }
+  .dg-link i::after { content: ""; position: absolute; top: -3px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px var(--c); animation: ping 2.6s ease-in-out infinite alternate; }
+  @keyframes ping { to { left: calc(100% - 7px); } }
+  .dg-lock { gap: 10px; flex-wrap: wrap; }
+  .dg-lock svg { width: 40px; height: 40px; margin-right: 4px; filter: drop-shadow(0 0 10px color-mix(in srgb, var(--c) 50%, transparent)); }
+  .dg-own { flex-wrap: wrap; gap: 7px; align-content: center; }
+  .dg-own span { padding: 4px 10px; border-radius: 8px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09); font-size: 12.5px; color: var(--hi); }
+  .dg-own .dest { display: inline-flex; align-items: center; gap: 6px; color: var(--c); border-color: color-mix(in srgb, var(--c) 45%, transparent); background: color-mix(in srgb, var(--c) 12%, transparent); }
+  .dg-own .dest svg { width: 16px; height: 16px; }
+  .dg-fit { flex-direction: column; align-items: stretch; justify-content: center; gap: 12px; }
+  .dg-fit div { display: grid; gap: 5px; font-size: 12.5px; color: #8D8A94; }
+  .dg-fit i { display: block; width: var(--w); height: 7px; border-radius: 4px; background: rgba(255,255,255,.1); }
+  .dg-fit .on { color: var(--hi); }
+  .dg-fit .on i { background: var(--c); box-shadow: 0 0 14px color-mix(in srgb, var(--c) 60%, transparent); }
+
+  /* ===== Proceso: una línea que se recorre al llegar, y lo que sale de cada paso ===== */
+  .steps2 { position: relative; list-style: none; margin: 60px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+  .steps2::before, .steps2::after { content: ""; position: absolute; left: 23px; right: 23px; top: 22px; height: 2px; border-radius: 2px; }
+  .steps2::before { background: rgba(255,255,255,.08); }
+  .steps2::after { background: linear-gradient(90deg, #7CC4FF, #F2B66D, #B9AFD3, #6FD6B0); box-shadow: 0 0 14px rgba(185,175,211,.45); transform-origin: left; transition: transform 2.2s cubic-bezier(.65,0,.35,1); }
+  .steps2 > li { position: relative; }
+  .node { position: relative; z-index: 1; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--c); background: var(--ink); font-family: "Inter Tight", system-ui, sans-serif; font-weight: 600; color: #fff; box-shadow: 0 0 0 5px color-mix(in srgb, var(--c) 13%, transparent), 0 0 26px color-mix(in srgb, var(--c) 45%, transparent); transition: border-color .5s ease var(--d), box-shadow .5s ease var(--d); }
+  .art { margin-top: 24px; min-height: 196px; padding: 15px 16px; border: 1px solid rgba(255,255,255,.1); border-radius: 14px; background: linear-gradient(180deg, #17151F, #111017); font-size: 12.5px; transition: opacity .6s ease var(--d), transform .6s ease var(--d); }
+  .art-h { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-family: "Inter Tight", system-ui, sans-serif; font-size: 13.5px; font-weight: 600; color: var(--hi); }
+  .art-h::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); }
+  .art ul { list-style: none; margin: 0; padding: 0; }
+  .art .chip { margin-top: 12px; font-size: 11.5px; }
+  .prio li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 5px 10px; padding: 5px 0; color: var(--hi); }
+  .prio b { font-weight: 500; font-size: 11.5px; color: var(--c); }
+  .prio i, .sprints i { position: relative; display: block; overflow: hidden; height: 5px; border-radius: 3px; background: rgba(255,255,255,.07); }
+  .prio i { grid-column: 1 / -1; }
+  .prio i::after, .sprints i::after { content: ""; position: absolute; inset: 0; border-radius: 3px; background: var(--c); transform-origin: left; }
+  .prio i::after { width: var(--w); transition: transform .9s ease calc(var(--d) + .35s); }
+  .checks li { position: relative; padding: 6px 0 6px 26px; color: var(--hi); border-top: 1px solid rgba(255,255,255,.06); }
+  .checks li:first-child { border-top: 0; }
+  .checks li::before { content: ""; position: absolute; left: 0; top: 50%; width: 16px; height: 16px; margin-top: -8px; border-radius: 50%; background: color-mix(in srgb, var(--c) 20%, transparent); }
+  .checks li::after { content: ""; position: absolute; left: 6px; top: 50%; width: 3.5px; height: 7.5px; margin-top: -5.5px; border-right: 1.6px solid var(--c); border-bottom: 1.6px solid var(--c); transform: rotate(45deg); }
+  .sprints { display: grid; gap: 10px; }
+  .sprints li { display: grid; grid-template-columns: 66px minmax(0, 1fr); align-items: center; gap: 10px; color: var(--hi); }
+  .sprints li:not(.done):not(.now) { color: #6F6C78; }
+  .sprints i { height: 8px; border-radius: 4px; }
+  .sprints i::after { transform: scaleX(0); transition: transform .8s ease calc(var(--d) + var(--o, 0s)); }
+  .sprints .done i::after { transform: scaleX(1); }
+  .sprints .now i::after { transform: scaleX(.55); animation: work 1.8s ease-in-out infinite; }
+  @keyframes work { 50% { opacity: .45; } }
+  .spark { display: block; width: 100%; height: auto; margin-top: 4px; }
+  .spark .area { fill: color-mix(in srgb, var(--c) 13%, transparent); }
+  .spark .ln { fill: none; stroke: var(--c); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 0; transition: stroke-dashoffset 1.3s ease calc(var(--d) + .3s); filter: drop-shadow(0 0 4px var(--c)); }
+  .steps2 h3 { margin-top: 20px; font-family: "Inter Tight", system-ui, sans-serif; font-size: 19px; font-weight: 600; color: #fff; }
+  .steps2 > li > p { margin-top: 6px; line-height: 1.6; font-size: 15px; }
+  /* Estado inicial solo con JS: sin JS (o con movimiento reducido) se ve terminado */
+  .js .steps2:not(.in)::after { transform: scaleX(0); }
+  .js .steps2:not(.in) .node { border-color: rgba(255,255,255,.22); box-shadow: none; }
+  .js .steps2:not(.in) .art { opacity: 0; transform: translateY(14px); }
+  .js .steps2:not(.in) .prio i::after, .js .steps2:not(.in) .sprints i::after { transform: scaleX(0); }
+  .js .steps2:not(.in) .spark .ln { stroke-dashoffset: 1; }
+  @media (max-width: 1023px) {
+    .paths { grid-template-columns: minmax(0, 1fr); max-width: 560px; gap: 36px; }
+    .paths > li + li::before { left: 50%; top: -29px; margin-left: -11px; }
+    .paths > li + li::after { left: 50%; top: -22px; margin-left: -3px; transform: rotate(135deg); }
+    .proms { grid-template-columns: 1fr 1fr; }
+    .steps2 { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 48px; }
+    .steps2::before, .steps2::after { display: none; }
+  }
+  @media (max-width: 767px) {
+    .proms { grid-template-columns: minmax(0, 1fr); }
+    .steps2 { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
+    .steps2::before, .steps2::after { display: block; left: 22px; right: auto; top: 23px; bottom: 23px; width: 2px; height: auto; }
+    .steps2::after { background: linear-gradient(180deg, #7CC4FF, #F2B66D, #B9AFD3, #6FD6B0); transform-origin: top; }
+    .js .steps2:not(.in)::after { transform: scaleY(0); }
+    .steps2 > li { padding-left: 66px; }
+    .node { position: absolute; left: 0; top: 0; }
+    .art { margin-top: 0; min-height: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pic .lens, .pic .grow, .pic .orbit, .dg-link i::after, .sprints .now i::after { animation: none; }
+    .steps2::after, .node, .art, .prio i::after, .sprints i::after, .spark .ln, .paths > li { transition: none; }
+  }
 
   /* ===== Preguntas frecuentes ===== */
   .faq { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 64px; }
@@ -249,18 +338,12 @@
   @media (max-width: 1023px) {
     .hero .wrap, .line .top, .line--flip .top, .line--short .top, .promise, .faq { grid-template-columns: minmax(0, 1fr); gap: 44px; }
     .line--flip .head { order: 0; }
-    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 44px; }
-    .steps::before { display: none; }
   }
   @media (max-width: 767px) {
     .hero .wrap { padding-top: 56px; padding-bottom: 64px; }
     .line { padding: 80px 0 72px; }
     .svcs { margin-top: 48px; }
-    .band, .sec { padding: 80px 0; }
-    .plans { grid-template-columns: minmax(0, 1fr); }
-    .plan, .plan + .plan { padding: 26px 0 8px; border-left: 0; }
-    .plan + .plan { border-top: 1px solid #CFCBD8; }
-    .promise ul { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .sec { padding: 80px 0; }
     .hero-actions a { width: 100%; justify-content: center; }
     .kpi { padding: 10px; }
     .kpi b { font-size: 15px; white-space: nowrap; }
@@ -269,7 +352,6 @@
     .faq-list details p { padding-right: 0; }
   }
   @media (max-width: 480px) {
-    .steps { grid-template-columns: minmax(0, 1fr); }
     .mk-live { display: none; }
     .orders th:nth-child(2), .orders td:nth-child(2) { display: none; }
     .risks li { grid-template-columns: 54px minmax(0, 1fr); }
@@ -546,71 +628,134 @@
       </div>
     </section>
 
-    <!-- ===================== FORMAS DE CONTRATAR (banda clara) ===================== -->
-    <section class="band" aria-labelledby="formatos-title">
+    <!-- ===================== FORMAS DE CONTRATAR ===================== -->
+    <section class="sec plans2" aria-labelledby="formatos-title">
       <div class="wrap">
         <h2 id="formatos-title" class="h2">Tres formas de empezar</h2>
-        <p class="lede">Ninguna te ata a un contrato largo, y en todas sabes el precio antes de empezar.</p>
-        <div class="plans">
-          <div class="plan">
+        <p class="lede">Lo normal es ir de una a la siguiente, pero puedes empezar por cualquiera. Ninguna te ata a un contrato largo.</p>
+        <ol class="paths">
+          <li style="--c:#7CC4FF">
+            <div class="pic" aria-hidden="true"><svg viewBox="0 0 240 116"><g class="dots"><circle cx="28" cy="28" r="1.7"/><circle cx="48" cy="28" r="1.7"/><circle cx="68" cy="28" r="1.7"/><circle cx="88" cy="28" r="1.7"/><circle cx="108" cy="28" r="1.7"/><circle cx="128" cy="28" r="1.7"/><circle cx="148" cy="28" r="1.7"/><circle cx="168" cy="28" r="1.7"/><circle cx="188" cy="28" r="1.7"/><circle cx="208" cy="28" r="1.7"/><circle cx="28" cy="48" r="1.7"/><circle cx="48" cy="48" r="1.7"/><circle cx="68" cy="48" r="1.7"/><circle cx="88" cy="48" r="1.7"/><circle cx="108" cy="48" r="1.7"/><circle cx="128" cy="48" r="1.7"/><circle cx="148" cy="48" r="1.7"/><circle cx="168" cy="48" r="1.7"/><circle cx="188" cy="48" r="1.7"/><circle cx="208" cy="48" r="1.7"/><circle cx="28" cy="68" r="1.7"/><circle cx="48" cy="68" r="1.7"/><circle cx="68" cy="68" r="1.7"/><circle cx="88" cy="68" r="1.7"/><circle cx="108" cy="68" r="1.7"/><circle cx="128" cy="68" r="1.7"/><circle cx="148" cy="68" r="1.7"/><circle cx="168" cy="68" r="1.7"/><circle cx="188" cy="68" r="1.7"/><circle cx="208" cy="68" r="1.7"/><circle cx="28" cy="88" r="1.7"/><circle cx="48" cy="88" r="1.7"/><circle cx="68" cy="88" r="1.7"/><circle cx="88" cy="88" r="1.7"/><circle cx="108" cy="88" r="1.7"/><circle cx="128" cy="88" r="1.7"/><circle cx="148" cy="88" r="1.7"/><circle cx="168" cy="88" r="1.7"/><circle cx="188" cy="88" r="1.7"/><circle cx="208" cy="88" r="1.7"/></g><g class="lens"><circle class="glass" cx="120" cy="56" r="25"/><circle cx="114" cy="50" r="2.6" class="hit"/><circle cx="128" cy="62" r="2.6" class="hit"/><path d="M138 74l17 17" stroke-width="3.2"/></g></svg></div>
             <h3>Diagnóstico</h3>
-            <p>Para saber por dónde empezar.</p>
+            <p class="for">Para saber por dónde empezar.</p>
             <dl>
               <div><dt>Qué recibes</dt><dd>Un informe con prioridades y una propuesta con precio</dd></div>
-              <div><dt>Cómo se paga</dt><dd>Precio cerrado</dd></div>
+              <div><dt>Cómo se paga</dt><dd><span class="chip">Precio cerrado</span></dd></div>
             </dl>
-          </div>
-          <div class="plan">
+          </li>
+          <li style="--c:#B9AFD3">
+            <div class="pic" aria-hidden="true"><svg viewBox="0 0 240 116"><path d="M36 100h168" opacity=".35"/><rect class="blk" x="58" y="70" width="34" height="30" rx="5"/><rect class="blk" x="103" y="48" width="34" height="52" rx="5"/><rect x="148" y="24" width="34" height="76" rx="5" stroke-dasharray="4 5" opacity=".55"/><rect class="blk grow" x="148" y="24" width="34" height="76" rx="5"/></svg></div>
             <h3>Proyecto</h3>
-            <p>Para construir algo concreto.</p>
+            <p class="for">Para construir algo concreto.</p>
             <dl>
               <div><dt>Qué recibes</dt><dd>Algo que funciona al final de cada sprint</dd></div>
-              <div><dt>Cómo se paga</dt><dd>Precio cerrado por proyecto</dd></div>
+              <div><dt>Cómo se paga</dt><dd><span class="chip">Precio cerrado por proyecto</span></dd></div>
             </dl>
-          </div>
-          <div class="plan">
+          </li>
+          <li style="--c:#6FD6B0">
+            <div class="pic" aria-hidden="true"><svg viewBox="0 0 240 116"><circle cx="120" cy="58" r="40" opacity=".3"/><g class="ticks"><circle cx="120.0" cy="18.0" r="2"/><circle cx="140.0" cy="23.4" r="2"/><circle cx="154.6" cy="38.0" r="2"/><circle cx="160.0" cy="58.0" r="2"/><circle cx="154.6" cy="78.0" r="2"/><circle cx="140.0" cy="92.6" r="2"/><circle cx="120.0" cy="98.0" r="2"/><circle cx="100.0" cy="92.6" r="2"/><circle cx="85.4" cy="78.0" r="2"/><circle cx="80.0" cy="58.0" r="2"/><circle cx="85.4" cy="38.0" r="2"/><circle cx="100.0" cy="23.4" r="2"/></g><g class="orbit"><circle cx="120" cy="18" r="5.5" class="hit"/></g><path d="M106 58l9 9 18-18" stroke-width="2.6"/></svg></div>
             <h3>Acompañamiento</h3>
-            <p>Para que lo construido siga funcionando.</p>
+            <p class="for">Para que lo construido siga funcionando.</p>
             <dl>
               <div><dt>Qué recibes</dt><dd>Mantenimiento, ajustes y revisión de indicadores</dd></div>
-              <div><dt>Cómo se paga</dt><dd>Cuota fija al mes</dd></div>
+              <div><dt>Cómo se paga</dt><dd><span class="chip">Cuota fija al mes</span></dd></div>
             </dl>
-          </div>
-        </div>
+          </li>
+        </ol>
       </div>
     </section>
 
     <!-- ===================== COMPROMISOS ===================== -->
-    <section class="sec" aria-labelledby="why-title">
+    <section class="sec sec--alt" aria-labelledby="why-title">
       <div class="wrap promise">
         <div>
           <h2 id="why-title" class="h2">Lo que puedes esperar de nosotros</h2>
           <p class="lede">Así trabajamos en cada proyecto, sea del tamaño que sea.</p>
         </div>
-        <ul>
-          <li><h3>Un socio dirige tu proyecto.</h3><p>La persona que conoces en la primera reunión es la que dirige el proyecto hasta la entrega, sin intermediarios.</p></li>
-          <li><h3>Sabes el precio antes de empezar.</h3><p>Alcance, plazo y precio por escrito. Si algo cambia, lo hablamos antes de facturarlo.</p></li>
-          <li><h3>Todo lo que hacemos es tuyo.</h3><p>Código, datos, cuadros de mando y documentación se quedan en tu empresa, aunque mañana trabajes con otro proveedor.</p></li>
-          <li><h3>Usamos lo que tu empresa puede mantener.</h3><p>Elegimos herramientas a la medida de tu tamaño y tu presupuesto, no las más caras del mercado.</p></li>
+        <ul class="proms">
+          <li style="--c:#B9AFD3">
+            <div class="dg dg-link" aria-hidden="true"><span class="who"><b></b>Tu empresa</span><i></i><span class="who who--n"><b></b>Socio de Neoda</span></div>
+            <h3>Un socio dirige tu proyecto.</h3>
+            <p>Quien conoces en la primera reunión lo lleva hasta el final, sin intermediarios.</p>
+          </li>
+          <li style="--c:#F2B66D">
+            <div class="dg dg-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9.5" rx="2.2"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/><path d="M12 14.6v2.4"/></svg><span class="chip">Precio cerrado</span><span class="chip chip--ghost">Por escrito</span></div>
+            <h3>Sabes el precio antes de empezar.</h3>
+            <p>Si algo cambia, lo hablamos antes de facturarlo.</p>
+          </li>
+          <li style="--c:#7CC4FF">
+            <div class="dg dg-own" aria-hidden="true"><span>Código</span><span>Datos</span><span>Cuadros de mando</span><span>Documentación</span><span class="dest"><svg viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/></svg>Tu empresa</span></div>
+            <h3>Todo lo que hacemos es tuyo.</h3>
+            <p>Se queda en tu empresa, aunque mañana cambies de proveedor.</p>
+          </li>
+          <li style="--c:#6FD6B0">
+            <div class="dg dg-fit" aria-hidden="true"><div><span>Lo más caro del mercado</span><i style="--w:100%"></i></div><div class="on"><span>Lo que tu empresa necesita</span><i style="--w:46%"></i></div></div>
+            <h3>Usamos lo que tu empresa puede mantener.</h3>
+            <p>Herramientas a tu medida, no las más caras del mercado.</p>
+          </li>
         </ul>
       </div>
     </section>
 
-    <!-- ===================== PROCESO ===================== -->
-    <section class="sec" aria-labelledby="proceso-title">
+    <!-- ===================== PROCESO (secuencia real: va numerado) ===================== -->
+    <section class="sec proc" aria-labelledby="proceso-title">
       <div class="wrap">
         <h2 id="proceso-title" class="h2">Cómo es un proyecto con nosotros</h2>
-        <ol class="steps">
-          <li><h3>Diagnóstico</h3><p>Revisamos tus datos, procesos o riesgos y decidimos juntos qué mejorar primero.</p></li>
-          <li><h3>Propuesta</h3><p>Alcance, plazo y precio cerrados, por escrito.</p></li>
-          <li><h3>Entrega</h3><p>Entregas cortas: cada una termina con algo que funciona y lo ajustamos contigo.</p></li>
-          <li><h3>Seguimiento</h3><p>Medimos lo acordado y revisamos los resultados con la dirección.</p></li>
+        <p class="lede">Cuatro pasos, y en cada uno sabes qué tienes delante.</p>
+        <ol class="steps2 reveal">
+          <li style="--c:#7CC4FF;--d:0s">
+            <span class="node" aria-hidden="true">1</span>
+            <div class="art" aria-hidden="true">
+              <p class="art-h">Prioridades</p>
+              <ul class="prio">
+                <li><span>Informes a mano</span><b>Alta</b><i style="--w:92%"></i></li>
+                <li><span>Datos duplicados</span><b>Media</b><i style="--w:62%"></i></li>
+                <li><span>Accesos sin revisar</span><b>Baja</b><i style="--w:34%"></i></li>
+              </ul>
+            </div>
+            <h3>Diagnóstico</h3>
+            <p>Vemos dónde estás y qué conviene mejorar primero.</p>
+          </li>
+          <li style="--c:#F2B66D;--d:.6s">
+            <span class="node" aria-hidden="true">2</span>
+            <div class="art" aria-hidden="true">
+              <p class="art-h">Propuesta</p>
+              <ul class="checks"><li>Alcance definido</li><li>Precio cerrado</li><li>Entregas acordadas</li></ul>
+              <span class="chip">Firmada</span>
+            </div>
+            <h3>Propuesta</h3>
+            <p>Alcance y precio cerrados, por escrito.</p>
+          </li>
+          <li style="--c:#B9AFD3;--d:1.2s">
+            <span class="node" aria-hidden="true">3</span>
+            <div class="art" aria-hidden="true">
+              <p class="art-h">Entregas</p>
+              <ul class="sprints">
+                <li class="done" style="--o:.2s"><span>Entrega 1</span><i></i></li>
+                <li class="done" style="--o:.45s"><span>Entrega 2</span><i></i></li>
+                <li class="now" style="--o:.7s"><span>Entrega 3</span><i></i></li>
+                <li><span>Entrega 4</span><i></i></li>
+              </ul>
+            </div>
+            <h3>Entrega</h3>
+            <p>Entregas cortas que ya funcionan, ajustadas contigo.</p>
+          </li>
+          <li style="--c:#6FD6B0;--d:1.8s">
+            <span class="node" aria-hidden="true">4</span>
+            <div class="art" aria-hidden="true">
+              <p class="art-h">Revisión mensual</p>
+              <svg class="spark" viewBox="0 0 200 62"><path class="area" d="M0 54 L25 50 L50 52 L75 40 L100 43 L125 30 L150 27 L175 17 L200 10 L200 62 L0 62Z"/><path class="ln" pathLength="1" d="M0 54 L25 50 L50 52 L75 40 L100 43 L125 30 L150 27 L175 17 L200 10"/></svg>
+              <span class="chip">En objetivo</span>
+            </div>
+            <h3>Seguimiento</h3>
+            <p>Medimos lo acordado y lo revisamos con la dirección.</p>
+          </li>
         </ol>
       </div>
     </section>
 
     <!-- ===================== PREGUNTAS FRECUENTES ===================== -->
-    <section id="preguntas" class="sec" aria-labelledby="faq-title">
+    <section id="preguntas" class="sec sec--alt" aria-labelledby="faq-title">
       <div class="wrap faq">
         <div class="faq-side">
           <h2 id="faq-title" class="h2">Preguntas frecuentes</h2>
@@ -670,7 +815,7 @@
 </footer>
 
 <script src="/assets/js/i18n.js" defer></script>
-<script src="/assets/js/servicios.js" defer></script>
+<script src="/assets/js/servicios.js?v=2" defer></script>
 <script src="/assets/js/nav.js" defer></script>
 </body>
 </html>
