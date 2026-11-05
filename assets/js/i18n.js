@@ -948,7 +948,8 @@
   "Un ataque controlado para encontrar fallos antes que otros.": "A controlled attack to find weaknesses before others do.",
   "Talleres prácticos para usar datos e IA con criterio.": "Hands-on workshops to use data and AI with good judgement.",
   "Desde el principio: trabajamos por entregas cortas y cada una termina con algo que puedes usar.": "From the start: we work in short deliveries and each one ends with something you can use.",
-  "Entregas cortas: cada una termina con algo que funciona y lo ajustamos contigo.": "Short deliveries: each one ends with something that works, and we adjust it with you."
+  "Entregas cortas: cada una termina con algo que funciona y lo ajustamos contigo.": "Short deliveries: each one ends with something that works, and we adjust it with you.",
+  "Mantenimiento mensual para que tus informes sigan al día.": "Monthly maintenance so your reports stay up to date."
   };
 
   const HEAD = {

@@ -70,7 +70,7 @@ def servicios_graph(s, url):
                              "url": url + "#" + sec_id, "provider": {"@id": ORG_ID}, "areaServed": {"@type": "Country", "name": "España"}})
     faqs = [{"@type": "Question", "name": text(q), "acceptedAnswer": {"@type": "Answer", "text": text(a)}}
             for q, a in re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>', s, re.S)]
-    assert len(services) == 17, len(services)
+    assert len(services) == 16, len(services)
     assert len(faqs) == 8, len(faqs)
     return [
       {"@type": "WebPage", "@id": url, "url": url, "name": PAGES['servicios/index.html']['title'], "inLanguage": "es-ES",
