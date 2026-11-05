@@ -59,4 +59,8 @@
     }
   });
 
+
+  // Fondo en bucle de la cabecera: con movimiento reducido se queda en el primer fotograma
+  const bg = document.querySelector('.bg-video');
+  if (bg && reduce) { bg.pause(); }
 })();
