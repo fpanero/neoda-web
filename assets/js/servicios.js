@@ -59,16 +59,4 @@
     }
   });
 
-  // Al bajar por la cabecera, el texto se desvanece y el logo se acerca (solo si hay movimiento)
-  const hero = document.querySelector('.hero'), stage = document.querySelector('.hero .stage');
-  if (hero && stage && !reduce) {
-    const readScroll = () => {
-      const r = hero.getBoundingClientRect(), run = hero.offsetHeight - stage.offsetHeight;
-      const p = run > 0 ? Math.min(1, Math.max(0, -r.top / run)) : 0;
-      hero.style.setProperty('--p', p.toFixed(3));
-      hero.classList.toggle('faded', p > 0.6);
-    };
-    readScroll();
-    window.addEventListener('scroll', readScroll, { passive: true });
-  }
 })();
