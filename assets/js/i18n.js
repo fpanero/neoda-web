@@ -980,7 +980,8 @@
   "Entregas cortas que ya funcionan, ajustadas contigo.": "Short deliveries that already work, adjusted with you.",
   "Revisión mensual": "Monthly review",
   "En objetivo": "On target",
-  "Medimos lo acordado y lo revisamos con la dirección.": "We measure what was agreed and review it with management."
+  "Medimos lo acordado y lo revisamos con la dirección.": "We measure what was agreed and review it with management.",
+  "Datos e IA para pymes y empresas medianas, con alcance y precio cerrados antes de empezar.": "Data and AI for SMEs and mid-sized companies, with fixed scope and price before we start."
   };
 
   const HEAD = {

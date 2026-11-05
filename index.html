@@ -354,7 +354,7 @@
             Consultoría de datos e IA para decidir con cifras y automatizar lo repetitivo.
           </h1>
           <p class="mt-6 max-w-xl text-base text-silver sm:text-lg">
-            Analítica de datos, inteligencia artificial, software a medida y ciberseguridad para pymes y empresas medianas. Proyectos dirigidos por especialistas, con alcance y precio cerrados, y entregables que se quedan en tu empresa.
+            Datos e IA para pymes y empresas medianas, con alcance y precio cerrados antes de empezar.
           </p>
           <div class="mt-9 flex flex-wrap items-center gap-3">
             <a href="#contacto" class="group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm bg-lavender px-6 py-3.5 text-sm font-medium text-white transition hover:bg-lavender-hover">
@@ -382,111 +382,6 @@
       </div>
     </section>
 
-    <!-- ===================== PROBLEMA (negro) ===================== -->
-    <!-- ===================== ANALIZA (interactivo) ===================== -->
-    <section id="analiza" class="relative overflow-hidden bg-ink py-20 lg:py-28" aria-labelledby="analiza-title">
-      <div class="an-glow pointer-events-none absolute inset-0" aria-hidden="true"></div>
-      <canvas class="net media-layer fade-x opacity-80" data-density="20000" aria-hidden="true"></canvas>
-      <div class="relative mx-auto max-w-site px-4 sm:px-6">
-        <div class="mx-auto max-w-[760px] text-center">
-          <p class="font-mono text-[11px] uppercase tracking-[.16em] text-[#B9AFD3]">Diagnóstico gratuito · 1 minuto</p>
-          <h2 id="analiza-title" class="mt-4 font-display text-[32px] font-semibold leading-tight tracking-tight sm:text-[44px]">Mira cómo se ve tu empresa desde fuera</h2>
-          <p class="mt-4 text-[16px] leading-relaxed text-silver">Escribe el nombre de tu empresa y te enseñamos tu puntuación, el impacto estimado y por dónde empezar.</p>
-          <form id="anForm" class="mx-auto mt-8 flex max-w-[600px] flex-col gap-3 sm:flex-row" novalidate data-js-only>
-            <label for="anInput" class="sr-only">Nombre de tu empresa</label>
-            <div class="an-field">
-              <input id="anInput" class="an-input" type="text" maxlength="80" placeholder="Nombre de tu empresa" autocomplete="organization">
-              <span id="anGhost" class="an-ghost" aria-hidden="true" data-i18n-skip></span>
-            </div>
-            <button type="submit" class="an-btn">Analizar gratis →</button>
-          </form>
-          <noscript><p class="mt-4 text-[14px] leading-relaxed text-[#AEABB3]">El análisis necesita JavaScript activado.</p></noscript>
-          <p id="anErr" class="mt-3 min-h-[1.2em] text-[13px] text-[#E6A5A5]" role="alert"></p>
-          <p class="mt-1 text-[12px] text-silver/70">Sin compromiso · Informe completo en pantalla y en PDF</p>
-          <p class="mx-auto mt-6 max-w-[560px] text-[14px] leading-relaxed text-silver">Es el primer paso de nuestro <a href="/servicios/#crm" class="text-white underline decoration-white/30 underline-offset-4 hover:decoration-white">servicio de CRM a medida</a>: te enseña cuántos contactos se pierden antes de llegar a tu equipo comercial.</p>
-        </div>
-
-        <div class="an-mock mx-auto mt-12 max-w-[900px]" aria-hidden="true">
-          <div class="an-bar">
-            <span class="an-dot"></span><span class="an-dot"></span><span class="an-dot"></span>
-            <span class="ml-3 font-mono text-[11px] text-silver" id="anStatus">Diagnosticando…</span>
-          </div>
-          <div class="grid gap-6 p-6 md:grid-cols-[230px_1fr] md:p-8">
-            <div class="flex flex-col items-center justify-center">
-              <div class="relative h-[190px] w-[190px]">
-                <svg class="absolute inset-0 -rotate-90" width="190" height="190" viewBox="0 0 190 190">
-                  <circle cx="95" cy="95" r="80" fill="none" stroke="#292630" stroke-width="13"/>
-                  <circle id="anRing" cx="95" cy="95" r="80" fill="none" stroke="#F5B94E" stroke-width="13" stroke-linecap="round" stroke-dasharray="502.65" stroke-dashoffset="502.65" class="an-ring-fg"/>
-                </svg>
-                <div class="absolute inset-0 flex flex-col items-center justify-center">
-                  <span id="anScore" class="font-display text-[46px] font-semibold leading-none">0</span>
-                  <span class="mt-1 text-[12px] text-silver">de 85</span>
-                </div>
-              </div>
-              <span id="anPill" class="mt-3 rounded-full border px-3 py-1 text-[12px]">Visibilidad en desarrollo</span>
-            </div>
-            <div>
-              <div class="grid gap-4 sm:grid-cols-2">
-                <div class="an-stat">
-                  <p class="font-mono text-[11px] uppercase tracking-[.12em] text-silver">Impacto estimado al mes</p>
-                  <p id="anMoney" class="mt-2 font-display text-[26px] font-semibold text-[#5FD4A8]">0 – 0 €</p>
-                </div>
-                <div class="an-stat">
-                  <p class="font-mono text-[11px] uppercase tracking-[.12em] text-silver">Áreas a mejorar</p>
-                  <p class="mt-2 font-display text-[26px] font-semibold text-[#5FD4A8]"><span id="anAreas">0</span> de 4</p>
-                </div>
-              </div>
-              <div class="mt-5 space-y-4" id="anBars">
-                <div><div class="flex justify-between text-[13px] text-silver"><span class="flex items-center gap-2"><i class="an-sw" style="background:#7CC4FF"></i>Presencia y reputación</span><span data-v="40">&nbsp;</span></div><div class="an-track mt-2"><span class="an-fill" style="--c:#7CC4FF" data-w="40"></span></div></div>
-                <div><div class="flex justify-between text-[13px] text-silver"><span class="flex items-center gap-2"><i class="an-sw" style="background:#F5B94E"></i>Mensaje y web</span><span data-v="55">&nbsp;</span></div><div class="an-track mt-2"><span class="an-fill" style="--c:#F5B94E" data-w="55"></span></div></div>
-                <div><div class="flex justify-between text-[13px] text-silver"><span class="flex items-center gap-2"><i class="an-sw" style="background:#5FD4A8"></i>Autoridad y contenido</span><span data-v="30">&nbsp;</span></div><div class="an-track mt-2"><span class="an-fill" style="--c:#5FD4A8" data-w="30"></span></div></div>
-                <div><div class="flex justify-between text-[13px] text-silver"><span class="flex items-center gap-2"><i class="an-sw" style="background:#FF8A6B"></i>Medición y captación</span><span data-v="48">&nbsp;</span></div><div class="an-track mt-2"><span class="an-fill" style="--c:#FF8A6B" data-w="48"></span></div></div>
-              </div>
-            </div>
-          </div>
-          <p class="pb-5 text-center text-[11px] text-silver/60">Ejemplo ilustrativo. Tu resultado se calcula con tus respuestas.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="relative overflow-hidden bg-ink py-24 lg:py-32" aria-labelledby="problema-title">
-      <!-- SLOT DE MEDIA · V1: red de nodos en deriva. V2: vídeo de retícula arquitectónica a baja opacidad. -->
-      <canvas class="net media-layer fade-x opacity-80" data-density="20000" aria-hidden="true"></canvas>
-      <div class="relative mx-auto max-w-site px-4 sm:px-6">
-        <div class="grid gap-12 lg:grid-cols-12">
-          <div class="lg:col-span-5" data-reveal>
-            <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-lavender-glow">El punto ciego</p>
-            <h2 id="problema-title" class="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-white sm:text-[44px] sm:leading-[1.08]">
-              Lo que no aparece en el cuadro de mando también cuesta dinero.
-            </h2>
-            <p class="mt-5 max-w-md text-silver">En muchas empresas los datos están repartidos, las tareas se repiten a mano y nadie ha revisado qué pasaría ante un incidente. Cada uno de esos huecos tiene un coste, aunque no figure en ningún informe.</p>
-          </div>
-          <div class="grid gap-4 lg:col-span-7" data-reveal>
-            <article class="spot rounded-sm border border-white/[0.08] bg-ink-800/80 p-6 backdrop-blur-sm sm:p-7">
-              <div class="flex items-baseline justify-between gap-4">
-                <h3 class="font-display text-lg font-semibold text-white">Datos que cuestan y no rinden</h3>
-                <span class="font-mono text-[11px] text-silver/60">datos</span>
-              </div>
-              <p class="mt-2 text-silver">Repartidos entre el ERP, el CRM y decenas de hojas de cálculo. Se pagan cada mes, pero no se convierten en decisiones ni en margen.</p>
-            </article>
-            <article class="spot rounded-sm border border-white/[0.08] bg-ink-800/80 p-6 backdrop-blur-sm sm:p-7">
-              <div class="flex items-baseline justify-between gap-4">
-                <h3 class="font-display text-lg font-semibold text-white">Horas que se van en tareas manuales</h3>
-                <span class="font-mono text-[11px] text-silver/60">procesos</span>
-              </div>
-              <p class="mt-2 text-silver">Copiar datos entre sistemas, preparar informes a mano o responder siempre las mismas consultas. Es trabajo que se puede automatizar con IA y software a medida.</p>
-            </article>
-            <article class="spot rounded-sm border border-white/[0.08] bg-ink-800/80 p-6 backdrop-blur-sm sm:p-7">
-              <div class="flex items-baseline justify-between gap-4">
-                <h3 class="font-display text-lg font-semibold text-white">Riesgos que nadie ha revisado</h3>
-                <span class="font-mono text-[11px] text-silver/60">seguridad</span>
-              </div>
-              <p class="mt-2 text-silver">Accesos heredados, copias de seguridad sin probar, herramientas de IA usadas sin control y obligaciones de RGPD o NIS2 pendientes de revisar.</p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ===================== SERVICIOS · escenas isométricas animadas =====================
          Cuatro líneas principales. El detalle de cada servicio está en /servicios/. -->
@@ -572,6 +467,47 @@
         </div>
         <div class="mt-12 flex justify-center" data-reveal>
           <a href="/servicios/" class="inline-flex items-center justify-center whitespace-nowrap rounded-sm border border-white/20 px-7 py-3.5 text-sm font-medium text-white transition hover:border-white/50 hover:bg-white/[0.04]">Ver todos los servicios →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROBLEMA (negro) ===================== -->
+
+    <section class="relative overflow-hidden bg-ink py-24 lg:py-32" aria-labelledby="problema-title">
+      <!-- SLOT DE MEDIA · V1: red de nodos en deriva. V2: vídeo de retícula arquitectónica a baja opacidad. -->
+      <canvas class="net media-layer fade-x opacity-80" data-density="20000" aria-hidden="true"></canvas>
+      <div class="relative mx-auto max-w-site px-4 sm:px-6">
+        <div class="grid gap-12 lg:grid-cols-12">
+          <div class="lg:col-span-5" data-reveal>
+            <p class="font-mono text-[11px] uppercase tracking-[0.16em] text-lavender-glow">El punto ciego</p>
+            <h2 id="problema-title" class="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-white sm:text-[44px] sm:leading-[1.08]">
+              Lo que no aparece en el cuadro de mando también cuesta dinero.
+            </h2>
+            <p class="mt-5 max-w-md text-silver">En muchas empresas los datos están repartidos, las tareas se repiten a mano y nadie ha revisado qué pasaría ante un incidente. Cada uno de esos huecos tiene un coste, aunque no figure en ningún informe.</p>
+          </div>
+          <div class="grid gap-4 lg:col-span-7" data-reveal>
+            <article class="spot rounded-sm border border-white/[0.08] bg-ink-800/80 p-6 backdrop-blur-sm sm:p-7">
+              <div class="flex items-baseline justify-between gap-4">
+                <h3 class="font-display text-lg font-semibold text-white">Datos que cuestan y no rinden</h3>
+                <span class="font-mono text-[11px] text-silver/60">datos</span>
+              </div>
+              <p class="mt-2 text-silver">Repartidos entre el ERP, el CRM y decenas de hojas de cálculo. Se pagan cada mes, pero no se convierten en decisiones ni en margen.</p>
+            </article>
+            <article class="spot rounded-sm border border-white/[0.08] bg-ink-800/80 p-6 backdrop-blur-sm sm:p-7">
+              <div class="flex items-baseline justify-between gap-4">
+                <h3 class="font-display text-lg font-semibold text-white">Horas que se van en tareas manuales</h3>
+                <span class="font-mono text-[11px] text-silver/60">procesos</span>
+              </div>
+              <p class="mt-2 text-silver">Copiar datos entre sistemas, preparar informes a mano o responder siempre las mismas consultas. Es trabajo que se puede automatizar con IA y software a medida.</p>
+            </article>
+            <article class="spot rounded-sm border border-white/[0.08] bg-ink-800/80 p-6 backdrop-blur-sm sm:p-7">
+              <div class="flex items-baseline justify-between gap-4">
+                <h3 class="font-display text-lg font-semibold text-white">Riesgos que nadie ha revisado</h3>
+                <span class="font-mono text-[11px] text-silver/60">seguridad</span>
+              </div>
+              <p class="mt-2 text-silver">Accesos heredados, copias de seguridad sin probar, herramientas de IA usadas sin control y obligaciones de RGPD o NIS2 pendientes de revisar.</p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -780,6 +716,72 @@
             <p id="formMsg" class="mt-3 text-xs text-[#5D5A64]" role="status">Solo direcciones corporativas. No compartimos tus datos con terceros y puedes darte de baja en un clic.</p>
           </form>
           <noscript><p class="mt-4 text-[14px] leading-relaxed text-[#AEABB3]">Para descargar el whitepaper sin JavaScript, usa el <a href="/whitepaper.pdf" class="underline hover:text-ink">enlace directo al PDF</a>. No se recoge ningún dato.</p></noscript>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ANALIZA (interactivo) ===================== -->
+    <section id="analiza" class="relative overflow-hidden bg-ink py-20 lg:py-28" aria-labelledby="analiza-title">
+      <div class="an-glow pointer-events-none absolute inset-0" aria-hidden="true"></div>
+      <canvas class="net media-layer fade-x opacity-80" data-density="20000" aria-hidden="true"></canvas>
+      <div class="relative mx-auto max-w-site px-4 sm:px-6">
+        <div class="mx-auto max-w-[760px] text-center">
+          <p class="font-mono text-[11px] uppercase tracking-[.16em] text-[#B9AFD3]">Diagnóstico gratuito · 1 minuto</p>
+          <h2 id="analiza-title" class="mt-4 font-display text-[32px] font-semibold leading-tight tracking-tight sm:text-[44px]">Mira cómo se ve tu empresa desde fuera</h2>
+          <p class="mt-4 text-[16px] leading-relaxed text-silver">Escribe el nombre de tu empresa y te enseñamos tu puntuación, el impacto estimado y por dónde empezar.</p>
+          <form id="anForm" class="mx-auto mt-8 flex max-w-[600px] flex-col gap-3 sm:flex-row" novalidate data-js-only>
+            <label for="anInput" class="sr-only">Nombre de tu empresa</label>
+            <div class="an-field">
+              <input id="anInput" class="an-input" type="text" maxlength="80" placeholder="Nombre de tu empresa" autocomplete="organization">
+              <span id="anGhost" class="an-ghost" aria-hidden="true" data-i18n-skip></span>
+            </div>
+            <button type="submit" class="an-btn">Analizar gratis →</button>
+          </form>
+          <noscript><p class="mt-4 text-[14px] leading-relaxed text-[#AEABB3]">El análisis necesita JavaScript activado.</p></noscript>
+          <p id="anErr" class="mt-3 min-h-[1.2em] text-[13px] text-[#E6A5A5]" role="alert"></p>
+          <p class="mt-1 text-[12px] text-silver/70">Sin compromiso · Informe completo en pantalla y en PDF</p>
+          <p class="mx-auto mt-6 max-w-[560px] text-[14px] leading-relaxed text-silver">Es el primer paso de nuestro <a href="/servicios/#crm" class="text-white underline decoration-white/30 underline-offset-4 hover:decoration-white">servicio de CRM a medida</a>: te enseña cuántos contactos se pierden antes de llegar a tu equipo comercial.</p>
+        </div>
+
+        <div class="an-mock mx-auto mt-12 max-w-[900px]" aria-hidden="true">
+          <div class="an-bar">
+            <span class="an-dot"></span><span class="an-dot"></span><span class="an-dot"></span>
+            <span class="ml-3 font-mono text-[11px] text-silver" id="anStatus">Diagnosticando…</span>
+          </div>
+          <div class="grid gap-6 p-6 md:grid-cols-[230px_1fr] md:p-8">
+            <div class="flex flex-col items-center justify-center">
+              <div class="relative h-[190px] w-[190px]">
+                <svg class="absolute inset-0 -rotate-90" width="190" height="190" viewBox="0 0 190 190">
+                  <circle cx="95" cy="95" r="80" fill="none" stroke="#292630" stroke-width="13"/>
+                  <circle id="anRing" cx="95" cy="95" r="80" fill="none" stroke="#F5B94E" stroke-width="13" stroke-linecap="round" stroke-dasharray="502.65" stroke-dashoffset="502.65" class="an-ring-fg"/>
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                  <span id="anScore" class="font-display text-[46px] font-semibold leading-none">0</span>
+                  <span class="mt-1 text-[12px] text-silver">de 85</span>
+                </div>
+              </div>
+              <span id="anPill" class="mt-3 rounded-full border px-3 py-1 text-[12px]">Visibilidad en desarrollo</span>
+            </div>
+            <div>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="an-stat">
+                  <p class="font-mono text-[11px] uppercase tracking-[.12em] text-silver">Impacto estimado al mes</p>
+                  <p id="anMoney" class="mt-2 font-display text-[26px] font-semibold text-[#5FD4A8]">0 – 0 €</p>
+                </div>
+                <div class="an-stat">
+                  <p class="font-mono text-[11px] uppercase tracking-[.12em] text-silver">Áreas a mejorar</p>
+                  <p class="mt-2 font-display text-[26px] font-semibold text-[#5FD4A8]"><span id="anAreas">0</span> de 4</p>
+                </div>
+              </div>
+              <div class="mt-5 space-y-4" id="anBars">
+                <div><div class="flex justify-between text-[13px] text-silver"><span class="flex items-center gap-2"><i class="an-sw" style="background:#7CC4FF"></i>Presencia y reputación</span><span data-v="40">&nbsp;</span></div><div class="an-track mt-2"><span class="an-fill" style="--c:#7CC4FF" data-w="40"></span></div></div>
+                <div><div class="flex justify-between text-[13px] text-silver"><span class="flex items-center gap-2"><i class="an-sw" style="background:#F5B94E"></i>Mensaje y web</span><span data-v="55">&nbsp;</span></div><div class="an-track mt-2"><span class="an-fill" style="--c:#F5B94E" data-w="55"></span></div></div>
+                <div><div class="flex justify-between text-[13px] text-silver"><span class="flex items-center gap-2"><i class="an-sw" style="background:#5FD4A8"></i>Autoridad y contenido</span><span data-v="30">&nbsp;</span></div><div class="an-track mt-2"><span class="an-fill" style="--c:#5FD4A8" data-w="30"></span></div></div>
+                <div><div class="flex justify-between text-[13px] text-silver"><span class="flex items-center gap-2"><i class="an-sw" style="background:#FF8A6B"></i>Medición y captación</span><span data-v="48">&nbsp;</span></div><div class="an-track mt-2"><span class="an-fill" style="--c:#FF8A6B" data-w="48"></span></div></div>
+              </div>
+            </div>
+          </div>
+          <p class="pb-5 text-center text-[11px] text-silver/60">Ejemplo ilustrativo. Tu resultado se calcula con tus respuestas.</p>
         </div>
       </div>
     </section>
