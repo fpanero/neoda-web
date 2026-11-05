@@ -981,7 +981,10 @@
   "Revisión mensual": "Monthly review",
   "En objetivo": "On target",
   "Medimos lo acordado y lo revisamos con la dirección.": "We measure what was agreed and review it with management.",
-  "Datos e IA para pymes y empresas medianas, con alcance y precio cerrados antes de empezar.": "Data and AI for SMEs and mid-sized companies, with fixed scope and price before we start."
+  "Datos e IA para pymes y empresas medianas, con alcance y precio cerrados antes de empezar.": "Data and AI for SMEs and mid-sized companies, with fixed scope and price before we start.",
+  "Marcos prácticos para decidir sobre datos, inteligencia artificial y ciberseguridad, con criterio de negocio y sin jerga técnica.": "Practical frameworks for deciding on data, artificial intelligence and cybersecurity, with a business lens and without technical jargon.",
+  "Insights: marco de datos, IA y ciberriesgo | Neoda Solutions": "Insights: data, AI and cyber-risk framework | Neoda Solutions",
+  "Marco práctico para decidir sobre datos, inteligencia artificial y ciberseguridad, con criterio de negocio.": "Practical framework for deciding on data, artificial intelligence and cybersecurity, with a business lens."
   };
 
   const HEAD = {

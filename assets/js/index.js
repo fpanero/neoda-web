@@ -15,7 +15,7 @@
     const personal = ['gmail.com','hotmail.com','hotmail.es','outlook.com','outlook.es','yahoo.com','yahoo.es','icloud.com','live.com','protonmail.com'];
     // Validación de interfaz (solo UX). No es una barrera de seguridad: cualquiera puede descargar whitepaper.pdf directamente.
     // Cuando el email se envíe a Brevo/CRM, la validación, el límite de envíos y el registro del consentimiento deben hacerse en servidor, por HTTPS.
-    form.addEventListener('submit', e => {
+    if (form) form.addEventListener('submit', e => {
       e.preventDefault();
       if (form.website && form.website.value) return; // honeypot: bot detectado, se ignora sin avisar
       const v = form.email.value.trim().toLowerCase(), domain = v.split('@')[1] || '';
@@ -76,7 +76,7 @@
 
     /* ---------- Portada del whitepaper con inclinación 3D ---------- */
     const cover = document.getElementById('cover');
-    if (!reduce) {
+    if (!reduce && cover) {
       cover.parentElement.addEventListener('pointermove', e => {
         const r = cover.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
         cover.style.transform = `perspective(900px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg)`;

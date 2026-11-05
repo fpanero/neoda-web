@@ -5,6 +5,7 @@ module.exports = {
   content: [
     './index.html',
     './nosotros/index.html',
+    './insights/index.html',
     './servicios/index.html',
     './diagnostico/index.html',
     './privacidad/index.html',
