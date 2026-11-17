@@ -223,14 +223,14 @@
       const uniforms = {
         uTime: { value: 0 }, uMorph: { value: 0 }, uPixel: { value: renderer.getPixelRatio() },
         uMouse: { value: new THREE.Vector3(99, 99, 99) },
-        uColA: { value: new THREE.Color(0x9a8fc0) }, uColB: { value: new THREE.Color(0xffffff) },
+        uColA: { value: new THREE.Color(0xC5DAA5) }, uColB: { value: new THREE.Color(0xE4BE70) },
       };
       const pts = new THREE.Points(g, new THREE.ShaderMaterial({ uniforms, vertexShader: VERT, fragmentShader: FRAG, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
       const group = new THREE.Group(); group.add(pts); scene.add(group);
       if (o.shape === 'poly') {
         const edges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(1.9, 0)), new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.12 }));
         pts.add(edges);
-        const shell = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(3.1, 1)), new THREE.LineBasicMaterial({ color: 0x8a80a3, transparent: true, opacity: 0.08 }));
+        const shell = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(3.1, 1)), new THREE.LineBasicMaterial({ color: 0x8FAF7B, transparent: true, opacity: 0.1 }));
         group.add(shell); o.shell = shell;
       } else { group.rotation.x = 1.05; }
 
@@ -269,15 +269,15 @@
     /* ---------- Escenas isométricas de los pilares ---------- */
     function isoScene(canvas, kind) {
       const renderer = makeRenderer(canvas); if (!renderer) return;
-      const ACC = { data: 0x7CC4FF, ai: 0xF2B66D, soft: 0xB9AFD3, sec: 0x6FD6B0 }[kind] || 0x9a8fc0;
+      const ACC = { data: 0xC5DAA5, ai: 0xE4BE70, soft: 0x8FAF7B, sec: 0x79BFA1 }[kind] || 0xC5DAA5;
       const scene = new THREE.Scene(), s = 3.7;
       const cam = new THREE.OrthographicCamera(-s, s, s, -s, 0.1, 100);
       cam.position.set(8, 7.2, 8); cam.lookAt(0, 0.85, 0);
-      scene.add(new THREE.AmbientLight(0x484454, 1.0));
+      scene.add(new THREE.AmbientLight(0x4B6654, 1.0));
       const key = new THREE.DirectionalLight(0xffffff, 1.05); key.position.set(5, 9, 3); scene.add(key);
       const fillL = new THREE.PointLight(ACC, 2.4, 14); fillL.position.set(-3, 1.2, 3); scene.add(fillL);
-      const steel = new THREE.MeshStandardMaterial({ color: 0x4c4953, metalness: 0.8, roughness: 0.36 });
-      const dark = new THREE.MeshStandardMaterial({ color: 0x141219, metalness: 0.55, roughness: 0.55 });
+      const steel = new THREE.MeshStandardMaterial({ color: 0x536C59, metalness: 0.8, roughness: 0.36 });
+      const dark = new THREE.MeshStandardMaterial({ color: 0x142B22, metalness: 0.55, roughness: 0.55 });
       const glow = new THREE.MeshBasicMaterial({ color: ACC });
       const white = new THREE.MeshBasicMaterial({ color: 0xffffff });
       const hi = new THREE.MeshStandardMaterial({ color: ACC, metalness: 0.4, roughness: 0.3, emissive: ACC, emissiveIntensity: 0.5 });
@@ -402,7 +402,7 @@
         for (const n of nodes) { n.x += n.vx; n.y += n.vy; if (n.x < 0 || n.x > w) n.vx *= -1; if (n.y < 0 || n.y > h) n.vy *= -1; }
         for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
           const a = nodes[i], b = nodes[j], dist = Math.hypot(a.x - b.x, a.y - b.y);
-          if (dist < 150) { ctx.strokeStyle = `rgba(142,135,160,${(1 - dist / 150) * .3})`; ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+          if (dist < 150) { ctx.strokeStyle = `rgba(143,175,123,${(1 - dist / 150) * .3})`; ctx.lineWidth = .7; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
         }
         for (const n of nodes) {
           const md = Math.hypot(n.x - mouse.x, n.y - mouse.y);

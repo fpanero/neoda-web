@@ -4,10 +4,17 @@
 const fs = require('fs');
 const path = require('path');
 const root = path.join(__dirname, '..');
-const pages = ['index.html', ...fs.readdirSync(root, { withFileTypes: true })
-  .filter(d => d.isDirectory() && !d.name.startsWith('.') && d.name !== 'node_modules' && d.name !== 'scripts' && d.name !== 'assets')
-  .map(d => d.name + '/index.html')
-  .filter(f => fs.existsSync(path.join(root, f)))];
+const excluded = new Set(['node_modules', 'scripts', 'assets', '.tools']);
+const pages = [];
+function collectPages(dir, prefix = '') {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.') || excluded.has(entry.name)) continue;
+    if (entry.isDirectory()) collectPages(path.join(dir, entry.name), prefix + entry.name + '/');
+    else if (entry.name === 'index.html') pages.push(prefix + entry.name);
+  }
+}
+collectPages(root);
+pages.sort();
 const errors = [];
 const info = [];
 

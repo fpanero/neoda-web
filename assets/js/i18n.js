@@ -984,7 +984,134 @@
   "Datos e IA para pymes y empresas medianas, con alcance y precio cerrados antes de empezar.": "Data and AI for SMEs and mid-sized companies, with fixed scope and price before we start.",
   "Marcos prácticos para decidir sobre datos, inteligencia artificial y ciberseguridad, con criterio de negocio y sin jerga técnica.": "Practical frameworks for deciding on data, artificial intelligence and cybersecurity, with a business lens and without technical jargon.",
   "Insights: marco de datos, IA y ciberriesgo | Neoda Solutions": "Insights: data, AI and cyber-risk framework | Neoda Solutions",
-  "Marco práctico para decidir sobre datos, inteligencia artificial y ciberseguridad, con criterio de negocio.": "Practical framework for deciding on data, artificial intelligence and cybersecurity, with a business lens."
+  "Marco práctico para decidir sobre datos, inteligencia artificial y ciberseguridad, con criterio de negocio.": "Practical framework for deciding on data, artificial intelligence and cybersecurity, with a business lens.",
+  "Tecnología para el sector agroalimentario": "Technology for the agri-food sector",
+  "Consultoría de datos e IA para empresas": "Data and AI consultancy for",
+  "agroalimentarias.": "agri-food companies.",
+  "Conectamos campo, producción, calidad y distribución para que decidas con datos fiables, reduzcas mermas y automatices el trabajo repetitivo.": "We connect field, production, quality and distribution so you can decide with reliable data, reduce waste and automate repetitive work.",
+  "Ver soluciones": "Explore solutions",
+  "Campo": "Field",
+  "Planta": "Plant",
+  "Calidad": "Quality",
+  "Distribución": "Distribution",
+  "Tecnología aplicada a toda la cadena de valor": "Technology applied across the entire value chain",
+  "De la planificación del cultivo a la entrega al cliente: proyectos con alcance cerrado que tu equipo puede usar a diario.": "From crop planning to customer delivery: fixed-scope projects your team can use every day.",
+  "De la parcela al margen, una sola versión de los datos.": "From field to margin, one version of the data.",
+  "Cuadros de mando de producción, costes, mermas y ventas.": "Dashboards for production, costs, waste and sales.",
+  "Integración de ERP, sensores, campo, planta y logística.": "Integration of ERP, sensors, field, plant and logistics.",
+  "Seguimiento del rendimiento por cultivo, lote o línea.": "Performance tracking by crop, batch or line.",
+  "Anticipar la demanda. Reducir mermas. Automatizar.": "Anticipate demand. Reduce waste. Automate.",
+  "Previsión de demanda y apoyo a la planificación de producción.": "Demand forecasting and production planning support.",
+  "Lectura automática de albaranes, etiquetas y documentos de calidad.": "Automatic reading of delivery notes, labels and quality documents.",
+  "Asistentes de trazabilidad con revisión humana.": "Traceability assistants with human review.",
+  "Tu operación no encaja en un programa genérico.": "Your operation does not fit into generic software.",
+  "Aplicaciones para campo, planta, calidad y comercial.": "Applications for field, plant, quality and sales.",
+  "Integración de ERP, MES, CRM y plataformas logísticas.": "Integration of ERP, MES, CRM and logistics platforms.",
+  "Herramientas de trazabilidad por lote, desde origen a cliente.": "Batch traceability tools, from origin to customer.",
+  "Continuidad de planta y confianza en cada lote.": "Plant continuity and confidence in every batch.",
+  "Evaluación de seguridad para sistemas de oficina y producción.": "Security assessment for office and production systems.",
+  "Protección de datos, accesos y copias de seguridad.": "Protection of data, access and backups.",
+  "Plan de defensa priorizado para no detener la actividad.": "A prioritised defence plan that keeps your operation running.",
+  "Donde se pierde margen": "Where margin is lost",
+  "La merma, el paro y el dato que llega tarde.": "Waste, downtime and data that arrives too late.",
+  "Cuando campo, planta y comercial trabajan con información distinta, las decisiones se retrasan y el margen se resiente. Digitalizar no es añadir otra herramienta: es conseguir que toda la operación responda con la misma información.": "When field, plant and sales work with different information, decisions are delayed and margins suffer. Digitalisation is not about adding another tool: it is about getting the whole operation to work from the same information.",
+  "Cifras que no cuadran entre departamentos": "Figures that do not match across departments",
+  "Producción, calidad, almacén y ventas usan versiones diferentes de una misma realidad. Unificamos los datos para conocer coste, rendimiento y margen por cultivo, lote o línea.": "Production, quality, warehouse and sales use different versions of the same reality. We unify data to understand cost, yield and margin by crop, batch or line.",
+  "Partes y albaranes que se teclean dos veces": "Reports and delivery notes typed twice",
+  "Automatizamos la captura de documentos y la conexión entre sistemas para devolver tiempo al equipo y reducir errores, sin quitar el control a las personas.": "We automate document capture and system integration to give time back to your team and reduce errors, while keeping people in control.",
+  "Trazabilidad que depende de buscar en carpetas": "Traceability that depends on searching folders",
+  "Conectamos origen, tratamientos, producción y expedición para localizar la historia de cada lote cuando calidad o un cliente la necesita.": "We connect origin, treatments, production and dispatch so quality teams and customers can find the history of every batch.",
+  "Casos de uso agroalimentarios": "Agri-food use cases",
+  "Soluciones que entienden tu realidad.": "Solutions that understand your reality.",
+  "Seis escenarios ilustrativos donde los datos, la IA y el software a medida pueden mejorar la operación. No representan resultados de clientes concretos.": "Six illustrative scenarios where data, AI and custom software can improve operations. They do not represent results from specific clients.",
+  "Campo · Datos": "Field · Data",
+  "Agricultura de precisión": "Precision agriculture",
+  "Riegos, tratamientos y rendimientos repartidos en distintas fuentes.": "Irrigation, treatments and yields scattered across different sources.",
+  "Campo · Datos · Ejemplo": "Field · Data · Example",
+  "Medimos consumo de agua, coste por hectárea y rendimiento por parcela.": "We measure water use, cost per hectare and yield by field.",
+  "Integramos sensores, partes de campo y datos históricos en un cuadro de mando para planificar mejor cada campaña.": "We bring sensors, field reports and historical data into one dashboard to improve season planning.",
+  "Agroindustria · IA": "Agri-industry · AI",
+  "Industria alimentaria": "Food industry",
+  "Previsiones de demanda que no encajan con la capacidad real de planta.": "Demand forecasts that do not match actual plant capacity.",
+  "Agroindustria · IA · Ejemplo": "Agri-industry · AI · Example",
+  "Medimos precisión de la previsión, mermas y cumplimiento del plan.": "We measure forecast accuracy, waste and plan compliance.",
+  "Cruzamos pedidos, históricos y producción para anticipar necesidades y ajustar el plan con el equipo de planta.": "We combine orders, historical data and production to anticipate needs and adjust the plan with the plant team.",
+  "Cooperativas · Software": "Cooperatives · Software",
+  "Cooperativas y cereales": "Cooperatives and cereals",
+  "Entregas de socios, lotes y liquidaciones que exigen mucho trabajo manual.": "Member deliveries, batches and settlements that require extensive manual work.",
+  "Cooperativas · Software · Ejemplo": "Cooperatives · Software · Example",
+  "Gestión": "Management",
+  "Medimos tiempo por liquidación, incidencias y trazabilidad de cada entrega.": "We measure settlement time, incidents and traceability for every delivery.",
+  "Digitalizamos la recepción, el control de calidad y la liquidación al socio, conectados con el sistema de gestión.": "We digitise reception, quality control and member settlement, connected to your management system.",
+  "Hortofrutícola · Calidad": "Fruit & vegetables · Quality",
+  "Fruta, verdura e invernadero": "Fruit, vegetables and greenhouses",
+  "Calibrados, mermas y destinos que se deciden con datos incompletos.": "Grading, waste and destination decisions made with incomplete data.",
+  "Hortofrutícola · Datos · Ejemplo": "Fruit & vegetables · Data · Example",
+  "Medimos merma, clasificación y margen por destino o cliente.": "We measure waste, grading and margin by destination or customer.",
+  "Unimos recepción, calidad y expedición para decidir el destino de cada lote con información actualizada.": "We connect reception, quality and dispatch to decide each batch's destination using up-to-date information.",
+  "Ganadería · Datos": "Livestock · Data",
+  "Producción ganadera": "Livestock production",
+  "Alimentación, sanidad y producción sin una visión conjunta por explotación.": "Feed, health and production without a joined-up view by farm.",
+  "Ganadería · Datos · Ejemplo": "Livestock · Data · Example",
+  "Control": "Control",
+  "Medimos coste de alimentación, incidencias y rendimiento por lote.": "We measure feed cost, incidents and yield by batch.",
+  "Centralizamos registros y alertas para que el equipo técnico detecte desviaciones sin recopilar datos a mano.": "We centralise records and alerts so technical teams can spot deviations without gathering data manually.",
+  "Viveros · Software": "Nurseries · Software",
+  "Viveros y semilleros": "Nurseries and seed beds",
+  "Lotes, tratamientos y pedidos que dependen de hojas de cálculo.": "Batches, treatments and orders that depend on spreadsheets.",
+  "Viveros · Software · Ejemplo": "Nurseries · Software · Example",
+  "Lotes": "Batches",
+  "Medimos disponibilidad, pérdidas y estado de cada lote.": "We measure availability, losses and the status of every batch.",
+  "Una herramienta a medida reúne producción, tratamientos y preparación de pedidos sin duplicar registros.": "A custom tool brings production, treatments and order preparation together without duplicate records.",
+  "Escribe el nombre de tu empresa agroalimentaria y te enseñamos su visibilidad digital, el impacto estimado y por dónde empezar.": "Enter your agri-food company's name to see its digital visibility, estimated impact and where to start.",
+  "Empecemos por donde se escapa el margen.": "Let's start where margin is leaking.",
+  "En una llamada de 45 minutos revisamos tu operación, detectamos dos o tres mejoras prioritarias y te decimos qué servicio encaja. Sin coste y sin compromiso.": "In a 45-minute call we review your operation, identify two or three priority improvements and recommend the right service. Free and with no commitment.",
+  "Consultora de datos, inteligencia artificial, software a medida y ciberseguridad para empresas agroalimentarias.": "Data, artificial intelligence, custom software and cybersecurity consultancy for agri-food companies.",
+  "Servicios digitales para empresas agroalimentarias": "Digital services for agri-food companies",
+  "Datos, inteligencia artificial, software a medida y ciberseguridad para conectar campo, planta, calidad y distribución. Antes de empezar dejamos por escrito qué entregamos, cuándo y por cuánto.": "Data, artificial intelligence, custom software and cybersecurity to connect field, plant, quality and distribution. Before we start, we put what we deliver, when and for how much in writing.",
+  "Los datos de campo, planta y ventas no cuadran.": "Field, plant and sales data do not match.",
+  "Planificamos producción con previsiones poco fiables.": "We plan production with unreliable forecasts.",
+  "ERP, planta y logística no se hablan entre sí.": "ERP, plant and logistics do not talk to each other.",
+  "Pedidos y oportunidades se pierden sin seguimiento.": "Orders and opportunities are lost without follow-up.",
+  "Una parada de sistemas puede detener producción o expediciones.": "A system outage can stop production or dispatch.",
+  "Convertimos los datos de campo, planta, calidad y ventas en cifras fiables para decidir.": "We turn field, plant, quality and sales data into reliable figures for decision-making.",
+  "Partes de producción manuales": "Manual production reports",
+  "Mermas difíciles de explicar": "Hard-to-explain waste",
+  "Costes por lote poco claros": "Unclear batch costs",
+  "Operación de octubre": "October operations",
+  "Producción": "Production",
+  "Merma": "Waste",
+  "Cumplimiento": "Plan compliance",
+  "Línea envasado": "Packaging line",
+  "Línea selección": "Selection line",
+  "Producto elaborado": "Processed product",
+  "IA donde ahorra horas, reduce mermas o mejora una decisión, siempre con revisión humana.": "AI where it saves hours, reduces waste or improves decisions, always with human review.",
+  "Albaranes y documentos manuales": "Manual delivery notes and documents",
+  "Demanda difícil de anticipar": "Hard-to-predict demand",
+  "Consultas repetidas de trazabilidad": "Repeated traceability queries",
+  "Asistente de calidad": "Quality assistant",
+  "¿Qué lotes caducan en los próximos 7 días?": "Which batches expire in the next 7 days?",
+  "Hay 4 lotes que caducan en los próximos 7 días, con un total de 12.480 kg.": "Four batches expire in the next 7 days, totalling 12,480 kg.",
+  "Tomate pera · L-184": "Plum tomato · L-184",
+  "Pimiento · L-192": "Pepper · L-192",
+  "Calabacín · L-201": "Courgette · L-201",
+  "Berenjena · L-207": "Aubergine · L-207",
+  "Prepara una propuesta de destino para cada lote.": "Prepare a proposed destination for each batch.",
+  "He preparado 4 propuestas según pedidos y calidad. No se aplican hasta que alguien de tu equipo las revise.": "I have prepared four proposals based on orders and quality. Nothing is applied until someone on your team reviews them.",
+  "Anticipa demanda, producción, mermas o averías.": "Anticipate demand, production, waste or breakdowns.",
+  "Hacemos el software que tu operación necesita y el mercado no te da, con código que es tuyo.": "We build the software your operation needs and the market does not provide, with code that belongs to you.",
+  "Pedidos sin seguimiento": "Orders without follow-up",
+  "ERP, planta y logística desconectados": "Disconnected ERP, plant and logistics",
+  "Trazabilidad en hojas de cálculo": "Spreadsheet-based traceability",
+  "¿Trabajáis con pymes agroalimentarias?": "Do you work with agri-food SMEs?",
+  "Sí. Nuestros servicios están pensados para productores, cooperativas, industrias alimentarias y distribuidoras que no tienen un equipo de datos propio o necesitan reforzarlo en un proyecto concreto.": "Yes. Our services are designed for producers, cooperatives, food manufacturers and distributors without their own data team or those needing extra support for a specific project.",
+  "Conocemos la tecnología. Entendemos el ritmo del agro.": "We know technology. We understand the pace of agri-food.",
+  "En Neoda Solutions cada proyecto lo dirige un socio especialista, con soluciones pensadas para campañas, producción, trazabilidad y distribución agroalimentaria.": "At Neoda Solutions, every project is led by a specialist partner, with solutions designed for seasons, production, traceability and agri-food distribution.",
+  "Las empresas agroalimentarias generan datos en cada parcela, línea, lote y entrega, pero esa información rara vez llega completa a quien decide. A ello se suman campañas, perecibilidad y sistemas que no siempre fueron pensados para trabajar juntos.": "Agri-food companies generate data in every field, line, batch and delivery, but that information rarely reaches decision-makers in full. Seasons, perishability and systems not designed to work together add to the challenge.",
+  "Queremos resolver ese desencuentro: trabajo técnico serio, explicado sin jerga y a un precio que una empresa mediana pueda justificar. Si una mejora no se traduce en menos merma, más control, horas ahorradas o un riesgo menos, no te la proponemos.": "We want to bridge that gap: serious technical work, explained without jargon and at a price a mid-sized company can justify. If an improvement does not reduce waste, increase control, save hours or reduce risk, we will not propose it.",
+  "Ideas prácticas para aplicar datos, inteligencia artificial y ciberseguridad en empresas agroalimentarias, con criterio de negocio y sin jerga técnica.": "Practical ideas for applying data, artificial intelligence and cybersecurity in agri-food companies, with a business lens and no technical jargon.",
+  "28 páginas con un modelo para convertir el riesgo tecnológico en euros, una matriz para priorizar inversiones y una checklist de NIS2, DORA y Reglamento Europeo de IA, aplicables también a la empresa agroalimentaria.": "28 pages with a model for turning technology risk into euros, an investment prioritisation matrix and a NIS2, DORA and EU AI Act checklist, also applicable to agri-food companies.",
+  "Datos, IA y ciberseguridad para mejorar la rentabilidad y continuidad de empresas agroalimentarias.": "Data, AI and cybersecurity to improve agri-food profitability and operational continuity."
   };
 
   const HEAD = {
@@ -1007,7 +1134,18 @@
   "Cómo trata Neoda Solutions los datos personales que nos facilitas y cómo ejercer tus derechos.": "How Neoda Solutions processes the personal data you provide and how to exercise your rights.",
   "Aviso legal y condiciones de uso del sitio web de Neoda Solutions.": "Legal notice and terms of use of the Neoda Solutions website.",
   "Qué cookies utiliza el sitio web de Neoda Solutions y cómo gestionarlas.": "Which cookies the Neoda Solutions website uses and how to manage them.",
-  "Analítica de datos, inteligencia artificial, CRM y software a medida, y ciberseguridad para pymes y empresas medianas, con alcance y precio cerrados.": "Data analytics, artificial intelligence, custom CRM and software, and cybersecurity for small and mid-sized companies, with fixed scope and price."
+  "Analítica de datos, inteligencia artificial, CRM y software a medida, y ciberseguridad para pymes y empresas medianas, con alcance y precio cerrados.": "Data analytics, artificial intelligence, custom CRM and software, and cybersecurity for small and mid-sized companies, with fixed scope and price.",
+  "Consultoría de datos e IA agroalimentaria | Neoda Solutions": "Agri-food data and AI consultancy | Neoda Solutions",
+  "Consultoría de datos, inteligencia artificial, software y ciberseguridad para empresas agroalimentarias: campo, planta, calidad, trazabilidad y distribución.": "Data, artificial intelligence, software and cybersecurity consultancy for agri-food companies: field, plant, quality, traceability and distribution.",
+  "Servicios digitales agroalimentarios | Neoda Solutions": "Agri-food digital services | Neoda Solutions",
+  "Analítica, IA, software a medida y ciberseguridad para productores, cooperativas, industrias alimentarias y distribuidoras, con alcance y precio cerrados.": "Analytics, AI, custom software and cybersecurity for producers, cooperatives, food manufacturers and distributors, with fixed scope and pricing.",
+  "Insights de datos e IA agroalimentaria | Neoda Solutions": "Agri-food data and AI insights | Neoda Solutions",
+  "Marco práctico para decidir sobre datos, inteligencia artificial y ciberseguridad en empresas agroalimentarias.": "A practical framework for deciding on data, artificial intelligence and cybersecurity in agri-food companies.",
+  "Consultora tecnológica agroalimentaria | Neoda Solutions": "Agri-food technology consultancy | Neoda Solutions",
+  "Conoce a Neoda Solutions: consultora boutique de datos, IA, software y ciberseguridad especializada en empresas agroalimentarias.": "Meet Neoda Solutions: a boutique data, AI, software and cybersecurity consultancy specialising in agri-food companies.",
+  "Del tercer puesto de NEODA en NASA Space Apps Granada 2026 a una consultora de datos, IA y ciberseguridad para el sector agroalimentario.": "From NEODA's third place at NASA Space Apps Granada 2026 to a data, AI and cybersecurity consultancy for the agri-food sector.",
+  "Soluciones de datos, IA y ciberseguridad agroalimentaria | Neoda Solutions": "Agri-food data, AI and cybersecurity solutions | Neoda Solutions",
+  "Datos, visión artificial, agua y energía, planificación, trazabilidad y ciberseguridad IT/OT para empresas agroalimentarias del sur de España.": "Data, computer vision, water and energy, planning, traceability and IT/OT cybersecurity for agri-food companies in southern Spain."
   };
 
   const root = document.documentElement;
@@ -1021,7 +1159,8 @@
         const k = '_es_' + a;
         if (el[k] === undefined) el[k] = el.getAttribute(a);
         const core = norm(el[k]);
-        el.setAttribute(a, en && EN[core] ? EN[core] : el[k]);
+        const explicit = el.getAttribute('data-en-' + a);
+        el.setAttribute(a, en && (explicit || EN[core]) ? (explicit || EN[core]) : el[k]);
       });
     });
   }
@@ -1031,13 +1170,15 @@
     if (t) {
       if (t._es === undefined) t._es = t.textContent;
       const core = norm(t._es);
-      t.textContent = en && HEAD[core] ? HEAD[core] : t._es;
+      const explicit = t.getAttribute('data-en');
+      t.textContent = en && (explicit || HEAD[core]) ? (explicit || HEAD[core]) : t._es;
     }
     const md = document.querySelector('meta[name="description"]');
     if (md) {
       if (md._es === undefined) md._es = md.getAttribute('content');
       const core = norm(md._es);
-      md.setAttribute('content', en && HEAD[core] ? HEAD[core] : md._es);
+      const explicit = md.getAttribute('data-en');
+      md.setAttribute('content', en && (explicit || HEAD[core]) ? (explicit || HEAD[core]) : md._es);
     }
   }
 
@@ -1049,9 +1190,10 @@
       if (!par || par.closest('.mt-list,[data-i18n-skip]') || par.closest('script,style,noscript,textarea')) return;
       if (n._es === undefined) n._es = n.nodeValue;
       const core = norm(n._es);
-      if (en && EN[core]) {
+      const explicit = par && par.hasAttribute('data-en') ? par.getAttribute('data-en') : null;
+      if (en && (explicit || EN[core])) {
         const lead = n._es.match(/^\s*/)[0], trail = n._es.match(/\s*$/)[0];
-        n.nodeValue = lead + EN[core] + trail;
+        n.nodeValue = lead + (explicit || EN[core]) + trail;
       } else {
         n.nodeValue = n._es;
       }

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """SEO de todas las páginas: título, descripción, canonical, Open Graph y JSON-LD (Uso: npm run seo).
-El JSON-LD de /servicios/ se genera leyendo los servicios y las preguntas frecuentes del propio HTML:
-volver a ejecutarlo tras cambiar textos. También mantiene los enlaces a /servicios/ y la columna Servicios del pie."""
+El catálogo de /servicios/ se genera desde SERVICE_META y las preguntas frecuentes del propio HTML.
+También mantiene la navegación común, Sectores y las columnas del pie."""
 import json, re, html
 import os
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..') + os.sep
@@ -13,18 +13,20 @@ ORG = {
   "@type": "Organization", "@id": ORG_ID, "name": "Neoda Solutions", "url": SITE + "/",
   "logo": {"@type": "ImageObject", "url": SITE + "/assets/icons/icon-512.png", "width": 512, "height": 512},
   "email": "contacto@neoda.com",
-  "description": "Consultora boutique de datos, inteligencia artificial, software a medida y ciberseguridad para pymes y empresas medianas.",
+  "description": "Consultora boutique de datos, inteligencia artificial, software a medida y ciberseguridad para empresas agroalimentarias.",
   "areaServed": {"@type": "Country", "name": "España"},
   "knowsAbout": ["Analítica de datos", "Cuadros de mando", "Ingeniería de datos", "Gobierno del dato", "Ciencia de datos",
                  "Inteligencia artificial", "Automatización de procesos", "Agentes de IA", "Desarrollo de software a medida", "CRM a medida",
-                 "Integración de sistemas", "Ciberseguridad", "RGPD", "NIS2", "Reglamento Europeo de IA"],
+                 "Integración de sistemas", "Ciberseguridad", "RGPD", "NIS2", "Reglamento Europeo de IA", "Agricultura de precisión",
+                 "Trazabilidad alimentaria", "Planificación de producción", "Control de mermas", "Industria agroalimentaria"],
   "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Servicios de Neoda Solutions", "url": SITE + "/servicios/",
     "itemListElement": [
-      {"@type": "OfferCatalog", "name": "Datos y analítica", "url": SITE + "/servicios/#datos"},
-      {"@type": "OfferCatalog", "name": "Inteligencia artificial y automatización", "url": SITE + "/servicios/#ia"},
-      {"@type": "OfferCatalog", "name": "Software a medida", "url": SITE + "/servicios/#software"},
-      {"@type": "OfferCatalog", "name": "Ciberseguridad y cumplimiento", "url": SITE + "/servicios/#ciberseguridad"},
-      {"@type": "OfferCatalog", "name": "Formación en datos e IA", "url": SITE + "/servicios/#formacion"}]}
+      {"@type": "OfferCatalog", "name": "Datos y operaciones", "url": SITE + "/servicios/datos-y-operaciones/"},
+      {"@type": "OfferCatalog", "name": "Visión artificial", "url": SITE + "/servicios/vision-artificial/"},
+      {"@type": "OfferCatalog", "name": "Agua y energía", "url": SITE + "/servicios/agua-y-energia/"},
+      {"@type": "OfferCatalog", "name": "Ciberseguridad IT/OT", "url": SITE + "/servicios/ciberseguridad-agroindustrial/"},
+      {"@type": "OfferCatalog", "name": "Planificación predictiva", "url": SITE + "/servicios/planificacion-predictiva/"},
+      {"@type": "OfferCatalog", "name": "Trazabilidad y calidad", "url": SITE + "/servicios/trazabilidad-y-calidad/"}]}
 }
 WEBSITE = {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "Neoda Solutions", "inLanguage": "es-ES", "publisher": {"@id": ORG_ID}}
 
@@ -36,17 +38,20 @@ def text(fragment):
     return html.unescape(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', fragment))).strip()
 
 PAGES = {
-  'index.html': dict(path='/', title='Consultoría de datos, IA y ciberseguridad | Neoda Solutions',
-       desc='Consultora de datos e inteligencia artificial para pymes y empresas medianas: analítica, automatización con IA, software a medida y ciberseguridad.',
-       ogtitle='Consultoría de datos, IA y ciberseguridad para pymes', kind='home'),
-  'servicios/index.html': dict(path='/servicios/', title='Servicios de datos, IA y software a medida | Neoda Solutions',
-       desc='Analítica de datos, inteligencia artificial, CRM y software a medida, y ciberseguridad para pymes y empresas medianas, con alcance y precio cerrados.',
-       ogtitle='Servicios de datos, IA, software a medida y ciberseguridad', kind='servicios', crumb='Servicios'),
-  'insights/index.html': dict(path='/insights/', title='Insights: marco de datos, IA y ciberriesgo | Neoda Solutions',
-       desc='Marco práctico para decidir sobre datos, inteligencia artificial y ciberseguridad, con criterio de negocio.',
-       ogtitle='Insights · Neoda Solutions', kind='page', crumb='Insights'),
-  'nosotros/index.html': dict(path='/nosotros/', title='Nosotros: consultora boutique de datos e IA | Neoda Solutions',
-       desc='Conoce a Neoda Solutions: una consultora boutique de datos, inteligencia artificial, software a medida y ciberseguridad para pymes y empresas medianas.',
+  'index.html': dict(path='/', title='Soluciones de datos, IA y ciberseguridad agroalimentaria | Neoda Solutions',
+       desc='Datos, visión artificial, agua y energía, planificación, trazabilidad y ciberseguridad IT/OT para empresas agroalimentarias del sur de España.',
+       ogtitle='Tecnología para decidir mejor en el agro', kind='home'),
+  'servicios/index.html': dict(path='/servicios/', title='Servicios de datos, IA y ciberseguridad agroalimentaria | Neoda Solutions',
+       desc='Soluciones de datos, visión artificial, agua y energía, ciberseguridad IT/OT, planificación y trazabilidad para empresas agroalimentarias del sur de España.',
+       ogtitle='Soluciones digitales para la operación agroalimentaria', kind='servicios', crumb='Servicios'),
+  'sectores/index.html': dict(path='/sectores/', title='Soluciones para hortofruticultura, olivar y agroindustria | Neoda Solutions',
+       desc='Tecnología para hortofruticultura, olivar, cooperativas y agroindustria en Andalucía y el sur de España: datos, IA, agua, trazabilidad y ciberseguridad.',
+       ogtitle='Especialización agroalimentaria para el sur de España', kind='page', crumb='Sectores'),
+  'insights/index.html': dict(path='/insights/', title='Insights de datos e IA agroalimentaria | Neoda Solutions',
+       desc='Marco práctico para decidir sobre datos, inteligencia artificial y ciberseguridad en empresas agroalimentarias.',
+       ogtitle='Insights agroalimentarios · Neoda Solutions', kind='page', crumb='Insights'),
+  'nosotros/index.html': dict(path='/nosotros/', title='Consultora tecnológica agroalimentaria | Neoda Solutions',
+       desc='Del tercer puesto de NEODA en NASA Space Apps Granada 2026 a una consultora de datos, IA y ciberseguridad para el sector agroalimentario.',
        ogtitle='Nosotros · Neoda Solutions', kind='about', crumb='Nosotros'),
   'diagnostico/index.html': dict(path='/diagnostico/', title='Diagnóstico gratuito de visibilidad digital | Neoda Solutions',
        desc='Diagnóstico gratuito de visibilidad digital: puntuación, áreas a mejorar y plan de acción en pocos minutos.',
@@ -59,22 +64,39 @@ PAGES = {
        desc='Qué cookies utiliza el sitio web de Neoda Solutions y cómo gestionarlas.', ogtitle='Política de cookies · Neoda Solutions', kind='legal'),
 }
 
-FOOT_BRAND = 'Consultora boutique de datos, inteligencia artificial, software a medida y ciberseguridad para pymes y empresas medianas.'
-FOOT_SERV = ('<nav class="nf-col" aria-label="Servicios"><h3>Servicios</h3><ul>'
-             '<li><a href="/servicios/#datos">Datos y analítica</a></li><li><a href="/servicios/#ia">Inteligencia artificial</a></li>'
-             '<li><a href="/servicios/#software">Software a medida</a></li><li><a href="/servicios/#ciberseguridad">Ciberseguridad</a></li></ul></nav>')
+SERVICE_META = [
+  ('datos-y-operaciones', 'Datos y operaciones agroalimentarias', 'Una torre de control para conectar campo, planta, calidad, almacén y ventas sin sustituir los sistemas que ya funcionan.'),
+  ('vision-artificial', 'Visión artificial para calidad', 'Inspección visual en planta y campo para detectar defectos, clasificar producto y medir mermas con revisión humana.'),
+  ('agua-y-energia', 'Agua y energía inteligentes', 'Monitorización, detección de anomalías y apoyo al riego y bombeo para usar mejor los recursos disponibles.'),
+  ('ciberseguridad-agroindustrial', 'Ciberseguridad agroindustrial IT/OT', 'Protección de oficina, planta, frío, riego y accesos remotos con prioridad en la continuidad operativa.'),
+  ('planificacion-predictiva', 'Planificación y modelos predictivos', 'Previsión de cosecha y demanda, planificación de recursos y optimización de lotes, turnos y rutas.'),
+  ('trazabilidad-y-calidad', 'Trazabilidad, calidad y cadena de frío', 'Conexión de origen, controles, temperatura y expedición para responder antes a clientes, calidad y auditorías.'),
+]
+for slug, name, desc in SERVICE_META:
+    PAGES[f'servicios/{slug}/index.html'] = dict(path=f'/servicios/{slug}/', title=f'{name} | Neoda Solutions',
+        desc=desc, ogtitle=f'{name} · Neoda Solutions', kind='service_detail', crumb=name)
+
+FOOT_BRAND = 'Datos, IA y ciberseguridad para mejorar la rentabilidad y continuidad de empresas agroalimentarias.'
+FOOT_SERV = ('<nav class="nf-col" aria-label="Servicios"><h3 data-en="Services">Servicios</h3><ul>'
+             '<li><a href="/servicios/datos-y-operaciones/" data-en="Data and operations">Datos y operaciones</a></li>'
+             '<li><a href="/servicios/vision-artificial/" data-en="Computer vision">Visión artificial</a></li>'
+             '<li><a href="/servicios/agua-y-energia/" data-en="Water and energy">Agua y energía</a></li>'
+             '<li><a href="/servicios/ciberseguridad-agroindustrial/" data-en="IT/OT cybersecurity">Ciberseguridad IT/OT</a></li>'
+             '<li><a href="/servicios/planificacion-predictiva/" data-en="Predictive planning">Planificación predictiva</a></li>'
+             '<li><a href="/servicios/trazabilidad-y-calidad/" data-en="Traceability and quality">Trazabilidad y calidad</a></li></ul></nav>')
+FOOT_NAV = ('<nav class="nf-col" aria-label="Navegación"><h3 data-en="Navigation">Navegación</h3><ul>'
+            '<li><a href="/servicios/" data-en="Services">Servicios</a></li><li><a href="/sectores/" data-en="Sectors">Sectores</a></li>'
+            '<li><a href="/#casos" data-en="Use cases">Casos de uso</a></li><li><a href="/insights/">Insights</a></li>'
+            '<li><a href="/nosotros/" data-en="About">Nosotros</a></li></ul></nav>')
 
 def servicios_graph(s, url):
-    services = []
-    for sec_id, block in re.findall(r'<section id="(datos|ia|software|ciberseguridad|formacion)" class="line[^"]*".*?>(.*?)</section>', s, re.S):
-        line = text(re.search(r'<h2[^>]*>(.*?)</h2>', block, re.S).group(1))
-        for h3, p in re.findall(r'<li class="svc"[^>]*>.*?<div class="svc-main"><h3>(.*?)</h3><p>(.*?)</p>', block, re.S):
-            services.append({"@type": "Service", "name": text(h3), "description": text(p), "serviceType": line,
-                             "url": url + "#" + sec_id, "provider": {"@id": ORG_ID}, "areaServed": {"@type": "Country", "name": "España"}})
+    services = [{"@type": "Service", "name": name, "description": desc, "serviceType": name,
+                 "url": SITE + f"/servicios/{slug}/", "provider": {"@id": ORG_ID},
+                 "areaServed": {"@type": "Country", "name": "España"}} for slug, name, desc in SERVICE_META]
     faqs = [{"@type": "Question", "name": text(q), "acceptedAnswer": {"@type": "Answer", "text": text(a)}}
-            for q, a in re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>', s, re.S)]
-    assert len(services) == 16, len(services)
-    assert len(faqs) == 8, len(faqs)
+            for q, a in re.findall(r'<details><summary[^>]*>(.*?)</summary><p[^>]*>(.*?)</p></details>', s, re.S)]
+    assert len(services) == 6, len(services)
+    assert len(faqs) == 5, len(faqs)
     return [
       {"@type": "WebPage", "@id": url, "url": url, "name": PAGES['servicios/index.html']['title'], "inLanguage": "es-ES",
        "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": ORG_ID}, "breadcrumb": {"@id": url + "#breadcrumb"}},
@@ -91,15 +113,21 @@ for page, cfg in PAGES.items():
 
     # 1) enlaces "Servicios" -> nueva página
     s = s.replace('href="/#servicios"', 'href="/servicios/"').replace('<li><a href="#servicios">Servicios</a></li>', '<li><a href="/servicios/">Servicios</a></li>')
-    # 2) pie: descripción y columna de servicios
-    s = re.sub(r'(<div class="nf-brand">\s*<a href="/" class="nf-logo">Neoda<span> Solutions</span></a>\s*<p>)[^<]*(</p>)', r'\g<1>' + FOOT_BRAND + r'\g<2>', s)
-    s = re.sub(r'<nav class="nf-col" aria-label="Capacidades">.*?</nav>', FOOT_SERV, s, flags=re.S)
+    # 2) pie: descripción y columnas comunes
+    s = re.sub(r'(<div class="nf-brand">\s*<a href="/" class="nf-logo">Neoda<span> Solutions</span></a>\s*<p[^>]*>)[^<]*(</p>)', r'\g<1>' + FOOT_BRAND + r'\g<2>', s)
+    s = re.sub(r'(<div class="nf-brand">\s*<a class="nf-logo" href="/">Neoda<span> Solutions</span></a>\s*<p[^>]*>)[^<]*(</p>)', r'\g<1>' + FOOT_BRAND + r'\g<2>', s)
+    s = re.sub(r'<nav class="nf-col" aria-label="Navegación">.*?</nav>', FOOT_NAV, s, flags=re.S)
+    s = re.sub(r'<nav class="nf-col" aria-label="Servicios">.*?</nav>', FOOT_SERV, s, flags=re.S)
+    header_end = s.find('</header>')
+    if '<li><a href="/sectores/"' not in s[:header_end]:
+        s = s.replace('<li><a href="/#casos" class="whitespace-nowrap', '<li><a href="/sectores/" class="whitespace-nowrap text-silver transition hover:text-white" data-en="Sectors">Sectores</a></li><li><a href="/#casos" class="whitespace-nowrap')
+        s = s.replace('<li><a href="/#casos" class="block py-1', '<li><a href="/sectores/" class="block py-1 text-silver hover:text-white" data-en="Sectors">Sectores</a></li><li><a href="/#casos" class="block py-1')
     # 3) título y descripción
     if cfg['title']:
-        s = re.sub(r'<title>[^<]*</title>', '<title>' + cfg['title'] + '</title>', s, count=1)
-    title = re.search(r'<title>([^<]*)</title>', s).group(1)
-    if re.search(r'<meta name="description" content="[^"]*">', s):
-        s = re.sub(r'<meta name="description" content="[^"]*">', '<meta name="description" content="' + cfg['desc'] + '">', s, count=1)
+        s = re.sub(r'(<title[^>]*>)[^<]*(</title>)', r'\g<1>' + cfg['title'] + r'\g<2>', s, count=1)
+    title = re.search(r'<title[^>]*>([^<]*)</title>', s).group(1)
+    if re.search(r'<meta name="description" content="[^"]*"', s):
+        s = re.sub(r'(<meta name="description" content=")[^"]*(")', r'\g<1>' + cfg['desc'] + r'\g<2>', s, count=1)
     else:
         s = s.replace('</title>\n', '</title>\n<meta name="description" content="' + cfg['desc'] + '">\n', 1)
     # 4) bloque SEO (se regenera completo cada vez)
@@ -115,7 +143,7 @@ for page, cfg in PAGES.items():
             f'<meta property="og:url" content="{url}">',
             f'<meta property="og:image" content="{OG_IMG}">',
             '<meta property="og:image:width" content="1200">', '<meta property="og:image:height" content="630">',
-            '<meta property="og:image:alt" content="Neoda Solutions · Datos, IA, software a medida y ciberseguridad">',
+            '<meta property="og:image:alt" content="Neoda Solutions · Datos, IA y software para el sector agroalimentario">',
             '<meta name="twitter:card" content="summary_large_image">']
     graph = None
     if cfg['kind'] == 'home':
@@ -123,6 +151,13 @@ for page, cfg in PAGES.items():
                                  "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": ORG_ID}}]
     elif cfg['kind'] == 'servicios':
         graph = servicios_graph(s, url)
+    elif cfg['kind'] == 'service_detail':
+        graph = [
+          {"@type": "WebPage", "@id": url, "url": url, "name": title, "inLanguage": "es-ES",
+           "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": ORG_ID}, "breadcrumb": {"@id": url + "#breadcrumb"}},
+          crumbs([("Inicio", SITE + "/"), ("Servicios", SITE + "/servicios/"), (cfg['crumb'], url)]),
+          {"@type": "Service", "name": cfg['crumb'], "description": cfg['desc'], "serviceType": cfg['crumb'],
+           "url": url, "provider": {"@id": ORG_ID}, "areaServed": {"@type": "Country", "name": "España"}}, ORG]
     elif cfg['kind'] in ('about', 'page'):
         graph = [{"@type": "AboutPage" if cfg['kind'] == 'about' else "WebPage", "@id": url, "url": url, "name": title, "inLanguage": "es-ES",
                   "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": ORG_ID}, "breadcrumb": {"@id": url + "#breadcrumb"}},

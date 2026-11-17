@@ -31,9 +31,7 @@ if (PINNED['three.r128.min.js'] !== h) {
 
 // 2) Fuentes: solo los pesos que usa el sitio, en los subconjuntos latin y latin-ext.
 const families = [
-  { pkg: 'inter-tight', weights: [500, 600, 700] },
   { pkg: 'inter', weights: [400, 500, 600] },
-  { pkg: 'jetbrains-mono', weights: [400, 500] },
 ];
 let css = '/* Fuentes autoalojadas (SIL Open Font License). Generado por scripts/fetch-vendor.js */\n';
 for (const { pkg, weights } of families) {
