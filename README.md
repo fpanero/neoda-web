@@ -1,6 +1,6 @@
 # Neoda Solutions · Web corporativa (V1)
 
-Página de inicio y páginas legales de **Neoda Solutions**, consultoría boutique en **datos, inteligencia artificial y ciberseguridad** para comités de dirección.
+Página de inicio y páginas legales de **Neoda Solutions**, consultoría boutique en **datos, inteligencia artificial y ciberseguridad para empresas agroalimentarias**.
 
 **Ver la web:** https://fpanero.github.io/neoda-web/
 
@@ -10,13 +10,15 @@ Página de inicio y páginas legales de **Neoda Solutions**, consultoría boutiq
 
 | Archivo | Descripción |
 |---|---|
-| `index.html` (URL `/`) | Página de inicio: hero 3D, tecnologías, diagnóstico rápido, problema, las cuatro líneas de servicio con escenas isométricas, casos de uso ilustrativos, metodología animada, whitepaper y cierre. |
-| `servicios/index.html` (URL `/servicios/`) | Página de servicios: cuatro líneas (datos, IA, software a medida, ciberseguridad) más formación, 16 servicios (incluido el CRM a medida, al que lleva el diagnóstico), cada uno con icono y una frase, formas de contratar, proceso y preguntas frecuentes. |
+| `index.html` (URL `/`) | Portada: hero 3D, seis soluciones operativas con ilustraciones SVG, diagrama de problemas, casos de uso ilustrativos y recorrido diagnóstico–piloto–operación. |
+| `servicios/index.html` (URL `/servicios/`) | Índice de seis soluciones: datos y operaciones, visión artificial, agua y energía, ciberseguridad IT/OT, planificación predictiva y trazabilidad/calidad. Incluye integración tecnológica, formas de contratación y preguntas frecuentes. |
+| `servicios/<servicio>/index.html` | Seis páginas de detalle con problemas, entregables, métricas de evaluación, integraciones, límites de alcance y servicios relacionados. |
+| `sectores/index.html` (URL `/sectores/`) | Especialización para el sur de España, con prioridad en hortofruticultura y olivar, y capacidades transferibles a otros subsectores. |
 | `aviso-legal/index.html` (URL `/aviso-legal/`) | Aviso legal (LSSI-CE): titular, condiciones de uso, propiedad intelectual, enlaces y jurisdicción. |
 | `privacidad/index.html` (URL `/privacidad/`) | Política de privacidad (RGPD y LOPDGDD): finalidades, bases jurídicas, encargados, derechos y reclamación ante la AEPD. |
 | `cookies/index.html` (URL `/cookies/`) | Política de cookies: estado actual (sin cookies; solo dos claves técnicas del navegador) y categorías previstas si se añade analítica. |
 | `diagnostico/index.html` (URL `/diagnostico/`) | Diagnóstico de visibilidad (autoevaluación de 12 preguntas). Hoy el informe se genera en el navegador; no se envía ningún dato. |
-| `nosotros/index.html` (URL `/nosotros/`) | Página Nosotros. |
+| `nosotros/index.html` (URL `/nosotros/`) | Origen de Neoda en NASA Space Apps Granada 2026, certificado del tercer puesto local, forma de trabajo y equipo. |
 | `robots.txt`, `sitemap.xml`, `security.txt`, `.well-known/security.txt`, `favicon.ico` | Rastreo, mapa del sitio y contacto de seguridad (ver «Seguridad» y «SEO»). |
 | `img/og/neoda-og.jpg` | Imagen de 1200×630 que se muestra al compartir enlaces en redes y mensajería. |
 | `.htaccess` | Reglas para Hostinger (Apache): HTTPS, HSTS, cabeceras, CSP y bloqueo de ficheros de desarrollo. |
@@ -27,7 +29,7 @@ Página de inicio y páginas legales de **Neoda Solutions**, consultoría boutiq
 - HTML5 semántico y **Tailwind CSS 3.4.17** compilado en local (`assets/css/site.css`). Ya no se usa el CDN de Tailwind.
 - **Three.js r128** servido desde el propio sitio (`assets/js/vendor/`), solo en la home.
 - Animaciones en **Canvas 2D** para las redes de nodos de fondo.
-- Tipografías **Inter, Inter Tight y JetBrains Mono** servidas desde el propio sitio (`assets/fonts/`). Ya no se cargan de Google Fonts.
+- Tipografía única **Inter**, servida desde el propio sitio (`assets/fonts/`) en los pesos 400, 500 y 600. No se cargan fuentes externas ni variantes monoespaciadas.
 - Todo el JavaScript está en ficheros externos (`assets/js/`): la web no usa scripts inline, lo que permite una Content-Security-Policy estricta.
 - Sin backend ni base de datos. Es una web estática: se puede servir desde cualquier hosting.
 - Respeta `prefers-reduced-motion`: sin él, las animaciones se detienen y el contenido se muestra completo.
@@ -52,15 +54,15 @@ npm run build:css      # recompila assets/css/site.css tras cambiar clases o col
 
 - Tras añadir clases nuevas en el HTML o en `assets/js/`, ejecuta `npm run build:css`. Tailwind solo genera las clases que encuentra en esos ficheros.
 - Los colores y tipografías están en `tailwind.config.js`.
-- **Idioma ES/EN**: el selector de cabecera (`.lang`) está en todas las páginas. La lógica y el diccionario de inglés están en `assets/js/i18n.js`; las claves son los textos en español tal cual aparecen en el HTML. Para añadir o cambiar un texto, edita el HTML en español y añade su traducción en ese diccionario. "Neoda Solutions" nunca se traduce. Los textos generados por `assets/js/diagnostico.js` usan `tr()` y se traducen con las mismas claves.
-- **SEO**: `npm run seo` regenera en todas las páginas el título, la descripción, el canonical, las etiquetas Open Graph y los datos estructurados (JSON-LD). El JSON-LD de `/servicios/` se construye leyendo los servicios y las preguntas frecuentes del propio HTML: **ejecútalo después de cambiar esos textos**. Los títulos y descripciones están al principio de `scripts/seo.py`; su traducción al inglés va en el mapa `HEAD` de `assets/js/i18n.js`.
+- **Idioma ES/EN**: el selector de cabecera (`.lang`) está en todas las páginas. La lógica y el diccionario de inglés están en `assets/js/i18n.js`; las claves son los textos en español tal cual aparecen en el HTML. Para contenido nuevo puedes usar el diccionario o añadir `data-en="English text"` al elemento que contiene el texto en español. Los atributos admiten equivalentes como `data-en-aria-label`. No pongas `data-en` en un contenedor con varios hijos de texto o enlaces: marca cada elemento de texto por separado. "Neoda Solutions" nunca se traduce. Los textos generados por `assets/js/diagnostico.js` usan `tr()` y las claves del diccionario.
+- **SEO**: `npm run seo` regenera en las quince páginas el título, la descripción, el canonical, las etiquetas Open Graph y los datos estructurados (JSON-LD). `/servicios/` genera un `ItemList` de seis servicios y sus preguntas frecuentes; cada página de detalle genera `Service` y `BreadcrumbList`. Los títulos y descripciones están en `scripts/seo.py`. Las páginas de soluciones llevan sus traducciones de título y descripción en los atributos `data-en`; las antiguas usan el mapa `HEAD` de `assets/js/i18n.js`.
 - Versiones fijadas: Tailwind 3.4.17, Three.js 0.128.0 (r128) y @fontsource 5.1.0. Cambiar de versión puede romper shaders o clases: revisa la web antes de subirla.
 
 ## SEO
 
-- **Palabras clave por página:** la home apunta a «consultoría de datos», «consultoría de inteligencia artificial» y «consultora de datos e IA para pymes». `/servicios/` tiene un H2 por línea y un H3 por servicio con su búsqueda principal (analítica de datos y cuadros de mando, automatización de procesos con IA, desarrollo de software a medida, adecuación al RGPD, pentesting…). No se ha usado una herramienta de volumen de búsqueda: conviene validarlas con Google Search Console tras el lanzamiento.
+- **Palabras clave por página:** la home apunta a «soluciones de datos agroalimentarios», «IA agroalimentaria» y «ciberseguridad agroindustrial». Las seis páginas de servicio cubren intenciones específicas de datos operativos, visión artificial, agua y energía, seguridad IT/OT, planificación predictiva y trazabilidad. `/sectores/` refuerza hortofruticultura, olivar y agroindustria en el sur de España. No se ha usado una herramienta de volumen de búsqueda: conviene validarlas con Google Search Console tras el lanzamiento.
 - **Un solo H1 por página**, con la palabra clave principal. Los demás títulos son H2/H3 en orden.
-- **Datos estructurados:** `Organization` y `WebSite` (home), `Service`, `ItemList`, `BreadcrumbList` y `FAQPage` (servicios), `AboutPage` (nosotros). Son bloques `<script type="application/ld+json">`: no se ejecutan, así que no afectan a la CSP. `npm run check` los valida como JSON y no los cuenta como scripts inline.
+- **Datos estructurados:** `Organization` y `WebSite` (home), `Service`, `ItemList`, `BreadcrumbList` y `FAQPage` (servicios), `AboutPage` (nosotros) y páginas sectoriales. Son bloques `<script type="application/ld+json">`: no se ejecutan, así que no afectan a la CSP. `npm run check` los valida como JSON y revisa las quince páginas, incluidas las subcarpetas de servicios.
 - **Idioma:** la versión en inglés se genera en el navegador sobre la misma URL, así que Google indexa la versión en español. Si más adelante queréis posicionar en inglés, hace falta una URL propia por idioma (por ejemplo `/en/`) con etiquetas `hreflang`.
 - **Casos de uso:** son escenarios ilustrativos y lo dicen en la página. Cuando haya clientes, sustituirlos por casos reales con su permiso: es la señal de confianza que más pesa.
 
@@ -103,13 +105,13 @@ Falla si hay scripts inline, recursos de terceros, enlaces `target="_blank"` sin
 
 | Token | Valor | Uso |
 |---|---|---|
-| Fondo institucional | `#1A1524` / `#221C2E` | Secciones principales |
-| Negro de contraste | `#0C0B10` | Hero, partners, pie y cierre |
-| Lavanda (acento) | `#5F5675` | Botones y CTA |
-| Lavanda claro | `#B9AFD3` | Etiquetas y detalles |
-| Acero / plomo | `#35303E` – `#524C59` | Tarjetas y bordes |
-| Gris plata | `#AFAAB5` | Texto de cuerpo |
-| Blanco | `#FFFFFF` / `#F3F2F5` | Titulares y una banda clara |
+| Fondo institucional | `#142B22` / `#214333` | Secciones principales |
+| Verde bosque | `#0D1F18` | Hero, pie y cierre |
+| Dorado cosecha (acento) | `#C9A45C` | Botones y CTA |
+| Verde salvia | `#C5DAA5` | Etiquetas y detalles |
+| Verde hoja / musgo | `#6F9362` – `#8FAF7B` | Tarjetas, datos y bordes |
+| Gris verdoso | `#B7C4BA` | Texto de cuerpo |
+| Marfil | `#F3F0E6` / `#E8EDDE` | Bandas claras y contraste |
 
 ## Pendientes antes de publicar
 
@@ -120,10 +122,10 @@ Falla si hay scripts inline, recursos de terceros, enlaces `target="_blank"` sin
 - [ ] Teléfono y dirección en el pie de página.
 - [ ] Fechas de última actualización de las páginas legales.
 - [ ] Casos de uso: hoy son escenarios ilustrativos sin cifras. Sustituir por casos reales, con permiso del cliente, cuando los haya.
-- [ ] Confirmar las tecnologías de la banda (Python, Power BI, Azure, AWS, PostgreSQL, n8n) y, si se usan logotipos, respetar sus guías de marca.
+- [ ] Confirmar las capacidades y herramientas concretas que el equipo utiliza en cada una de las seis soluciones antes de convertir los ejemplos tecnológicos en afirmaciones comerciales específicas.
 - [ ] Confirmar el partner de pentesting.
 - [ ] Confirmar el dominio del correo (`contacto@neoda.com` frente a `neodasolutions.com`).
-- [ ] Sección de equipo: nombres, fotos y enlaces de LinkedIn de las tres personas (los cargos ya están).
+- [ ] Sección de equipo: completar nombres, fotos y enlaces de LinkedIn de los socios de datos e inteligencia artificial. El perfil de Hugo Martínez Segura ya está publicado.
 - [ ] Conectar el formulario del whitepaper y el informe del diagnóstico a Brevo o a un CRM, con validación en servidor (ahora no envían nada).
 - [ ] Revisión de los textos legales por asesoría jurídica.
 - [ ] Verificar la marca «Neoda» frente a homónimos (existe otra empresa con un nombre muy parecido).
