@@ -2,13 +2,6 @@
 (function () {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Menú móvil
-  const btn = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu');
-  if (btn && menu) btn.addEventListener('click', () => {
-    const open = menu.classList.toggle('hidden') === false;
-    btn.setAttribute('aria-expanded', String(open));
-  });
-
   // Cada maqueta se anima una sola vez, cuando entra en pantalla. Sin JS o con movimiento reducido se ve en su estado final.
   // El proceso (.reveal) es más alto, así que arranca antes (15 % visible).
   const reveal = (els, threshold) => {

@@ -203,3 +203,6 @@ header a[aria-label*="Neoda"] svg path:last-child { stroke: var(--agro-gold); }
   .issue-card { grid-template-columns: 38px minmax(0,1fr); gap: 14px; }
   .issue-icon { width: 38px; height: 38px; }
 }
+
+/* Botones dorados: texto oscuro también dentro de las páginas con .sol-body (que fuerza color en los enlaces) */
+.sol-body .bg-lavender, .sol-body .bg-lavender:hover { color: var(--agro-forest); }

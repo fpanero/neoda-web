@@ -5,11 +5,6 @@
     const isEN = () => document.documentElement.lang === 'en';
     const T = (es, en) => (isEN() ? en : es);
 
-    /* ---------- Menú móvil ---------- */
-    const menuBtn = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => { const open = menu.classList.toggle('hidden') === false; menuBtn.setAttribute('aria-expanded', open); });
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu.classList.add('hidden'); menuBtn.setAttribute('aria-expanded', false); }));
-
     /* ---------- Formulario (validación de email corporativo) ---------- */
     const form = document.getElementById('leadForm'), msg = document.getElementById('formMsg');
     const personal = ['gmail.com','hotmail.com','hotmail.es','outlook.com','outlook.es','yahoo.com','yahoo.es','icloud.com','live.com','protonmail.com'];
